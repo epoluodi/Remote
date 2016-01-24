@@ -153,7 +153,7 @@
 
 -(void)leftclick
 {
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

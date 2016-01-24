@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController<UIScrollViewDelegate>
+{
+    UIButton *btnlibary;
+    UIButton *btntask;
+    UIButton *btnsetting;
+    UIView *_lineview;
+    UIScrollView *scrollview;
+}
+
+@property (weak, nonatomic) IBOutlet UIButton *btnsearch;
+@property (weak, nonatomic) IBOutlet UIView *tabview;
+@property (weak, nonatomic) IBOutlet UIView *controlview;
+
+- (IBAction)clicksearch:(id)sender;
+
 
 @end
