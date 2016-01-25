@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "tab1View.h"
 
 @interface MainViewController : UIViewController<UIScrollViewDelegate>
 {
@@ -15,6 +16,8 @@
     UIButton *btnsetting;
     UIView *_lineview;
     UIScrollView *scrollview;
+    
+    tab1View *tab1;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *btnsearch;

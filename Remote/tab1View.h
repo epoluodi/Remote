@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface tab1View : UIView
+@interface tab1View : UIView<UITableViewDataSource,UITableViewDelegate>
+{
+    UITableView *table;
+    UIRefreshControl *refresh;
+}
+
+
+-(UITableView *)tableinit:(CGRect)frame;
+
 
 @end
