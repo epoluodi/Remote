@@ -44,6 +44,8 @@
 		7BD31A7B1C4E8130002FB61E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD31A7A1C4E8130002FB61E /* AppDelegate.m */; };
 		7BD31A831C4E8131002FB61E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BD31A821C4E8131002FB61E /* Assets.xcassets */; };
 		7BD31A861C4E8131002FB61E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BD31A841C4E8131002FB61E /* LaunchScreen.storyboard */; };
+		B488D1041C55FCBA009BC7E2 /* appico.png in Resources */ = {isa = PBXBuildFile; fileRef = B488D1031C55FCBA009BC7E2 /* appico.png */; };
+		B488D1161C56274B009BC7E2 /* tab1View.m in Sources */ = {isa = PBXBuildFile; fileRef = B488D1151C56274B009BC7E2 /* tab1View.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -104,6 +106,9 @@
 		7BD31A821C4E8131002FB61E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BD31A851C4E8131002FB61E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BD31A871C4E8131002FB61E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B488D1031C55FCBA009BC7E2 /* appico.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appico.png; sourceTree = "<group>"; };
+		B488D1141C56274B009BC7E2 /* tab1View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tab1View.h; sourceTree = "<group>"; };
+		B488D1151C56274B009BC7E2 /* tab1View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tab1View.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +150,7 @@
 		7B0AF4981C5466630064426B /* PNG */ = {
 			isa = PBXGroup;
 			children = (
+				B488D1031C55FCBA009BC7E2 /* appico.png */,
 				7B0AF4D81C551CA40064426B /* img_playmode_normal.png */,
 				7B0AF4D91C551CA40064426B /* img_playmode_repeat_all.png */,
 				7B0AF4DA1C551CA40064426B /* img_playmode_repeat_current.png */,
@@ -181,6 +187,8 @@
 				7B0AF4B61C54892B0064426B /* DeviceInfo.m */,
 				7B0AF4BD1C548F8D0064426B /* DeviceCell.h */,
 				7B0AF4BE1C548F8D0064426B /* DeviceCell.m */,
+				B488D1141C56274B009BC7E2 /* tab1View.h */,
+				B488D1151C56274B009BC7E2 /* tab1View.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -296,6 +304,7 @@
 				7B0AF4BC1C548DB10064426B /* computer.png in Resources */,
 				7BD31A861C4E8131002FB61E /* LaunchScreen.storyboard in Resources */,
 				7B0AF4AE1C5474E50064426B /* progress_6.png in Resources */,
+				B488D1041C55FCBA009BC7E2 /* appico.png in Resources */,
 				7B0AF4D41C551AD40064426B /* img_pause_normal.png in Resources */,
 				7B0AF4D61C551AD40064426B /* img_play_normal.png in Resources */,
 				7B0AF4D51C551AD40064426B /* img_play_next_normal.png in Resources */,
@@ -328,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B488D1161C56274B009BC7E2 /* tab1View.m in Sources */,
 				7BD31A7B1C4E8130002FB61E /* AppDelegate.m in Sources */,
 				7B0AF4B31C5477370064426B /* LoadingView.m in Sources */,
 				7B0AF4B71C54892B0064426B /* DeviceInfo.m in Sources */,
