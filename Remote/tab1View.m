@@ -11,7 +11,7 @@
 #import "tab1View.h"
 
 @implementation tab1View
-
+@synthesize delegate;
 
 
 
@@ -22,13 +22,33 @@
     table.backgroundColor=[UIColor clearColor];
     table.separatorColor=[UIColor whiteColor];
         refresh = [[UIRefreshControl alloc] init];
+    [refresh addTarget:self action:@selector(changerefreshstate) forControlEvents:UIControlEventValueChanged];
+//    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"努力加载中……"];
+    
+    refresh.tintColor = [UIColor whiteColor];
         [table addSubview:refresh];
     
     table.frame = frame;
     table.delegate=self;
     table.dataSource=self;
+    
+    
+    
     return table;
 }
+
+
+
+//开始刷新
+-(void)changerefreshstate
+{
+    if (refresh.refreshing)
+    {
+        sleep(2);
+        [refresh endRefreshing];
+    }
+}
+
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -81,7 +101,11 @@
     cell.selectedBackgroundView = v;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell * cell = [table cellForRowAtIndexPath:indexPath];
+    [delegate ItemClick:cell.textLabel.text];
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

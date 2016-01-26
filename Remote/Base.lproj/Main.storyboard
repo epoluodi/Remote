@@ -235,6 +235,7 @@
                     <connections>
                         <outlet property="btnsearch" destination="ZP2-O7-eBR" id="3TA-d3-pZL"/>
                         <outlet property="controlview" destination="7K0-bw-Wvu" id="VII-aa-9wb"/>
+                        <outlet property="headview" destination="IGZ-Yl-q2S" id="av2-q1-MAQ"/>
                         <outlet property="tabview" destination="v2P-I6-U1X" id="Veo-P7-MVz"/>
                         <segue destination="lVL-yU-Rra" kind="modal" identifier="showsearch" id="rZ5-i4-WNA"/>
                     </connections>

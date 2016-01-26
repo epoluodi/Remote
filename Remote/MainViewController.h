@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "tab1View.h"
-
-@interface MainViewController : UIViewController<UIScrollViewDelegate>
+#import "tab2View.h"
+#import "tab3View.h"
+#import "tab1Viewchild.h"
+@interface MainViewController : UIViewController<UIScrollViewDelegate,tab1itemClick,clickdelegate>
 {
     UIButton *btnlibary;
     UIButton *btntask;
@@ -18,11 +20,18 @@
     UIScrollView *scrollview;
     
     tab1View *tab1;
+    tab2View *tab2;
+    tab3View *tab3;
+    
+    tab1Viewchild *t1viewchild;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *btnsearch;
 @property (weak, nonatomic) IBOutlet UIView *tabview;
 @property (weak, nonatomic) IBOutlet UIView *controlview;
+@property (weak, nonatomic) IBOutlet UIView *headview;
+
+
 
 - (IBAction)clicksearch:(id)sender;
 

@@ -23,6 +23,7 @@
 @implementation MainViewController
 @synthesize btnsearch;
 @synthesize tabview,controlview;
+@synthesize headview;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -52,23 +53,26 @@
     scrollview.showsVerticalScrollIndicator=NO;
     scrollview.userInteractionEnabled=YES;
     
-    
+    //tab1
     tab1= [[tab1View alloc] init];
     UITableView *table = [tab1 tableinit:CGRectMake(0, 0, [PublicCommon GetALLScreen].size.width, scrollheight+20)];
-    
-   
+    tab1.delegate = self;
     [scrollview addSubview:table];
     
-    UIView *v2 = [[UIView alloc] init];
-    v2.frame = CGRectMake([PublicCommon GetALLScreen].size.width, 0, [PublicCommon GetALLScreen].size.width, scrollheight+20);
-    v2.backgroundColor = [UIColor yellowColor];
-    [scrollview addSubview:v2];
     
-    UIView *v3 = [[UIView alloc] init];
-    v3.frame = CGRectMake([PublicCommon GetALLScreen].size.width *2, 0, [PublicCommon GetALLScreen].size.width, scrollheight+20);
-    v3.backgroundColor = [UIColor greenColor];
-    [scrollview addSubview:v3];
+    //tab2
+    tab2 = [[tab2View alloc] initWithFrame:CGRectMake([PublicCommon GetALLScreen].size.width , 0, [PublicCommon GetALLScreen].size.width, scrollheight+20)];
+    [scrollview addSubview:tab2];
+    
+    
+    NSArray *nibarry = [[NSBundle mainBundle] loadNibNamed:@"tab3View" owner:tab3 options:nil];
+    tab3 = (tab3View *)nibarry[0];
+    tab3.frame =CGRectMake([PublicCommon GetALLScreen].size.width*2 , 0, [PublicCommon GetALLScreen].size.width, scrollheight+20);
+    [scrollview addSubview:tab3];
 }
+
+
+
 
 
 // 线动画
@@ -147,6 +151,52 @@
     [scrollview setContentOffset:CGPointMake([PublicCommon GetALLScreen].size.width *2, 0) animated:YES];
 }
 
+#pragma marker tab1itemclick
+
+-(void)ItemClick:(NSString *)itemname
+{
+    [self HideView];
+    NSArray *nibarry = [[NSBundle mainBundle] loadNibNamed:@"tab1viewchild" owner:t1viewchild options:nil];
+    t1viewchild = (tab1Viewchild *)nibarry[0];
+    t1viewchild.frame =CGRectMake(0 , 0, [PublicCommon GetALLScreen].size.width, [PublicCommon GetALLScreen].size.height-66 +20);
+    t1viewchild.delegate = self;
+    [self.view addSubview:t1viewchild];
+    
+}
+#pragma marker -
+
+
+#pragma marker t1viewchilddelegate
+
+-(void)Clickback
+{
+    t1viewchild.delegate=nil;
+    [t1viewchild removeFromSuperview];
+    t1viewchild=nil;
+    [self ShowView];
+}
+
+#pragma marker -
+
+
+
+#pragma marker 切换view
+
+-(void)HideView
+{
+    headview.hidden=YES;
+    tabview.hidden=YES;
+    scrollview.hidden=YES;
+}
+
+-(void)ShowView
+{
+    headview.hidden=NO;
+    tabview.hidden=NO;
+    scrollview.hidden=NO;
+}
+
+#pragma marker -
 
 
 #pragma marker 滚动事件
