@@ -11,6 +11,7 @@
 #import "tab2View.h"
 #import "tab3View.h"
 #import "tab1Viewchild.h"
+#import "DeviceFun.h"
 @interface MainViewController : UIViewController<UIScrollViewDelegate,tab1itemClick,clickdelegate>
 {
     UIButton *btnlibary;

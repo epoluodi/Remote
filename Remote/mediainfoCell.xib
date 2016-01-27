@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="GSA-T3-Ryq" customClass="MediaInfoCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GSA-T3-Ryq" id="B7N-6w-Hf4">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_yy.png" translatesAutoresizingMaskIntoConstraints="NO" id="kBQ-wk-nN1">
+                        <rect key="frame" x="282" y="18" width="30" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="lcx-4i-JEd"/>
+                            <constraint firstAttribute="height" constant="24" id="sho-Zw-bWq"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="过年.wav" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MrL-Vj-bkT">
+                        <rect key="frame" x="8" y="8" width="266" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="266" id="623-h8-YRz"/>
+                            <constraint firstAttribute="height" constant="21" id="heM-CK-mf4"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21.8M" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Q2-8V-ada">
+                        <rect key="frame" x="8" y="30" width="266" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="OXR-zz-D4g"/>
+                            <constraint firstAttribute="width" constant="266" id="ew4-wq-41T"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="MrL-Vj-bkT" firstAttribute="top" secondItem="B7N-6w-Hf4" secondAttribute="top" constant="8" id="6Ze-JS-SAH"/>
+                    <constraint firstItem="kBQ-wk-nN1" firstAttribute="top" secondItem="B7N-6w-Hf4" secondAttribute="topMargin" constant="10" id="EWK-LC-0KF"/>
+                    <constraint firstItem="MrL-Vj-bkT" firstAttribute="leading" secondItem="B7N-6w-Hf4" secondAttribute="leading" constant="8" id="Y2f-ys-Kuc"/>
+                    <constraint firstAttribute="bottom" secondItem="7Q2-8V-ada" secondAttribute="bottom" constant="8" id="aLL-K3-NRe"/>
+                    <constraint firstItem="kBQ-wk-nN1" firstAttribute="trailing" secondItem="B7N-6w-Hf4" secondAttribute="trailingMargin" id="c8b-p7-fkB"/>
+                    <constraint firstItem="7Q2-8V-ada" firstAttribute="leading" secondItem="B7N-6w-Hf4" secondAttribute="leading" constant="8" id="ua2-5o-Eoj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="imgtype" destination="kBQ-wk-nN1" id="Y7o-Dk-bIR"/>
+                <outlet property="len" destination="7Q2-8V-ada" id="fYh-AM-YEv"/>
+                <outlet property="medianame" destination="MrL-Vj-bkT" id="0Iq-6D-PXO"/>
+            </connections>
+            <point key="canvasLocation" x="291" y="428"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="img_yy.png" width="76" height="48"/>
+    </resources>
+</document>

@@ -9,7 +9,7 @@
 #import "tab2View.h"
 
 @implementation tab2View
-
+@synthesize mainView;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -82,7 +82,14 @@
 -(void)clickaddTask
 {
     
+    NSArray *nibarry = [[NSBundle mainBundle] loadNibNamed:@"newTaskView" owner:newtaskview options:nil];
+    newtaskview = (NewTaskVIew *)nibarry[0];
+    newtaskview.frame = mainView.view.frame;
+    newtaskview.mainView= mainView;
+    [mainView.view addSubview:newtaskview];
 }
+
+
 //开始刷新
 -(void)changerefreshstate
 {

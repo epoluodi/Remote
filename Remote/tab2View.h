@@ -9,13 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <Common/PublicCommon.h>
 #import "TaskCell.h"
+#import "NewTaskVIew.h"
+
+
 
 @interface tab2View : UIView<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *table;
     UIRefreshControl *refresh;
     UIButton *btnAdd;
+    NewTaskVIew *newtaskview;
 }
 
-
+@property (weak,nonatomic) UIViewController *mainView;
 @end
