@@ -21,17 +21,7 @@
     return self;
 }
 
-- (UIImage*) createImageWithColor: (UIColor*) color Rect:(CGRect) rect
-{
-    
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return theImage;
-}
+
 -(void)initview
 {
     
@@ -41,10 +31,10 @@
     [btnAdd addTarget:self action:@selector(clickaddTask) forControlEvents:UIControlEventTouchUpInside];
     btnAdd.layer.cornerRadius = 8;
     btnAdd.layer.masksToBounds=YES;
-    UIImage *image1 = [self createImageWithColor:[UIColor colorWithRed:0.231 green:0.718 blue:0.898 alpha:1.00]
+    UIImage *image1 = [PublicCommon createImageWithColor:[UIColor colorWithRed:0.231 green:0.718 blue:0.898 alpha:1.00]
                                             Rect:CGRectMake(0, 0, [PublicCommon GetALLScreen].size.width - 60, 40) ];
 
-    UIImage *image2 = [self createImageWithColor:[UIColor colorWithRed:0.231 green:0.718 blue:0.898 alpha:.5f]
+    UIImage *image2 = [PublicCommon createImageWithColor:[UIColor colorWithRed:0.231 green:0.718 blue:0.898 alpha:.5f]
                                             Rect:CGRectMake(0, 0, [PublicCommon GetALLScreen].size.width - 60, 40) ];
 
     [btnAdd setBackgroundImage:image1 forState:UIControlStateNormal];

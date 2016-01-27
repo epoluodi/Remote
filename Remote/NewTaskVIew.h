@@ -25,10 +25,23 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnenddt;
 @property (weak, nonatomic) IBOutlet UIView *displayview;
 
+@property (weak, nonatomic) IBOutlet UILabel *starttime;
+@property (weak, nonatomic) IBOutlet UILabel *endtime;
+@property (weak, nonatomic) IBOutlet UIButton *btnstarttime;
+@property (weak, nonatomic) IBOutlet UIButton *btnendtime;
+
+
+
+
 @property(weak,nonatomic)UIViewController *mainView;
 
 - (IBAction)clickstartdt:(id)sender;
 - (IBAction)clickenddt:(id)sender;
+- (IBAction)clickstarttime:(id)sender;
+- (IBAction)clickendtime:(id)sender;
+
+
+
 
 
 

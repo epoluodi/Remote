@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -32,66 +32,116 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SsG-Tj-Dlf">
-                            <rect key="frame" x="86" y="139" width="108" height="30"/>
+                            <rect key="frame" x="20" y="138" width="108" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="108" id="G91-BZ-aed"/>
-                                <constraint firstAttribute="height" constant="30" id="yam-UX-iAA"/>
+                                <constraint firstAttribute="height" constant="30" id="D5m-bn-yhe"/>
+                                <constraint firstAttribute="width" constant="108" id="eKg-MV-764"/>
                             </constraints>
-                            <state key="normal" title="开始日期时间"/>
+                            <state key="normal" title="开始日期"/>
                             <connections>
                                 <action selector="clickstartdt:" destination="b8U-wn-P6O" eventType="touchUpInside" id="Qbc-V7-cc0"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIq-C7-rHD">
-                            <rect key="frame" x="10" y="103" width="260" height="21"/>
+                            <rect key="frame" x="10" y="103" width="129" height="21"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="21" id="4W8-QO-zeA"/>
+                                <constraint firstAttribute="height" constant="21" id="2j1-3U-1wb"/>
+                                <constraint firstAttribute="width" constant="129" id="UZS-JJ-UAr"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WsW-7P-HRZ">
-                            <rect key="frame" x="86" y="220" width="108" height="30"/>
+                            <rect key="frame" x="153" y="138" width="108" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="108" id="XZc-79-aFs"/>
-                                <constraint firstAttribute="height" constant="30" id="ybn-MV-BwM"/>
+                                <constraint firstAttribute="width" constant="108" id="MqU-b5-dEW"/>
+                                <constraint firstAttribute="height" constant="30" id="z9W-MZ-Mek"/>
                             </constraints>
-                            <state key="normal" title="结束日期时间"/>
+                            <state key="normal" title="结束日期"/>
                             <connections>
                                 <action selector="clickenddt:" destination="b8U-wn-P6O" eventType="touchUpInside" id="ELh-4l-gJZ"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXc-le-z8H">
-                            <rect key="frame" x="10" y="186" width="260" height="21"/>
+                            <rect key="frame" x="143" y="103" width="129" height="21"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="21" id="kZg-Ea-2vO"/>
+                                <constraint firstAttribute="height" constant="21" id="I5f-pz-08S"/>
+                                <constraint firstAttribute="width" constant="129" id="Ovy-me-r63"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bji-Aw-no8">
+                            <rect key="frame" x="10" y="176" width="129" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="129" id="mtY-So-3pJ"/>
+                                <constraint firstAttribute="height" constant="21" id="w9x-ts-k0u"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q90-zn-Bl5">
+                            <rect key="frame" x="143" y="176" width="129" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="o2K-ox-mDl"/>
+                                <constraint firstAttribute="width" constant="129" id="oGw-Q3-bBd"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uH3-Sb-TNt">
+                            <rect key="frame" x="20" y="205" width="108" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="hy1-Io-hLK"/>
+                                <constraint firstAttribute="width" constant="108" id="xNY-ad-oN5"/>
+                            </constraints>
+                            <state key="normal" title="开始时间"/>
+                            <connections>
+                                <action selector="clickstarttime:" destination="b8U-wn-P6O" eventType="touchUpInside" id="YVQ-E3-bW1"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pht-22-83m">
+                            <rect key="frame" x="153" y="205" width="108" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="DBD-Zz-PM4"/>
+                                <constraint firstAttribute="width" constant="108" id="yHd-De-ske"/>
+                            </constraints>
+                            <state key="normal" title="结束时间"/>
+                            <connections>
+                                <action selector="clickendtime:" destination="b8U-wn-P6O" eventType="touchUpInside" id="V9t-Sq-hQS"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="JIq-C7-rHD" firstAttribute="top" secondItem="yin-Wg-hbb" secondAttribute="bottom" constant="18" id="0NC-cN-fKl"/>
+                        <constraint firstItem="JIq-C7-rHD" firstAttribute="leading" secondItem="yin-Wg-hbb" secondAttribute="leading" constant="2" id="1RA-BJ-8dA"/>
                         <constraint firstItem="yin-Wg-hbb" firstAttribute="leading" secondItem="R4Y-Qe-lJd" secondAttribute="leading" constant="8" id="1S0-hh-XE7"/>
-                        <constraint firstItem="WsW-7P-HRZ" firstAttribute="top" secondItem="dXc-le-z8H" secondAttribute="bottom" constant="13" id="5e4-1W-N38"/>
-                        <constraint firstItem="SsG-Tj-Dlf" firstAttribute="top" secondItem="JIq-C7-rHD" secondAttribute="bottom" constant="15" id="5if-Wa-F37"/>
-                        <constraint firstItem="SsG-Tj-Dlf" firstAttribute="centerX" secondItem="R4Y-Qe-lJd" secondAttribute="centerX" id="676-up-t96"/>
-                        <constraint firstAttribute="trailing" secondItem="JIq-C7-rHD" secondAttribute="trailing" constant="10" id="7cX-cp-3DS"/>
+                        <constraint firstItem="q90-zn-Bl5" firstAttribute="top" secondItem="WsW-7P-HRZ" secondAttribute="bottom" constant="8" id="5YR-64-pCg"/>
+                        <constraint firstItem="SsG-Tj-Dlf" firstAttribute="centerX" secondItem="JIq-C7-rHD" secondAttribute="centerX" id="8vU-8v-gDX"/>
+                        <constraint firstItem="uH3-Sb-TNt" firstAttribute="top" secondItem="Bji-Aw-no8" secondAttribute="bottom" constant="8" id="Bql-Is-Lza"/>
                         <constraint firstAttribute="trailing" secondItem="yin-Wg-hbb" secondAttribute="trailing" constant="8" id="Czc-VP-zaJ"/>
-                        <constraint firstAttribute="trailing" secondItem="dXc-le-z8H" secondAttribute="trailing" constant="10" id="D3Q-n9-taZ"/>
+                        <constraint firstItem="WsW-7P-HRZ" firstAttribute="centerX" secondItem="dXc-le-z8H" secondAttribute="centerX" id="DID-RH-ZcU"/>
                         <constraint firstAttribute="height" constant="319" id="E26-N8-Afn"/>
-                        <constraint firstItem="dXc-le-z8H" firstAttribute="top" secondItem="SsG-Tj-Dlf" secondAttribute="bottom" constant="17" id="Li9-5D-6lS"/>
-                        <constraint firstItem="WsW-7P-HRZ" firstAttribute="centerX" secondItem="R4Y-Qe-lJd" secondAttribute="centerX" id="Oci-Bk-HfU"/>
-                        <constraint firstItem="dXc-le-z8H" firstAttribute="leading" secondItem="R4Y-Qe-lJd" secondAttribute="leading" constant="10" id="Ps8-hi-7Ho"/>
-                        <constraint firstItem="JIq-C7-rHD" firstAttribute="leading" secondItem="R4Y-Qe-lJd" secondAttribute="leading" constant="10" id="Tjb-An-cC7"/>
-                        <constraint firstItem="JIq-C7-rHD" firstAttribute="top" secondItem="yin-Wg-hbb" secondAttribute="bottom" constant="18" id="V9g-ia-VsG"/>
+                        <constraint firstItem="dXc-le-z8H" firstAttribute="top" secondItem="yin-Wg-hbb" secondAttribute="bottom" constant="18" id="Lxc-Ny-CTO"/>
+                        <constraint firstItem="uH3-Sb-TNt" firstAttribute="centerX" secondItem="Bji-Aw-no8" secondAttribute="centerX" id="Pfu-6a-gT4"/>
+                        <constraint firstItem="WsW-7P-HRZ" firstAttribute="top" secondItem="dXc-le-z8H" secondAttribute="bottom" constant="14" id="QtZ-Ew-K4N"/>
+                        <constraint firstItem="Pht-22-83m" firstAttribute="centerX" secondItem="q90-zn-Bl5" secondAttribute="centerX" id="XZP-aX-J72"/>
                         <constraint firstItem="yin-Wg-hbb" firstAttribute="top" secondItem="7Zu-Ua-eyA" secondAttribute="bottom" constant="14" id="Yj5-AM-YGn"/>
+                        <constraint firstItem="Bji-Aw-no8" firstAttribute="top" secondItem="SsG-Tj-Dlf" secondAttribute="bottom" constant="8" id="aSa-zG-1XC"/>
                         <constraint firstItem="7Zu-Ua-eyA" firstAttribute="top" secondItem="R4Y-Qe-lJd" secondAttribute="top" constant="14" id="c4D-6S-tR0"/>
                         <constraint firstAttribute="width" constant="280" id="c7h-9t-qxW"/>
+                        <constraint firstItem="Bji-Aw-no8" firstAttribute="leading" secondItem="yin-Wg-hbb" secondAttribute="leading" constant="2" id="esc-ex-2Tj"/>
                         <constraint firstAttribute="trailing" secondItem="7Zu-Ua-eyA" secondAttribute="trailing" constant="5" id="lKq-gx-w5R"/>
+                        <constraint firstItem="q90-zn-Bl5" firstAttribute="trailing" secondItem="yin-Wg-hbb" secondAttribute="trailing" id="lSU-21-4f0"/>
+                        <constraint firstItem="Pht-22-83m" firstAttribute="top" secondItem="q90-zn-Bl5" secondAttribute="bottom" constant="8" id="lq2-lN-Qju"/>
+                        <constraint firstItem="dXc-le-z8H" firstAttribute="trailing" secondItem="yin-Wg-hbb" secondAttribute="trailing" id="mji-SS-Mik"/>
                         <constraint firstItem="7Zu-Ua-eyA" firstAttribute="leading" secondItem="R4Y-Qe-lJd" secondAttribute="leading" constant="5" id="xMr-Ro-6dq"/>
+                        <constraint firstItem="SsG-Tj-Dlf" firstAttribute="top" secondItem="JIq-C7-rHD" secondAttribute="bottom" constant="14" id="y8Q-5R-Cgo"/>
                     </constraints>
                 </view>
             </subviews>
@@ -105,10 +155,14 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
                 <outlet property="btnenddt" destination="WsW-7P-HRZ" id="gyL-X4-aCv"/>
+                <outlet property="btnendtime" destination="Pht-22-83m" id="SBY-3A-UWZ"/>
                 <outlet property="btnstartdt" destination="SsG-Tj-Dlf" id="X9h-LP-yC3"/>
+                <outlet property="btnstarttime" destination="uH3-Sb-TNt" id="aQ8-6l-Irs"/>
                 <outlet property="displayview" destination="R4Y-Qe-lJd" id="Sfy-nA-eKe"/>
                 <outlet property="enddt" destination="dXc-le-z8H" id="KPc-sd-ICB"/>
+                <outlet property="endtime" destination="q90-zn-Bl5" id="iSl-lV-Ym4"/>
                 <outlet property="labstartdt" destination="JIq-C7-rHD" id="sWg-rj-oVa"/>
+                <outlet property="starttime" destination="Bji-Aw-no8" id="5dW-7U-aPd"/>
                 <outlet property="taskname" destination="yin-Wg-hbb" id="eue-gZ-15O"/>
             </connections>
             <point key="canvasLocation" x="250" y="372"/>
