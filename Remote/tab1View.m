@@ -9,10 +9,20 @@
 //tab1 界面
 
 #import "tab1View.h"
+#import "MainViewController.h"
+#import "LoadingView.h"
+
+
+@interface tab1View ()
+{
+    DeviceNet *dnet;
+}
+
+@end
 
 @implementation tab1View
 @synthesize delegate;
-
+@synthesize mainview;
 
 
 -(UITableView *)tableinit:(CGRect)frame
@@ -38,6 +48,27 @@
 }
 
 
+//刷新类型
+-(void)LoadContentType
+{
+    dnet = [[DeviceNet alloc] init];
+    dnet.Commanddelegate=self;
+    [dnet getContentType:((MainViewController *)mainview).DeviceIP];
+    
+}
+
+-(void)CommandFinish:(CommandType)commandtype json:(NSDictionary *)json
+{
+    if (commandtype == EloadContentType)
+    {
+        
+    }
+}
+-(void)CommandTimeout
+{
+    
+}
+
 
 //开始刷新
 -(void)changerefreshstate
@@ -57,7 +88,10 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    if (((MainViewController*)mainview).ContentType)
+        return [((MainViewController*)mainview).ContentType count];
+    return 0;
+
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

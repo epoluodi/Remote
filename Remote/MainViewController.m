@@ -24,6 +24,8 @@
 @synthesize btnsearch;
 @synthesize tabview,controlview;
 @synthesize headview;
+@synthesize DeviceIP,DeviceName;
+@synthesize MediaList,ContentType;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -32,7 +34,7 @@
     // Do any additional setup after loading the view.
     
     [btnlibary setTitleColor:[UIColor whiteColor]  forState:UIControlStateNormal];
-    
+   
     
     scrollview = [[UIScrollView alloc] init];
     scrollview.frame = CGRectMake(0, scrollY, [PublicCommon GetALLScreen].size.width, scrollheight+20);
@@ -41,6 +43,16 @@
     scrollview.delegate = self;
     iscroll =NO;
     [self initscrollview];
+    
+    IsConnected = NO;
+    
+    
+    //开始后，首先运行搜索
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+         [self clicksearch:nil];
+    });
+    
+    
     
 }
 
@@ -57,6 +69,7 @@
     tab1= [[tab1View alloc] init];
     UITableView *table = [tab1 tableinit:CGRectMake(0, 0, [PublicCommon GetALLScreen].size.width, scrollheight+20)];
     tab1.delegate = self;
+    tab1.mainview=self;
     [scrollview addSubview:table];
     
     
@@ -152,7 +165,7 @@
     [scrollview setContentOffset:CGPointMake([PublicCommon GetALLScreen].size.width *2, 0) animated:YES];
 }
 
-#pragma marker tab1itemclick
+#pragma mark tab1itemclick
 
 -(void)ItemClick:(NSString *)itemname
 {
@@ -162,19 +175,19 @@
     t1viewchild.frame =CGRectMake(0 , 0, [PublicCommon GetALLScreen].size.width, [PublicCommon GetALLScreen].size.height-66 +20);
     t1viewchild.delegate = self;
     t1viewchild.title.text= itemname;
-    DeviceFun *df = [[DeviceFun alloc] init];
-    [t1viewchild loadmedia:[df loadMediaInfo:itemname]];
+//    DeviceFun *df = [[DeviceFun alloc] init];
+//    [t1viewchild loadmedia:[df loadMediaInfo:itemname]];
     
     [self.view addSubview:t1viewchild];
     
 }
-#pragma marker -
+#pragma mark -
 
 
 
 
 
-#pragma marker t1viewchilddelegate
+#pragma mark t1viewchilddelegate
 
 -(void)Clickback
 {
@@ -184,11 +197,11 @@
     [self ShowView];
 }
 
-#pragma marker -
+#pragma mark -
 
 
 
-#pragma marker 切换view
+#pragma mark 切换view
 
 -(void)HideView
 {
@@ -204,10 +217,10 @@
     scrollview.hidden=NO;
 }
 
-#pragma marker -
+#pragma mark -
 
 
-#pragma marker 滚动事件
+#pragma mark 滚动事件
 
 
 
@@ -261,7 +274,7 @@
 }
 
 
-#pragma marker -
+#pragma mark -
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
@@ -276,13 +289,45 @@
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
+  Get the new view controller using [segue destinationViewController].
+  Pass the selected object to the new view controller.
  }
  */
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showsearch"])
+    {
+        SearchViewController *s = (SearchViewController*)segue.destinationViewController;
+        s.IsHidereturn=IsConnected;
+        s.mainview = self;
+    }
+}
+
 
 - (IBAction)clicksearch:(id)sender {
     [self performSegueWithIdentifier:@"showsearch" sender:self];
     
 }
+
+
+#pragma mark 连接设备获取信息
+
+-(void)ConnectToDeviceInit
+{
+    //连接到设备
+    IsConnected=YES;
+    [self clicklibary];
+    
+    NSLog(@"设备IP %@",DeviceIP);
+    NSLog(@"设备名称 %@",DeviceName);
+    
+    [tab1 LoadContentType];
+    
+    
+    
+    
+}
+
+#pragma mark -
+
 @end

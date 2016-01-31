@@ -11,7 +11,12 @@
 #import "tab2View.h"
 #import "tab3View.h"
 #import "tab1Viewchild.h"
-#import "DeviceFun.h"
+#import "SearchViewController.h"
+
+
+
+
+@class tab1View;
 @interface MainViewController : UIViewController<UIScrollViewDelegate,tab1itemClick,clickdelegate>
 {
     UIButton *btnlibary;
@@ -25,7 +30,19 @@
     tab3View *tab3;
     
     tab1Viewchild *t1viewchild;
+    
+    BOOL IsConnected;
+    
+    
+    
+    
+    NSArray<NSString *> *ContentType;
+    NSArray<MediaData *> *MediaList;
 }
+
+
+
+
 
 @property (weak, nonatomic) IBOutlet UIButton *btnsearch;
 @property (weak, nonatomic) IBOutlet UIView *tabview;
@@ -33,8 +50,16 @@
 @property (weak, nonatomic) IBOutlet UIView *headview;
 
 
+//设备信息
+@property (strong,nonatomic)NSString *DeviceIP;
+@property (strong,nonatomic)NSString *DeviceName;
+
+//设备数据暂存
+@property (copy,nonatomic)NSArray<NSString *> *ContentType;
+@property (copy,nonatomic)NSArray<MediaData *> *MediaList;
 
 - (IBAction)clicksearch:(id)sender;
 
+-(void)ConnectToDeviceInit;
 
 @end
