@@ -175,8 +175,8 @@
     t1viewchild.frame =CGRectMake(0 , 0, [PublicCommon GetALLScreen].size.width, [PublicCommon GetALLScreen].size.height-66 +20);
     t1viewchild.delegate = self;
     t1viewchild.title.text= itemname;
-//    DeviceFun *df = [[DeviceFun alloc] init];
-//    [t1viewchild loadmedia:[df loadMediaInfo:itemname]];
+    t1viewchild.mainview=self;
+    [t1viewchild loadmedia];
     
     [self.view addSubview:t1viewchild];
     

@@ -53,10 +53,11 @@
 -(void)LoadContentType
 {
     
-    if (!loadview)
-        loadview = [[LoadingView alloc] init];
-    [mainview.view addSubview:loadview];
-    [loadview StartAnimation];
+//    if (!loadview)
+//        loadview = [[LoadingView alloc] init];
+//    [mainview.view addSubview:loadview];
+//    [loadview StartAnimation];
+    [refresh beginRefreshing];
     dnet = [[DeviceNet alloc] init];
     dnet.Commanddelegate=self;
     dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -68,6 +69,8 @@
     
 }
 
+
+#pragma mark 通信操作委托
 -(void)CommandFinish:(CommandType)commandtype json:(NSDictionary *)json
 {
     if (loadview){
@@ -82,6 +85,15 @@
     if (commandtype == EloadContentType)
     {
         NSLog(@"获得数据");
+        NSMutableArray *contentstr = [[NSMutableArray alloc] init];
+        NSArray *list1 = [json objectForKey:@"data"];
+        for (int i=0; i<[list1 count]; i++) {
+            NSDictionary *d = list1[i];
+            [contentstr addObject:[d objectForKey:@"vcname"]];
+        }
+        
+        ((MainViewController *)mainview).ContentType = [contentstr copy];
+        [table reloadData];
         return;
     }
 }
@@ -101,6 +113,8 @@
     [alert show];
 }
 
+
+#pragma mark -
 
 //开始刷新
 -(void)changerefreshstate
@@ -130,18 +144,7 @@
     UITableViewCell * cell = [[UITableViewCell alloc] init];
     cell.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4f];
     cell.textLabel.textColor=[UIColor whiteColor];
-    switch (indexPath.row) {
-        case 0:
-            cell.textLabel.text=@"音频";
-            break;
-        case 1:
-            cell.textLabel.text=@"视频";
-            break;
-        case 2:
-            cell.textLabel.text=@"个性栏目";
-            break;
-            
-    }
+    cell.textLabel.text = [((MainViewController*)mainview).ContentType objectAtIndex:indexPath.row];
     return cell;
 }
 

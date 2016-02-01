@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "MediaData.h"
 #import "MediaInfoCell.h"
+#import "DeviceNet.h"
+
 @protocol clickdelegate
 
 -(void)Clickback;
@@ -16,10 +18,13 @@
 @end
 
 
-@interface tab1Viewchild : UIView<UITableViewDataSource,UITableViewDelegate>
+@interface tab1Viewchild : UIView<UITableViewDataSource,UITableViewDelegate,FinishCommanddelegate>
 {
-    NSArray<MediaData *> *mediaarray;
+    
     UIRefreshControl *refresh;
+    DeviceNet *dnet;
+
+    
 }
 
 
@@ -31,7 +36,7 @@
 
 
 @property (weak,nonatomic)NSObject<clickdelegate> *delegate;
+@property (weak,nonatomic) UIViewController *mainview;
 
-
--(void)loadmedia:(NSArray<MediaData *> *)arry;
+-(void)loadmedia;
 @end

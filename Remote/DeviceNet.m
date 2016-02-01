@@ -39,20 +39,17 @@
 }
 #pragma mark -
 
+
+#pragma mark 获取设备信息指令
 -(BOOL)getContentType:(NSString *)ip
 {
     
     _commandtype = EloadContentType;
-    dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+  
     tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
     {
-  
-        if (Istimeout)
-        {
-            
-            return NO;
-        }
+        return YES;
     }
     else{
         [tcpsocket disconnect];
@@ -64,6 +61,28 @@
 }
 
 
+
+-(BOOL)getMediaByType:(NSString *)ip arg:(NSString *)arg
+{
+    _arg=arg;
+    _commandtype = EloadMediaByType;
+
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+    
+}
+
+
+#pragma mark -
 
 
 
@@ -101,7 +120,14 @@
 
 
             break;
+        case EloadMediaByType:
+            command = [NSString stringWithFormat:@"%@%@%@%@",loadMediaByType,SplitStr,_arg,CRCL];
+            NSLog(@"发送数据:%@",command);
+            NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
             
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
      
     }
     
@@ -110,8 +136,19 @@
 -(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
 {
     NSLog(@"发送完毕");
-    [sock readDataWithTimeout:5 tag:tag];
+    switch (_commandtype) {
+        case EloadContentType:
+            [sock readDataWithTimeout:5 tag:tag];
+            break;
+        case EloadMediaByType:
+            [sock readDataToData:[GCDAsyncSocket CRLFData] withTimeout:10 tag:1];
+            break;
+            
+            
+    }
+    
 }
+
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
@@ -122,9 +159,10 @@
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[jsondata dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
     switch (_commandtype) {
         case EloadContentType:
+        case EloadMediaByType:
             [Commanddelegate CommandFinish:_commandtype json:json];
             break;
-            
+   
 
     }
    

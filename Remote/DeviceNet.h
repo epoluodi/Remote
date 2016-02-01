@@ -53,7 +53,7 @@ typedef enum :int {
     
     NSCondition *condtion;
     
-    BOOL Istimeout;
+    NSString *_arg;
     
     dispatch_queue_t commandqueue;
     CommandType _commandtype;
@@ -74,4 +74,7 @@ typedef enum :int {
 
 //获取媒体类别
 -(BOOL)getContentType:(NSString *)ip;
+
+//获得一个类型媒体的明细
+-(BOOL)getMediaByType:(NSString *)ip arg:(NSString *)arg;
 @end

@@ -36,8 +36,7 @@
     
     
     
-    NSArray<NSString *> *ContentType;
-    NSArray<MediaData *> *MediaList;
+   
 }
 
 

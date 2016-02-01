@@ -55,7 +55,6 @@
 		7BF59BA31C5C5E5500F7C678 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF59BA21C5C5E5500F7C678 /* CoreGraphics.framework */; };
 		7BF59BA51C5C5E9100F7C678 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF59BA41C5C5E9100F7C678 /* Security.framework */; };
 		7BF59BF41C5E430600F7C678 /* DeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF59BF21C5E430600F7C678 /* DeviceInfo.m */; };
-		7BF59BF71C5E434500F7C678 /* DeviceFun.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF59BF61C5E434500F7C678 /* DeviceFun.m */; };
 		B46FC9601C57089400050576 /* tab2View.m in Sources */ = {isa = PBXBuildFile; fileRef = B46FC95F1C57089400050576 /* tab2View.m */; };
 		B46FC9621C57109200050576 /* taskcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B46FC9611C57109200050576 /* taskcell.xib */; };
 		B46FC9651C57133100050576 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B46FC9641C57133100050576 /* TaskCell.m */; };
@@ -157,8 +156,6 @@
 		7BF59BA41C5C5E9100F7C678 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7BF59BF21C5E430600F7C678 /* DeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfo.m; sourceTree = "<group>"; };
 		7BF59BF31C5E430600F7C678 /* DeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfo.h; sourceTree = "<group>"; };
-		7BF59BF51C5E434500F7C678 /* DeviceFun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceFun.h; sourceTree = "<group>"; };
-		7BF59BF61C5E434500F7C678 /* DeviceFun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceFun.m; sourceTree = "<group>"; };
 		B46FC95E1C57089400050576 /* tab2View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tab2View.h; sourceTree = "<group>"; };
 		B46FC95F1C57089400050576 /* tab2View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tab2View.m; sourceTree = "<group>"; };
 		B46FC9611C57109200050576 /* taskcell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = taskcell.xib; sourceTree = "<group>"; };
@@ -369,8 +366,6 @@
 			children = (
 				B4A8D7121C58682E00E81CCD /* MediaData.h */,
 				B4A8D7131C58682E00E81CCD /* MediaData.m */,
-				7BF59BF51C5E434500F7C678 /* DeviceFun.h */,
-				7BF59BF61C5E434500F7C678 /* DeviceFun.m */,
 				7BF59BF21C5E430600F7C678 /* DeviceInfo.m */,
 				7BF59BF31C5E430600F7C678 /* DeviceInfo.h */,
 				7BF59B871C5BB5F000F7C678 /* DeviceNet.h */,
@@ -532,7 +527,6 @@
 				B46FC9761C571BC900050576 /* tab3View.m in Sources */,
 				7B0AF4BF1C548F8D0064426B /* DeviceCell.m in Sources */,
 				7BF59B851C5BB19600F7C678 /* YNet.m in Sources */,
-				7BF59BF71C5E434500F7C678 /* DeviceFun.m in Sources */,
 				B4A8D71C1C5871EF00E81CCD /* MediaInfoCell.m in Sources */,
 				7B0AF4C61C54D0310064426B /* MainViewController.m in Sources */,
 				7BF59BF41C5E430600F7C678 /* DeviceInfo.m in Sources */,
