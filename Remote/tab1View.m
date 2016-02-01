@@ -16,6 +16,7 @@
 @interface tab1View ()
 {
     DeviceNet *dnet;
+    __block LoadingView *loadview;
 }
 
 @end
@@ -31,12 +32,12 @@
     
     table.backgroundColor=[UIColor clearColor];
     table.separatorColor=[UIColor whiteColor];
-        refresh = [[UIRefreshControl alloc] init];
+    refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(changerefreshstate) forControlEvents:UIControlEventValueChanged];
-//    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"努力加载中……"];
+    //    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"努力加载中……"];
     
     refresh.tintColor = [UIColor whiteColor];
-        [table addSubview:refresh];
+    [table addSubview:refresh];
     
     table.frame = frame;
     table.delegate=self;
@@ -51,22 +52,53 @@
 //刷新类型
 -(void)LoadContentType
 {
+    
+    if (!loadview)
+        loadview = [[LoadingView alloc] init];
+    [mainview.view addSubview:loadview];
+    [loadview StartAnimation];
     dnet = [[DeviceNet alloc] init];
     dnet.Commanddelegate=self;
-    [dnet getContentType:((MainViewController *)mainview).DeviceIP];
+    dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(globalQ , ^{
+        [dnet getContentType:((MainViewController *)mainview).DeviceIP];
+        
+    });
+    
     
 }
 
 -(void)CommandFinish:(CommandType)commandtype json:(NSDictionary *)json
 {
+    if (loadview){
+        [loadview StopAnimation];
+        [loadview removeFromSuperview];
+        loadview = nil;
+    }
+    if (refresh.refreshing)
+    {
+        [refresh endRefreshing];
+    }
     if (commandtype == EloadContentType)
     {
-        
+        NSLog(@"获得数据");
+        return;
     }
 }
 -(void)CommandTimeout
 {
+    if (loadview){
+        [loadview StopAnimation];
+        [loadview removeFromSuperview];
+        loadview = nil;
+    }
+    if (refresh.refreshing)
+    {
+        [refresh endRefreshing];
+    }
     
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络错误，请重新尝试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    [alert show];
 }
 
 
@@ -75,8 +107,7 @@
 {
     if (refresh.refreshing)
     {
-        sleep(2);
-        [refresh endRefreshing];
+        [self LoadContentType];
     }
 }
 
@@ -91,7 +122,7 @@
     if (((MainViewController*)mainview).ContentType)
         return [((MainViewController*)mainview).ContentType count];
     return 0;
-
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -109,7 +140,7 @@
         case 2:
             cell.textLabel.text=@"个性栏目";
             break;
-
+            
     }
     return cell;
 }
@@ -142,11 +173,11 @@
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end

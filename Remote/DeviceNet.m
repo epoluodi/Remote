@@ -78,31 +78,28 @@
   
     switch (_commandtype) {
         case EloadContentType:
-            command = [NSString stringWithFormat:@"%@%@\x0D\x0A",loadContentType,SplitStr];
+            command = [NSString stringWithFormat:@"%@%@%@",loadContentType,SplitStr,CRCL];
             NSLog(@"发送数据:%@",command);
-            command = @"loadContentType!~!\x0D\x0A";
-
+            
+            
             data =[command dataUsingEncoding:NSASCIIStringEncoding];
-      NSMutableString *string = [[NSMutableString alloc] initWithCapacity:[data length]];
-            [data enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
-                unsigned char *dataBytes = (unsigned char*)bytes;
-                for (NSInteger i = 0; i < byteRange.length; i++) {
-                    NSString *hexStr = [NSString stringWithFormat:@"%x", (dataBytes[i]) & 0xff];
-                    if ([hexStr length] == 2) {
-                        [string appendString:hexStr];
-                    } else {
-                        [string appendFormat:@"0%@", hexStr];
-                    }
-                }
-            }];
+//      NSMutableString *string = [[NSMutableString alloc] initWithCapacity:[data length]];
+//            [data enumerateByteRangesUsingBlock:^(const void *bytes, NSRange byteRange, BOOL *stop) {
+//                unsigned char *dataBytes = (unsigned char*)bytes;
+//                for (NSInteger i = 0; i < byteRange.length; i++) {
+//                    NSString *hexStr = [NSString stringWithFormat:@"%x", (dataBytes[i]) & 0xff];
+//                    if ([hexStr length] == 2) {
+//                        [string appendString:hexStr];
+//                    } else {
+//                        [string appendFormat:@"0%@", hexStr];
+//                    }
+//                }
+//            }];
             
             
-//            NSLog(@"%@",string);
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [sock writeData:data withTimeout:0 tag:2];
-//            });
-            
-          
+           [sock writeData:data withTimeout:0 tag:0];
+
+
             break;
             
      
@@ -121,6 +118,15 @@
 
       NSLog(@"接收到 数据 %@",[[NSString alloc] initWithData:data encoding:enc]);
   
+    NSString *jsondata =[[NSString alloc] initWithData:data encoding:enc];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[jsondata dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+    switch (_commandtype) {
+        case EloadContentType:
+            [Commanddelegate CommandFinish:_commandtype json:json];
+            break;
+            
+
+    }
    
 }
 -(NSTimeInterval)socket:(GCDAsyncSocket *)sock shouldTimeoutWriteWithTag:(long)tag elapsed:(NSTimeInterval)elapsed bytesDone:(NSUInteger)length
@@ -130,6 +136,14 @@
 }
 -(void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
 {
+    if (err.code == GCDAsyncSocketConnectTimeoutError ||
+        err.code == GCDAsyncSocketReadTimeoutError ||
+        err.code == GCDAsyncSocketWriteTimeoutError)
+    {
+         [Commanddelegate CommandTimeout];
+        return;
+    }
+
     NSLog(@"错误 %@",err);
     NSLog(@"连接关闭");
 }

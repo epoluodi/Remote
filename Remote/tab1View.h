@@ -20,6 +20,9 @@
 {
     UITableView *table;
     UIRefreshControl *refresh;
+    
+
+    
 }
 @property (weak,nonatomic) NSObject<tab1itemClick> *delegate;
 @property (weak,nonatomic) UIViewController *mainview;

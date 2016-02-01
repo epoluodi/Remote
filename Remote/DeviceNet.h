@@ -19,6 +19,7 @@
 #define loadMediaByType @"loadMediaByType" //读取媒体信息 参数 :ContentType
 
 #define SplitStr @"!~!" // 命令分隔符
+#define CRCL @"\x0D\x0A"//结束符
 
 const int COMMUNICATION_PORT = 21414;// 搜搜 端口
 const int RECIVE_PORT = 21415;// 接收 端口
