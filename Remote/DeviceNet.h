@@ -17,6 +17,38 @@
 
 #define loadContentType @"loadContentType" //读取所有类别
 #define loadMediaByType @"loadMediaByType" //读取媒体信息 参数 :ContentType
+#define loadAllMedia @"loadAllMedia" //加载所有媒体信息按类型分组 没有用
+#define loadMediaByParentcode @"loadMediaByParentcode" // 没有用
+#define loadSysDir @"loadSysDir" // 加载服务器上文件目录 扫描文件
+#define scanfDir @"scanfDir" // 把所有扫描的文件会编排一个id
+#define delMedia @"delMedia" //
+#define convertType @"convertType" //
+#define addToTask @"addToTask" //
+#define loadAllTask @"loadAllTask" //
+#define delTask @"delTask" //
+#define getAllItemByTask @"getAllItemByTask" //
+#define delTaskItem @"delTaskItem" //
+#define addTask @"addTask" //
+#define enOrDisableTask @"enOrDisableTask" //
+#define editTask @"editTask" //
+#define replaceDB @"replaceDB" //
+#define sendmail @"sendmail" //
+#define systemrecover @"systemrecover" //
+#define getshutdown @"getshutdown" //
+#define setshutdown @"setshutdown" //
+
+#define playpro @"playpro" //
+#define playnext @"playnext" //
+#define skiptime @"skiptime" //
+#define playOrPause @"playOrPause" //
+#define playMedia @"playMedia" //
+#define playorder @"playorder" //
+#define playMode @"playMode" //
+#define playPublicMedia @"playPublicMedia" //
+#define dowmVolume @"dowmVolume" //降低音量
+#define upVolume @"upVolume" //提高音量
+
+
 
 #define SplitStr @"!~!" // 命令分隔符
 #define CRCL @"\x0D\x0A"//结束符

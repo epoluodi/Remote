@@ -79,6 +79,7 @@
 		B4A8D7201C58724B00E81CCD /* img_yy.png in Resources */ = {isa = PBXBuildFile; fileRef = B4A8D71E1C58724B00E81CCD /* img_yy.png */; };
 		B4A8D7231C589B8F00E81CCD /* newTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A8D7221C589B8F00E81CCD /* newTaskView.xib */; };
 		B4A8D7261C589F6700E81CCD /* NewTaskVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A8D7251C589F6700E81CCD /* NewTaskVIew.m */; };
+		B4BE1D701C60A40E00CA30B1 /* TipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BE1D6F1C60A40E00CA30B1 /* TipView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -188,6 +189,8 @@
 		B4A8D7221C589B8F00E81CCD /* newTaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = newTaskView.xib; sourceTree = "<group>"; };
 		B4A8D7241C589F6700E81CCD /* NewTaskVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTaskVIew.h; sourceTree = "<group>"; };
 		B4A8D7251C589F6700E81CCD /* NewTaskVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTaskVIew.m; sourceTree = "<group>"; };
+		B4BE1D6E1C60A40E00CA30B1 /* TipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipView.h; sourceTree = "<group>"; };
+		B4BE1D6F1C60A40E00CA30B1 /* TipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +297,8 @@
 				B4A8D71B1C5871EF00E81CCD /* MediaInfoCell.m */,
 				B4A8D7241C589F6700E81CCD /* NewTaskVIew.h */,
 				B4A8D7251C589F6700E81CCD /* NewTaskVIew.m */,
+				B4BE1D6E1C60A40E00CA30B1 /* TipView.h */,
+				B4BE1D6F1C60A40E00CA30B1 /* TipView.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -532,6 +537,7 @@
 				7BF59BF41C5E430600F7C678 /* DeviceInfo.m in Sources */,
 				7BF59B951C5C52F100F7C678 /* GCDAsyncUdpSocket.m in Sources */,
 				7B0AF4971C54658A0064426B /* SearchViewController.m in Sources */,
+				B4BE1D701C60A40E00CA30B1 /* TipView.m in Sources */,
 				7BF59B9B1C5C52FB00F7C678 /* AsyncUdpSocket.m in Sources */,
 				7BF59B941C5C52F100F7C678 /* GCDAsyncSocket.m in Sources */,
 				7BD31A781C4E8130002FB61E /* main.m in Sources */,
