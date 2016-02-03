@@ -52,9 +52,20 @@
          [self clicksearch:nil];
     });
     
+    //增加监听 音量按键
     
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                            selector:@selector(changeVolumeKey:)
+//                    name:@"AVSystemController_AudioVolumeNotificationParameter"
+//                                               object:nil];
     
 }
+
+//-(void)dealloc
+//{
+//    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:@"AVSystemController_AudioVolumeNotificationParameter"];
+//}
+
 
 -(void)initscrollview
 {
@@ -82,6 +93,8 @@
     NSArray *nibarry = [[NSBundle mainBundle] loadNibNamed:@"tab3View" owner:tab3 options:nil];
     tab3 = (tab3View *)nibarry[0];
     tab3.frame =CGRectMake([PublicCommon GetALLScreen].size.width*2 , 0, [PublicCommon GetALLScreen].size.width, scrollheight+20);
+    tab3.mainview=self;
+    
     [scrollview addSubview:tab3];
 }
 
@@ -275,6 +288,20 @@
 
 
 #pragma mark -
+
+
+
+
+-(void)changeVolumeKey:(NSNotification *)not
+{
+    
+    float volume =
+    [[[not userInfo]
+      objectForKey:@"AVSystemController_AudioVolumeNotificationParameter"]
+     floatValue];
+    NSLog(@"volumn is %f", volume);
+}
+
 -(UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;

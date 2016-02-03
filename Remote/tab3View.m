@@ -7,9 +7,9 @@
 //
 
 #import "tab3View.h"
-
+#import "MainViewController.h"
 @implementation tab3View
-
+@synthesize mainview;
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -18,4 +18,73 @@
 }
 */
 
+
+#pragma mark 通信操作委托
+-(void)CommandFinish:(CommandType)commandtype json:(NSDictionary *)json
+{
+
+    if (commandtype == EupVolume || commandtype ==EdownVolume)
+    {
+        NSLog(@"获得数据");
+        
+        NSNumber *result = [json objectForKey:@"success"];
+        if ([result intValue] == 1)
+        {
+            if (tip.ISShowing)
+            {
+                [tip setTipInfo:[json objectForKey:@"msg"]];
+            }
+            else
+            {
+                tip=[[TipView alloc] init:[json objectForKey:@"msg"]];
+                [tip showTip:mainview];
+            }
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"音量操作失败!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
+
+        
+      
+       
+        return;
+    }
+}
+-(void)CommandTimeout
+{
+
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络错误，请重新尝试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    [alert show];
+}
+
+
+#pragma mark -
+
+
+
+- (IBAction)clickupvolume:(id)sender {
+    dnet = [[DeviceNet alloc] init];
+    dnet.Commanddelegate=self;
+    dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(globalQ , ^{
+        [dnet SetVolume:((MainViewController *)mainview).DeviceIP flag:0];
+
+        
+    });
+
+}
+
+- (IBAction)clickdownvolume:(id)sender {
+    dnet = [[DeviceNet alloc] init];
+    dnet.Commanddelegate=self;
+    dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(globalQ , ^{
+        [dnet SetVolume:((MainViewController *)mainview).DeviceIP flag:1];
+        
+        
+    });
+}
 @end

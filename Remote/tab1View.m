@@ -142,7 +142,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell * cell = [[UITableViewCell alloc] init];
-    cell.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4f];
+    cell.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.1f];
     cell.textLabel.textColor=[UIColor whiteColor];
     cell.textLabel.text = [((MainViewController*)mainview).ContentType objectAtIndex:indexPath.row];
     return cell;
@@ -165,7 +165,7 @@
 {
     UIView *v = [[UIView alloc] init];
     v.frame = cell.contentView.frame;
-    v.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.3f];
+    v.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.2f];
     cell.selectedBackgroundView = v;
 }
 

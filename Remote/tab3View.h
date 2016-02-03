@@ -7,8 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DeviceNet.h"
+#import "TipView.h"
+@interface tab3View : UIView<FinishCommanddelegate>
+{
+    DeviceNet *dnet;
+    TipView *tip;
+}
 
-@interface tab3View : UIView
+@property (weak,nonatomic) UIViewController *mainview;
+
+
+
+- (IBAction)clickupvolume:(id)sender;
+- (IBAction)clickdownvolume:(id)sender;
+
 
 
 

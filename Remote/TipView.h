@@ -13,7 +13,7 @@
     UILabel *labtip;
     NSString *strtipinfo;
 }
-
+@property (assign)BOOL ISShowing;
 -(instancetype)init:(NSString *)tipinfo;
 -(void)setTipInfo:(NSString *)tipinfo;
 -(void)showTip:(UIViewController *)VC;

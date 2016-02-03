@@ -82,6 +82,25 @@
 }
 
 
+-(BOOL)SetVolume:(NSString*)ip flag:(int)flag
+{
+    if (flag==0)
+        _commandtype = EupVolume;
+    else
+        _commandtype = EdownVolume;
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+
 #pragma mark -
 
 
@@ -94,7 +113,7 @@
     NSLog(@"连接成功 %@ %d",host,port);
     NSString *command;
     NSData *data;
-  
+    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
     switch (_commandtype) {
         case EloadContentType:
             command = [NSString stringWithFormat:@"%@%@%@",loadContentType,SplitStr,CRCL];
@@ -123,12 +142,23 @@
         case EloadMediaByType:
             command = [NSString stringWithFormat:@"%@%@%@%@",loadMediaByType,SplitStr,_arg,CRCL];
             NSLog(@"发送数据:%@",command);
-            NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
+
             
             data =[command dataUsingEncoding:enc];
             [sock writeData:data withTimeout:0 tag:0];
             break;
-     
+        case EupVolume:
+            command = [NSString stringWithFormat:@"%@%@%@",upVolume,SplitStr,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
+        case EdownVolume:
+            command = [NSString stringWithFormat:@"%@%@%@",dowmVolume,SplitStr,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
     }
     
 }
@@ -141,6 +171,8 @@
             [sock readDataWithTimeout:5 tag:tag];
             break;
         case EloadMediaByType:
+        case EupVolume:
+        case EdownVolume:
             [sock readDataToData:[GCDAsyncSocket CRLFData] withTimeout:10 tag:1];
             break;
             
@@ -160,6 +192,8 @@
     switch (_commandtype) {
         case EloadContentType:
         case EloadMediaByType:
+        case EupVolume:
+        case EdownVolume:
             [Commanddelegate CommandFinish:_commandtype json:json];
             break;
    

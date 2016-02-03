@@ -61,6 +61,8 @@ const int CommandPort = 18001;// 通信端口
 typedef enum :int {
     EloadContentType=0,
     EloadMediaByType,
+    EdownVolume,
+    EupVolume,
     
 } CommandType;
 
@@ -109,4 +111,7 @@ typedef enum :int {
 
 //获得一个类型媒体的明细
 -(BOOL)getMediaByType:(NSString *)ip arg:(NSString *)arg;
+
+//设置音量 0 提升 1 下降
+-(BOOL)SetVolume:(NSString *)ip flag:(int)flag;
 @end

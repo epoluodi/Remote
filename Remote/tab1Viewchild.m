@@ -117,7 +117,7 @@
 {
     MediaInfoCell * cell = [table dequeueReusableCellWithIdentifier:@"mediainfoCell"];
     MediaData *md = [((MainViewController*)mainview).MediaList objectAtIndex:indexPath.row];
-    cell.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4f];
+    cell.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.1f];
     cell.medianame.text= md.mediaName;
     cell.len.text = md.Len;
     if ([md.mediaType isEqualToString:@"1"])
@@ -144,7 +144,7 @@
 {
     UIView *v = [[UIView alloc] init];
     v.frame = cell.contentView.frame;
-    v.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.3f];
+    v.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.2f];
     cell.selectedBackgroundView = v;
 }
 
