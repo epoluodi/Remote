@@ -243,6 +243,8 @@
 //搜索点击
 -(void)rightbtnlick
 {
+    
+
     [self showLoadview];
     [self StartSearchDevice];
     

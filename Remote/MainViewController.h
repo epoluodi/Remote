@@ -12,7 +12,7 @@
 #import "tab3View.h"
 #import "tab1Viewchild.h"
 #import "SearchViewController.h"
-
+#import "TipView.h"
 
 
 

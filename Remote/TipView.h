@@ -11,8 +11,10 @@
 @interface TipView : UIView
 {
     UILabel *labtip;
+    NSString *strtipinfo;
 }
 
+-(instancetype)init:(NSString *)tipinfo;
 -(void)setTipInfo:(NSString *)tipinfo;
 -(void)showTip:(UIViewController *)VC;
 -(void)closeTip;
