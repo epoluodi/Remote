@@ -7,6 +7,16 @@
 //
 
 #import "tab2View.h"
+#import "LoadingView.h"
+#import "MainViewController.h"
+
+@interface tab2View ()
+{
+    DeviceNet *dnet;
+    __block LoadingView *loadview;
+}
+
+@end
 
 @implementation tab2View
 @synthesize mainView;
@@ -20,6 +30,89 @@
     }
     return self;
 }
+
+
+
+//刷新类型
+-(void)LoadTaskAll
+{
+    
+    [tasklist removeAllObjects];
+    [refresh beginRefreshing];
+    dnet = [[DeviceNet alloc] init];
+    dnet.Commanddelegate=self;
+    dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(globalQ , ^{
+        [dnet getAllTask:((MainViewController *)mainView).DeviceIP];
+        
+    });
+    
+    
+}
+
+
+#pragma mark 通信操作委托
+-(void)CommandFinish:(CommandType)commandtype json:(NSDictionary *)json
+{
+    if (loadview){
+        [loadview StopAnimation];
+        [loadview removeFromSuperview];
+        loadview = nil;
+    }
+    if (refresh.refreshing)
+    {
+        [refresh endRefreshing];
+    }
+    if (commandtype == EloadAllTask)
+    {
+        NSLog(@"获得数据");
+ 
+        NSArray *list1 = [json objectForKey:@"data"];
+        for (int i=0; i<[list1 count]; i++) {
+            [tasklist addObject:list1[i]];
+        }
+        
+       
+        [table reloadData];
+        return;
+    }
+    
+    if (commandtype ==EdelTask)
+    {
+        BOOL success = ((NSNumber *)[json objectForKey:@"success"]).boolValue;
+        if (success){
+            
+            [tasklist removeObjectAtIndex:opindex.row];
+            
+            [table deleteRowsAtIndexPaths:[NSArray arrayWithObject:opindex] withRowAnimation:UITableViewRowAnimationFade];
+            opindex=nil;
+        }
+        else
+            [self CommandTimeout];
+        
+
+    }
+    
+    
+}
+-(void)CommandTimeout
+{
+    if (loadview){
+        [loadview StopAnimation];
+        [loadview removeFromSuperview];
+        loadview = nil;
+    }
+    if (refresh.refreshing)
+    {
+        [refresh endRefreshing];
+    }
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络错误，请重新尝试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    [alert show];
+}
+
+
+#pragma mark -
 
 
 -(void)initview
@@ -44,10 +137,10 @@
     
     [self addSubview:btnAdd];
     
-    
+    tasklist = [[NSMutableArray alloc] init];
     
     table = [[UITableView alloc] init];
-    
+
     table.backgroundColor=[UIColor clearColor];
     table.separatorColor=[UIColor whiteColor];
     refresh = [[UIRefreshControl alloc] init];
@@ -64,9 +157,77 @@
     UINib *nib = [UINib nibWithNibName:@"taskcell" bundle:nil];
     [table registerNib:nib forCellReuseIdentifier:@"taskcell"];
     [self addSubview:table];
+    
+    UILongPressGestureRecognizer * longPressGr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressToDo:)];
+    longPressGr.minimumPressDuration = 1;
+    [table addGestureRecognizer:longPressGr];
+
 }
 
 
+-(void)longPressToDo:(UILongPressGestureRecognizer *)gesture
+{
+    
+    if(gesture.state == UIGestureRecognizerStateBegan)
+    {
+        CGPoint point = [gesture locationInView:table];
+        
+        NSIndexPath * indexPath = [table indexPathForRowAtPoint:point];
+        
+        if(indexPath == nil) return ;
+        
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"操作提示" message:@"请选择一项操作方式" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"修改任务" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSArray *nibarry = [[NSBundle mainBundle] loadNibNamed:@"newTaskView" owner:newtaskview options:nil];
+            newtaskview = (NewTaskVIew *)nibarry[0];
+            newtaskview.frame = mainView.view.frame;
+            newtaskview.mainView= mainView;
+            newtaskview.delegate=self;
+            NSDictionary *d = [tasklist objectAtIndex:indexPath.row];
+            [newtaskview SetEditMode:d];
+            [mainView.view addSubview:newtaskview];
+            
+            
+        }];
+        
+        UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"删除任务" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            opindex =[indexPath copy];
+            [self DelTask:(int)indexPath.row];
+
+        }];
+        UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:action1];
+        [alert addAction:action2];
+        [alert addAction:action3];
+        
+        [mainView presentViewController:alert animated:YES completion:nil];
+        
+
+      
+        
+        
+        
+    }
+}
+
+
+-(void)DelTask:(int)index
+{
+    NSDictionary *d = [tasklist objectAtIndex:index];
+   
+    if (!loadview)
+        loadview = [[LoadingView alloc] init];
+    [mainView.view addSubview:loadview];
+    [loadview StartAnimation];
+    dnet = [[DeviceNet alloc] init];
+    dnet.Commanddelegate=self;
+    dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(globalQ , ^{
+        [dnet DelTask:((MainViewController *)mainView).DeviceIP arg:[d objectForKey:@"billid"]];
+        
+    });
+}
 
 //点击添加任务
 -(void)clickaddTask
@@ -76,18 +237,20 @@
     newtaskview = (NewTaskVIew *)nibarry[0];
     newtaskview.frame = mainView.view.frame;
     newtaskview.mainView= mainView;
+    newtaskview.delegate=self;
     [mainView.view addSubview:newtaskview];
 }
 
+-(void)AddFinsih
+{
+    [self LoadTaskAll];
+}
 
 //开始刷新
 -(void)changerefreshstate
 {
     if (refresh.refreshing)
-    {
-        sleep(2);
-        [refresh endRefreshing];
-    }
+        [self LoadTaskAll];
 }
 
 
@@ -99,17 +262,23 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return [tasklist count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TaskCell * cell = (TaskCell *)[table dequeueReusableCellWithIdentifier:@"taskcell"];
-    cell.taskname.text = [NSString stringWithFormat:@"编号：00%ld",(long)indexPath.row];
-    cell.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4f];
-    cell.taskdate.text = @"日期：2016年1月20日 - 2016年3月30日";
-    cell.tasktime.text = @"时间：14:00 - 16:00";
-    cell.taskstate.text = @"已启用";
+
+    cell.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.1f];
+    NSDictionary *d = [tasklist objectAtIndex:indexPath.row];
+        cell.taskname.text = [NSString stringWithFormat:@"%@",[d objectForKey:@"billname"]];
+
+    cell.taskdate.text =     [NSString stringWithFormat:@"日期：%@ - %@",[d objectForKey:@"sdate"],[d objectForKey:@"edate"]];
+    cell.tasktime.text = [NSString stringWithFormat:@"时间：%@ - %@",[d objectForKey:@"stime"],[d objectForKey:@"etime"]];
+    if (((NSNumber *)[d objectForKey:@"isenable"]).intValue == 1)
+        cell.taskstate.text = @"已启用";
+    else
+        cell.taskstate.text = @"未启用";
 
     return cell;
 }
@@ -131,10 +300,46 @@
 {
     UIView *v = [[UIView alloc] init];
     v.frame = cell.contentView.frame;
-    v.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.3f];
+    v.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.2f];
     cell.selectedBackgroundView = v;
 }
 
+//
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return YES;
+//}
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
+//           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath      //当在Cell上滑动时会调用此函数
+//{
+//    
+//    return  UITableViewCellEditingStyleDelete;  //返回此值时,Cell会做出响应显示Delete按键,点击Delete后会调用下面的函数,别给传递UITableViewCellEditingStyleDelete参数
+//    
+//    //    else
+//    //
+//    //        return  UITableViewCellEditingStyleNone;   //返回此值时,Cell上不会出现Delete按键,即Cell不做任何响应
+//    
+//}
+//
+//-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return @"删除";
+//}
+//
+//-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//  
+//        
+//     
+//        
+//       
+//        // Delete the row from the data source.
+//        [tasklist removeObjectAtIndex:indexPath.row];
+//        
+//        [table deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//        
+//    }
+//}
 
 
 

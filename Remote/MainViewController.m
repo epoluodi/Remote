@@ -349,7 +349,7 @@
     NSLog(@"设备名称 %@",DeviceName);
     
     [tab1 LoadContentType];
-    
+    [tab2 LoadTaskAll];
     
     
     

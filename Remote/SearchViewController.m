@@ -51,7 +51,7 @@
     emptybtnitem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     
-    
+    IsHidereturn=YES;
     [self inittable];
     
     [self showLoadview];
@@ -77,9 +77,9 @@
     else
     {
         [navtitle setRightBarButtonItem:rightbtnitem];
-        if (IsHidereturn)
-            [navtitle setLeftBarButtonItem:leftbtnitem];
-        else
+//        if (IsHidereturn)
+//            [navtitle setLeftBarButtonItem:leftbtnitem];
+//        else
             [navtitle setLeftBarButtonItem:emptybtnitem];
     }
 }

@@ -8,13 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import <Common/PublicCommon.h>
+#import "DeviceNet.h"
 
-@interface NewTaskVIew : UIView
+@protocol NewTaskDelegate
+
+-(void)AddFinsih;
+
+@end
+
+@interface NewTaskVIew : UIView<FinishCommanddelegate>
 {
     UIButton *btnok;
     UIButton *btncancel;
     __block UIDatePicker *dtpicker;
     __block UILabel *lab;
+    BOOL IsAdd;
+    NSDate *sdt,*edt,*st,*et;
+    NSString *taskid;
 }
 
 
@@ -32,14 +42,16 @@
 
 
 
-
+@property(weak,nonatomic) NSObject<NewTaskDelegate> *delegate;
 @property(weak,nonatomic)UIViewController *mainView;
+
+
 
 - (IBAction)clickstartdt:(id)sender;
 - (IBAction)clickenddt:(id)sender;
 - (IBAction)clickstarttime:(id)sender;
 - (IBAction)clickendtime:(id)sender;
-
+-(void)SetEditMode:(NSDictionary *)d;
 
 
 

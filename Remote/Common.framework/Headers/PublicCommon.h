@@ -50,6 +50,6 @@ struct Deviceinfo
 +(NSString *)getNow;
 +(NSString *)getDateStringWithDT:(NSString *)strDT;
 + (UIImage*) createImageWithColor: (UIColor*) color Rect:(CGRect) rect;
-
++(NSString *)getDateStringWithFormat:(NSString *)format;
 
 @end

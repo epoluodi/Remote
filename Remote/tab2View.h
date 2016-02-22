@@ -10,16 +10,20 @@
 #import <Common/PublicCommon.h>
 #import "TaskCell.h"
 #import "NewTaskVIew.h"
+#import "DeviceNet.h"
 
 
-
-@interface tab2View : UIView<UITableViewDataSource,UITableViewDelegate>
+@interface tab2View : UIView<UITableViewDataSource,UITableViewDelegate,FinishCommanddelegate,NewTaskDelegate>
 {
     UITableView *table;
     UIRefreshControl *refresh;
     UIButton *btnAdd;
     NewTaskVIew *newtaskview;
+    NSMutableArray *tasklist;
+    __block NSIndexPath *opindex;
 }
 
 @property (weak,nonatomic) UIViewController *mainView;
+
+-(void)LoadTaskAll;
 @end

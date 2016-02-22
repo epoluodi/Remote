@@ -82,6 +82,80 @@
 }
 
 
+-(BOOL)getAllTask:(NSString *)ip
+{
+    
+    _commandtype = EloadAllTask;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+    
+}
+
+-(BOOL)AddTask:(NSString *)ip arg:(NSString *)arg
+{
+    _arg=arg;
+    _commandtype = EaddTask;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+
+-(BOOL)DelTask:(NSString *)ip arg:(NSString *)arg
+{
+    _arg=arg;
+    _commandtype = EdelTask;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+
+-(BOOL)EditTask:(NSString *)ip arg:(NSString *)arg
+{
+    _arg=arg;
+    _commandtype = EEditTask;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+
+
 -(BOOL)SetVolume:(NSString*)ip flag:(int)flag
 {
     if (flag==0)
@@ -147,6 +221,38 @@
             data =[command dataUsingEncoding:enc];
             [sock writeData:data withTimeout:0 tag:0];
             break;
+        case EloadAllTask:
+            command = [NSString stringWithFormat:@"%@%@%@",loadAllTask,SplitStr,CRCL];
+            NSLog(@"发送数据:%@",command);
+            
+            
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
+        case EaddTask:
+            command = [NSString stringWithFormat:@"%@%@%@%@",addTask,SplitStr,_arg,CRCL];
+            NSLog(@"发送数据:%@",command);
+            
+            
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
+       case EdelTask:
+            command = [NSString stringWithFormat:@"%@%@%@%@",delTask,SplitStr,_arg,CRCL];
+            NSLog(@"发送数据:%@",command);
+            
+            
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
+        case EEditTask:
+            command = [NSString stringWithFormat:@"%@%@%@%@",editTask,SplitStr,_arg,CRCL];
+            NSLog(@"发送数据:%@",command);
+            
+            
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
         case EupVolume:
             command = [NSString stringWithFormat:@"%@%@%@",upVolume,SplitStr,CRCL];
             NSLog(@"发送数据:%@",command);
@@ -173,6 +279,10 @@
         case EloadMediaByType:
         case EupVolume:
         case EdownVolume:
+        case EloadAllTask:
+        case EaddTask:
+        case EdelTask:
+        case EEditTask:
             [sock readDataToData:[GCDAsyncSocket CRLFData] withTimeout:10 tag:1];
             break;
             
@@ -192,8 +302,12 @@
     switch (_commandtype) {
         case EloadContentType:
         case EloadMediaByType:
+        case EloadAllTask:
+        case EaddTask:
+        case EdelTask:
         case EupVolume:
         case EdownVolume:
+        case EEditTask:
             [Commanddelegate CommandFinish:_commandtype json:json];
             break;
    

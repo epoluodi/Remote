@@ -7,6 +7,15 @@
 //
 
 #import "NewTaskVIew.h"
+#import "LoadingView.h"
+#import "MainViewController.h"
+
+@interface NewTaskVIew ()
+{
+    DeviceNet *dnet;
+    __block LoadingView *loadview;
+}
+@end
 
 @implementation NewTaskVIew
 @synthesize taskname,btnenddt,btnstartdt;
@@ -15,9 +24,12 @@
 @synthesize mainView;
 @synthesize starttime,endtime;
 @synthesize btnendtime,btnstarttime;
+@synthesize delegate;
+
 
 -(void)awakeFromNib
 {
+    IsAdd =YES;
     labstartdt.text=@"";
     enddt.text=@"";
     starttime.text=@"";
@@ -61,14 +73,102 @@
     [displayview addSubview:btncancel];
     
     taskname.inputAccessoryView = [PublicCommon getInputToolbar:self sel:@selector(closeinput)];
+    
+
+    labstartdt.tag=1;
+    enddt.tag=2;
+    starttime.tag =3;
+    endtime.tag=4;
+    
+    taskname.placeholder = [NSString stringWithFormat:@"新建任务%@",[PublicCommon getDateStringWithFormat:@"HH:mm"]];
 }
 
 
 //点击确定
 -(void)btnclickOK
 {
+    NSString *temptaskname;
+    if ([taskname.text isEqualToString:@""])
+        temptaskname = taskname.placeholder;
+    else
+        temptaskname=taskname.text;
+    
+    if ([starttime.text isEqualToString:@""] ||
+        [endtime.text isEqualToString:@""] ||
+        [enddt.text isEqualToString:@""] ||
+        [labstartdt.text isEqualToString:@""])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请输入日期和时间" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+//    addTask!~!3%~%2016-02-20%~%2016-02-23%~%16:14%~%18:14
+    NSString *arg = [NSString stringWithFormat:@"%@%%~%%%@%%~%%%@%%~%%%@%%~%%%@%%~%%%@",taskid,taskname.text,labstartdt.text,enddt.text,starttime.text,endtime.text];
+    
+    if (!loadview)
+        loadview = [[LoadingView alloc] init];
+    [mainView.view addSubview:loadview];
+    [loadview StartAnimation];
+
+    dnet = [[DeviceNet alloc] init];
+    dnet.Commanddelegate=self;
+    dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(globalQ , ^{
+        if (IsAdd)
+            [dnet AddTask:((MainViewController *)mainView).DeviceIP arg:arg];
+        else
+            [dnet EditTask:((MainViewController *)mainView).DeviceIP arg:arg];
+        
+    });
     [self removeFromSuperview];
 }
+
+
+#pragma mark 通信操作委托
+-(void)CommandFinish:(CommandType)commandtype json:(NSDictionary *)json
+{
+    if (loadview){
+        [loadview StopAnimation];
+        [loadview removeFromSuperview];
+        loadview = nil;
+    }
+ 
+
+    if (commandtype == EaddTask || commandtype == EEditTask)
+    {
+        NSLog(@"获得数据");
+    
+        BOOL success = ((NSNumber *)[json objectForKey:@"success"]).boolValue;
+        if (success){
+            
+            [delegate AddFinsih];
+        }
+        else
+            [self CommandTimeout];
+        return;
+    }
+    
+   
+    
+    
+}
+-(void)CommandTimeout
+{
+
+    if (loadview){
+        [loadview StopAnimation];
+        [loadview removeFromSuperview];
+        loadview = nil;
+    }
+
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络错误，请重新尝试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    [alert show];
+}
+
+
+#pragma mark -
+
 
 
 //点击取消
@@ -95,11 +195,13 @@
     
     [self showsheetDT:UIDatePickerModeDate];
     lab =labstartdt;
+
 }
 
 - (IBAction)clickenddt:(id)sender {
     [self showsheetDT:UIDatePickerModeDate];
     lab = enddt;
+
 }
 
 - (IBAction)clickstarttime:(id)sender {
@@ -138,6 +240,56 @@
         
         
         lab.text = [dtformat stringFromDate:dtpicker.date];
+        NSDateFormatter *df;
+        NSTimeZone *zone;
+        NSInteger interval;
+        switch (lab.tag) {
+            case 1:
+                df = [[NSDateFormatter alloc] init];
+                df.dateFormat=@"yyyy-MM-dd";
+                sdt= [df dateFromString:lab.text];
+                zone = [NSTimeZone systemTimeZone];
+                interval = [zone secondsFromGMTForDate: sdt];
+                sdt = [sdt  dateByAddingTimeInterval: interval];
+                break;
+            case 2:
+                df = [[NSDateFormatter alloc] init];
+                df.dateFormat=@"yyyy-MM-dd";
+                edt= [df dateFromString:lab.text];
+                zone = [NSTimeZone systemTimeZone];
+                interval = [zone secondsFromGMTForDate: edt];
+                edt = [edt  dateByAddingTimeInterval: interval];
+                if ([sdt compare:edt] == 1)
+                {
+                    lab.text=@"";
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"结束日期不能小于开始日期" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                    [alert show];
+                }
+                break;
+            case 3:
+                df = [[NSDateFormatter alloc] init];
+                df.dateFormat=@"HH:mm";
+                st = [df dateFromString:lab.text];
+                zone = [NSTimeZone systemTimeZone];
+                interval = [zone secondsFromGMTForDate: st];
+                st = [st  dateByAddingTimeInterval: interval];
+                break;
+            case 4:
+                df = [[NSDateFormatter alloc] init];
+                df.dateFormat=@"HH:mm";
+                et= [df dateFromString:lab.text];
+                zone = [NSTimeZone systemTimeZone];
+                interval = [zone secondsFromGMTForDate: et];
+                et = [et  dateByAddingTimeInterval: interval];
+                if ([st compare:et] == 1)
+                {
+                    lab.text=@"";
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"结束时间不能小于开始时间" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                    [alert show];
+                }
+                break;
+
+        }
         lab=nil;
         
     }];
@@ -154,4 +306,16 @@
     
     [mainView presentViewController:alert animated:YES completion:nil];
 }
+
+-(void)SetEditMode:(NSDictionary *)d
+{
+    IsAdd = NO;
+    taskname.text = [d objectForKey:@"billname"];
+    labstartdt.text = [d objectForKey:@"sdate"];
+    enddt.text= [d objectForKey:@"edate"];
+    starttime.text=  [d objectForKey:@"stime"];
+    endtime.text = [d objectForKey:@"etime"];
+    taskid = [d objectForKey:@"billid"];
+}
+
 @end

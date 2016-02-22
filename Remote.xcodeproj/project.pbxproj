@@ -55,6 +55,9 @@
 		7BF59BA31C5C5E5500F7C678 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF59BA21C5C5E5500F7C678 /* CoreGraphics.framework */; };
 		7BF59BA51C5C5E9100F7C678 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF59BA41C5C5E9100F7C678 /* Security.framework */; };
 		7BF59BF41C5E430600F7C678 /* DeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF59BF21C5E430600F7C678 /* DeviceInfo.m */; };
+		7BF9E9011C7B5A8E0020210C /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BF9E9001C7B5A8E0020210C /* check.png */; };
+		7BF9E9031C7B5B5F0020210C /* uncheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BF9E9021C7B5B5F0020210C /* uncheck.png */; };
+		7BF9E9061C7B5F5E0020210C /* PLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF9E9051C7B5F5E0020210C /* PLViewController.m */; };
 		B46FC9601C57089400050576 /* tab2View.m in Sources */ = {isa = PBXBuildFile; fileRef = B46FC95F1C57089400050576 /* tab2View.m */; };
 		B46FC9621C57109200050576 /* taskcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B46FC9611C57109200050576 /* taskcell.xib */; };
 		B46FC9651C57133100050576 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B46FC9641C57133100050576 /* TaskCell.m */; };
@@ -157,6 +160,10 @@
 		7BF59BA41C5C5E9100F7C678 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7BF59BF21C5E430600F7C678 /* DeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfo.m; sourceTree = "<group>"; };
 		7BF59BF31C5E430600F7C678 /* DeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfo.h; sourceTree = "<group>"; };
+		7BF9E9001C7B5A8E0020210C /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		7BF9E9021C7B5B5F0020210C /* uncheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uncheck.png; sourceTree = "<group>"; };
+		7BF9E9041C7B5F5E0020210C /* PLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLViewController.h; sourceTree = "<group>"; };
+		7BF9E9051C7B5F5E0020210C /* PLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLViewController.m; sourceTree = "<group>"; };
 		B46FC95E1C57089400050576 /* tab2View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tab2View.h; sourceTree = "<group>"; };
 		B46FC95F1C57089400050576 /* tab2View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tab2View.m; sourceTree = "<group>"; };
 		B46FC9611C57109200050576 /* taskcell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = taskcell.xib; sourceTree = "<group>"; };
@@ -219,6 +226,8 @@
 				7B0AF4B21C5477370064426B /* LoadingView.m */,
 				7B0AF4C41C54D0310064426B /* MainViewController.h */,
 				7B0AF4C51C54D0310064426B /* MainViewController.m */,
+				7BF9E9041C7B5F5E0020210C /* PLViewController.h */,
+				7BF9E9051C7B5F5E0020210C /* PLViewController.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -237,6 +246,8 @@
 		7B0AF4981C5466630064426B /* PNG */ = {
 			isa = PBXGroup;
 			children = (
+				7BF9E9021C7B5B5F0020210C /* uncheck.png */,
+				7BF9E9001C7B5A8E0020210C /* check.png */,
 				B4A8D71D1C58724B00E81CCD /* img_sp.png */,
 				B4A8D71E1C58724B00E81CCD /* img_yy.png */,
 				B46FC97D1C57727C00050576 /* back.png */,
@@ -486,6 +497,7 @@
 				B46FC9711C5719E700050576 /* replce.png in Resources */,
 				7B0AF4CD1C551A8D0064426B /* img_play_next_pressed.png in Resources */,
 				B4A8D7231C589B8F00E81CCD /* newTaskView.xib in Resources */,
+				7BF9E9031C7B5B5F0020210C /* uncheck.png in Resources */,
 				7B0AF4A91C5474E50064426B /* progress_1.png in Resources */,
 				7B0AF4DC1C551CA40064426B /* img_playmode_normal.png in Resources */,
 				7B0AF4CE1C551A8D0064426B /* img_play_pressed.png in Resources */,
@@ -501,6 +513,7 @@
 				7B0AF4C11C54CF2A0064426B /* bg1.png in Resources */,
 				B4A8D71F1C58724B00E81CCD /* img_sp.png in Resources */,
 				B46FC97F1C57727C00050576 /* back.png in Resources */,
+				7BF9E9011C7B5A8E0020210C /* check.png in Resources */,
 				7B0AF4DF1C551CA40064426B /* img_playmode_shuffle.png in Resources */,
 				B46FC9621C57109200050576 /* taskcell.xib in Resources */,
 				7B0AF4AB1C5474E50064426B /* progress_3.png in Resources */,
@@ -537,6 +550,7 @@
 				7BF59BF41C5E430600F7C678 /* DeviceInfo.m in Sources */,
 				7BF59B951C5C52F100F7C678 /* GCDAsyncUdpSocket.m in Sources */,
 				7B0AF4971C54658A0064426B /* SearchViewController.m in Sources */,
+				7BF9E9061C7B5F5E0020210C /* PLViewController.m in Sources */,
 				B4BE1D701C60A40E00CA30B1 /* TipView.m in Sources */,
 				7BF59B9B1C5C52FB00F7C678 /* AsyncUdpSocket.m in Sources */,
 				7BF59B941C5C52F100F7C678 /* GCDAsyncSocket.m in Sources */,

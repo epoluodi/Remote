@@ -90,12 +90,40 @@
         for (int i=0; i<[list1 count]; i++) {
             NSDictionary *d = list1[i];
             [contentstr addObject:[d objectForKey:@"vcname"]];
+            
+//            dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//            dispatch_async(globalQ , ^{
+//                [dnet getMediaByType:((MainViewController *)mainview).DeviceIP arg:[d objectForKey:@"vcname"]];
+//                
+//            });
         }
         
         ((MainViewController *)mainview).ContentType = [contentstr copy];
         [table reloadData];
         return;
     }
+    
+//    if (commandtype == EloadContentType)
+//    {
+//        NSLog(@"获得数据");
+//        NSMutableArray *contentstr = [[NSMutableArray alloc] init];
+//        NSArray *list1 = [json objectForKey:@"data"];
+//        for (int i=0; i<[list1 count]; i++) {
+//            NSDictionary *d = list1[i];
+//            MediaData *md = [[MediaData alloc] init];
+//            md.mediaName = [d objectForKey:@"medianame"];
+//            md.mediaID = [d objectForKey:@"mediaid"];
+//            md.mediaType =[d objectForKey:@"mediatype"];
+//            md.Len =[d objectForKey:@"length"];
+//            md.source =[d objectForKey:@"source"];
+//            [contentstr addObject:md];
+//        }
+//        
+//        ((MainViewController *)mainview).MediaList = [contentstr copy];
+//       
+//    }
+    
+    
 }
 -(void)CommandTimeout
 {

@@ -61,6 +61,10 @@ const int CommandPort = 18001;// 通信端口
 typedef enum :int {
     EloadContentType=0,
     EloadMediaByType,
+    EloadAllTask,
+    EaddTask,
+    EdelTask,
+    EEditTask,
     EdownVolume,
     EupVolume,
     
@@ -114,4 +118,13 @@ typedef enum :int {
 
 //设置音量 0 提升 1 下降
 -(BOOL)SetVolume:(NSString *)ip flag:(int)flag;
+
+//获取所有任务
+-(BOOL)getAllTask:(NSString *)ip;
+//添加一个任务
+-(BOOL)AddTask:(NSString *)ip arg:(NSString *)arg;
+//删除一个任务
+-(BOOL)DelTask:(NSString *)ip arg:(NSString *)arg;
+//修改一个任务
+-(BOOL)EditTask:(NSString *)ip arg:(NSString *)arg;
 @end
