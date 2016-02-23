@@ -56,7 +56,7 @@
 //设备数据暂存
 @property (copy,nonatomic)NSArray<NSString *> *ContentType;
 @property (copy,nonatomic)NSArray<MediaData *> *MediaList;
-
+@property (copy,nonatomic)NSMutableDictionary *dictMediaList;
 - (IBAction)clicksearch:(id)sender;
 
 -(void)ConnectToDeviceInit;

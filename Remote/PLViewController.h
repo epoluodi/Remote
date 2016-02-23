@@ -8,6 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PLViewController : UIViewController
+@interface PLViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    UIButton *btnmove;
+    UIButton *btndel;
+    
+}
+
+@property (weak, nonatomic) IBOutlet UIView *footview;
+@property (weak, nonatomic) IBOutlet UITableView *table;
+@property (weak, nonatomic) IBOutlet UIButton *btnmarkall;
+@property (weak,nonatomic) UIViewController *mainview;
+@property (assign) BOOL IsAllSelect;
+
+- (IBAction)clickmarkall:(id)sender;
+- (IBAction)clickreturn:(id)sender;
+
+
+
 
 @end

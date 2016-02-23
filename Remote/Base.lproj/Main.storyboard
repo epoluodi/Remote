@@ -257,8 +257,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg1.png" translatesAutoresizingMaskIntoConstraints="NO" id="CaH-wR-k7q">
-                                <rect key="frame" x="0.0" y="0.0" width="325" height="568"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg1.png" translatesAutoresizingMaskIntoConstraints="NO" id="CaH-wR-k7q">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fp-TX-edX">
                                 <rect key="frame" x="0.0" y="17" width="44" height="44"/>
@@ -267,12 +267,15 @@
                                     <constraint firstAttribute="height" constant="44" id="r2D-eS-hKd"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="back.png"/>
+                                <connections>
+                                    <action selector="clickreturn:" destination="hIo-VZ-uJ3" eventType="touchUpInside" id="nym-NQ-iM1"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IWh-De-KxT">
                                 <rect key="frame" x="0.0" y="69" width="320" height="448"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <view alpha="0.14999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FdC-3S-2Le">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FdC-3S-2Le">
                                 <rect key="frame" x="0.0" y="517" width="320" height="51"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -286,10 +289,15 @@
                                     <constraint firstAttribute="height" constant="30" id="gZt-r8-XY5"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="uncheck.png"/>
+                                <connections>
+                                    <action selector="clickmarkall:" destination="hIo-VZ-uJ3" eventType="touchUpInside" id="n8L-68-Ck0"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="b0Q-yf-8P1" firstAttribute="top" secondItem="CaH-wR-k7q" secondAttribute="bottom" id="4dC-kx-ZW9"/>
+                            <constraint firstItem="CaH-wR-k7q" firstAttribute="top" secondItem="wp8-al-G9f" secondAttribute="top" id="7vm-4s-Roh"/>
                             <constraint firstItem="Dgz-Xg-DfO" firstAttribute="top" secondItem="HJk-Mf-OBJ" secondAttribute="bottom" constant="11" id="CNP-EZ-fHZ"/>
                             <constraint firstItem="IWh-De-KxT" firstAttribute="leading" secondItem="wp8-al-G9f" secondAttribute="leading" id="Fvo-2l-n3Y"/>
                             <constraint firstItem="b0Q-yf-8P1" firstAttribute="top" secondItem="FdC-3S-2Le" secondAttribute="bottom" id="I0G-tJ-OX6"/>
@@ -301,9 +309,16 @@
                             <constraint firstAttribute="trailing" secondItem="IWh-De-KxT" secondAttribute="trailing" id="RQ0-86-kWf"/>
                             <constraint firstItem="5fp-TX-edX" firstAttribute="top" secondItem="wp8-al-G9f" secondAttribute="top" constant="17" id="bVD-LP-cgc"/>
                             <constraint firstAttribute="trailing" secondItem="FdC-3S-2Le" secondAttribute="trailing" id="lA7-uT-tYd"/>
+                            <constraint firstAttribute="trailing" secondItem="CaH-wR-k7q" secondAttribute="trailing" id="pRM-4k-aot"/>
+                            <constraint firstItem="CaH-wR-k7q" firstAttribute="leading" secondItem="wp8-al-G9f" secondAttribute="leading" id="wt1-dy-ENa"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="btnmarkall" destination="Dgz-Xg-DfO" id="Sb6-iA-WVo"/>
+                        <outlet property="footview" destination="FdC-3S-2Le" id="Zku-gQ-5fV"/>
+                        <outlet property="table" destination="IWh-De-KxT" id="gNb-p5-fHb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="us1-uG-uTI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

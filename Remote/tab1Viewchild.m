@@ -8,6 +8,7 @@
 
 #import "tab1Viewchild.h"
 #import "MainViewController.h"
+#import "PLViewController.h"
 
 @implementation tab1Viewchild
 @synthesize btnback,btnedit,title,table;
@@ -28,6 +29,30 @@
     UINib *nib = [UINib nibWithNibName:@"mediainfoCell" bundle:nil];
     [table addSubview:refresh];
     [table registerNib:nib forCellReuseIdentifier:@"mediainfoCell"];
+}
+
+- (IBAction)clickedit:(id)sender {
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"操作提示" message:@"请选择一项操作方式" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"批量操作" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [mainview performSegueWithIdentifier:@"showPL" sender:self];
+        
+        
+    }];
+    
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"扫描文件" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+  
+    
+        
+    }];
+    UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:action1];
+    [alert addAction:action2];
+    [alert addAction:action3];
+    
+    [mainview presentViewController:alert animated:YES completion:nil];
+    
+    
 }
 
 -(void)loadmedia
@@ -72,6 +97,7 @@
         }
         
         ((MainViewController *)mainview).MediaList = [contentstr copy];
+        [((MainViewController *)mainview).dictMediaList setObject:contentstr forKey:title.text];
         [table reloadData];
         return;
     }

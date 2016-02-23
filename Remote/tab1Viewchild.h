@@ -37,6 +37,12 @@
 
 @property (weak,nonatomic)NSObject<clickdelegate> *delegate;
 @property (weak,nonatomic) UIViewController *mainview;
+- (IBAction)clickedit:(id)sender;
+
+
 
 -(void)loadmedia;
+
+
+
 @end

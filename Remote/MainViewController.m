@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import <Common/PublicCommon.h>
+#import "PLViewController.h"
 
 #define tabwidth [PublicCommon GetALLScreen].size.width /3
 
@@ -26,6 +27,7 @@
 @synthesize headview;
 @synthesize DeviceIP,DeviceName;
 @synthesize MediaList,ContentType;
+@synthesize dictMediaList;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -34,7 +36,7 @@
     // Do any additional setup after loading the view.
     
     [btnlibary setTitleColor:[UIColor whiteColor]  forState:UIControlStateNormal];
-   
+    dictMediaList = [[NSMutableDictionary alloc] init];
     
     scrollview = [[UIScrollView alloc] init];
     scrollview.frame = CGRectMake(0, scrollY, [PublicCommon GetALLScreen].size.width, scrollheight+20);
@@ -311,15 +313,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  Get the new view controller using [segue destinationViewController].
-  Pass the selected object to the new view controller.
- }
- */
+// - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//     if ([segue.identifier isEqualToString:@"showPL"])
+//     {
+//         
+//     }
+// }
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showsearch"])
@@ -327,6 +331,13 @@
         SearchViewController *s = (SearchViewController*)segue.destinationViewController;
         s.IsHidereturn=IsConnected;
         s.mainview = self;
+        return;
+    }
+    if ([segue.identifier isEqualToString:@"showPL"])
+    {
+        PLViewController *pl = (PLViewController*)segue.destinationViewController;
+      
+        pl.mainview = self;
     }
 }
 

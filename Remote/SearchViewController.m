@@ -70,7 +70,7 @@
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"网络错误" message:@"搜索接收设备前,请先设置WIFI网络，点击确定进行设置" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
-        [navtitle setRightBarButtonItem:nil];
+        [navtitle setRightBarButtonItem:rightbtnitem];
         [navtitle setLeftBarButtonItem:nil];
         return;
     }
@@ -80,7 +80,7 @@
 //        if (IsHidereturn)
 //            [navtitle setLeftBarButtonItem:leftbtnitem];
 //        else
-            [navtitle setLeftBarButtonItem:emptybtnitem];
+        [navtitle setLeftBarButtonItem:emptybtnitem];
     }
 }
 

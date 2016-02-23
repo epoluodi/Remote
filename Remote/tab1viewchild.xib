@@ -30,6 +30,9 @@
                                 <constraint firstAttribute="height" constant="44" id="sVm-LB-Egf"/>
                             </constraints>
                             <state key="normal" backgroundImage="edit.png"/>
+                            <connections>
+                                <action selector="clickedit:" destination="iN0-l3-epB" eventType="touchUpInside" id="NME-BE-w1F"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cwd-9V-ecK">
                             <rect key="frame" x="8" y="14" width="44" height="44"/>
