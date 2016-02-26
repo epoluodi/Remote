@@ -12,7 +12,7 @@
 {
     UIButton *btnmove;
     UIButton *btndel;
-    
+    NSMutableArray<NSString *> *selectmediaID;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *footview;
@@ -24,7 +24,7 @@
 - (IBAction)clickmarkall:(id)sender;
 - (IBAction)clickreturn:(id)sender;
 
-
+-(void)ChangeSelectList:(NSString *)mediaid flag:(BOOL)flag;
 
 
 @end

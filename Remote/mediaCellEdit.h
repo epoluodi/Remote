@@ -7,16 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PLViewController.h"
 
 @interface mediaCellEdit : UITableViewCell
-
+{
+    BOOL check;
+}
 
 @property (weak, nonatomic) IBOutlet UILabel *medianame;
 @property (weak, nonatomic) IBOutlet UILabel *size;
 @property (weak, nonatomic) IBOutlet UIImageView *mark;
+@property (weak,nonatomic) NSString *mediaid;
+@property (weak,nonatomic) PLViewController *plv;
 
 
-
-
+-(void)changemark;
 
 @end

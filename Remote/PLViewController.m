@@ -45,6 +45,9 @@
     [footview addSubview:btnmove];
     [footview addSubview:btndel];
     
+
+    selectmediaID= [[NSMutableArray alloc] init];
+    
     
     table.delegate=self;
     table.dataSource = self;
@@ -78,12 +81,15 @@
         UINib *nib = [UINib nibWithNibName:@"mediainfoCellEdit" bundle:nil];
         [table registerNib:nib forCellReuseIdentifier:[NSString stringWithFormat:@"%d_m",indexPath.row]];
         me= (mediaCellEdit *)[table dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%d_m",indexPath.row]];
+        me.plv=self;
     }
     
     m = [((MainViewController *)mainview).MediaList objectAtIndex:indexPath.row];
     me.medianame.text= m.mediaName;
     me.size.text= m.Len;
-
+    
+    
+    
     return me;
 }
 
@@ -110,12 +116,22 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    mediaCellEdit *me;
+    me = (mediaCellEdit *)[table cellForRowAtIndexPath:indexPath];
+    [me changemark];
 }
 
 
 #pragma mark -
 
+
+-(void)ChangeSelectList:(NSString *)mediaid flag:(BOOL)flag
+{
+    if (flag)
+        [selectmediaID addObject:mediaid];
+    else
+        [selectmediaID removeObject:mediaid];
+}
 
 #pragma mark 按钮操作
 -(void)clickmove
