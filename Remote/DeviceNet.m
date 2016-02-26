@@ -155,7 +155,40 @@
     return  YES;
 }
 
-
+-(BOOL)ConvertType:(NSString *)ip arg:(NSString *)arg
+{
+    _arg=arg;
+    _commandtype = EConvertType;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+-(BOOL)DelMedia:(NSString *)ip arg:(NSString *)arg
+{
+    _arg=arg;
+    _commandtype = EDelMedia;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
 -(BOOL)SetVolume:(NSString*)ip flag:(int)flag
 {
     if (flag==0)
@@ -253,6 +286,18 @@
             data =[command dataUsingEncoding:enc];
             [sock writeData:data withTimeout:0 tag:0];
             break;
+        case EDelMedia:
+            command = [NSString stringWithFormat:@"%@%@%@%@",delMedia,SplitStr,_arg,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
+        case EConvertType:
+            command = [NSString stringWithFormat:@"%@%@%@%@",convertType,SplitStr,_arg,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
         case EupVolume:
             command = [NSString stringWithFormat:@"%@%@%@",upVolume,SplitStr,CRCL];
             NSLog(@"发送数据:%@",command);
@@ -283,6 +328,8 @@
         case EaddTask:
         case EdelTask:
         case EEditTask:
+        case EDelMedia:
+        case EConvertType:
             [sock readDataToData:[GCDAsyncSocket CRLFData] withTimeout:10 tag:1];
             break;
             
@@ -308,6 +355,8 @@
         case EupVolume:
         case EdownVolume:
         case EEditTask:
+        case EDelMedia:
+        case EConvertType:
             [Commanddelegate CommandFinish:_commandtype json:json];
             break;
    

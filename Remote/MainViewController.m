@@ -196,6 +196,11 @@
     [self.view addSubview:t1viewchild];
     
 }
+
+-(void)Loadmedia
+{
+    [t1viewchild loadmedia];
+}
 #pragma mark -
 
 

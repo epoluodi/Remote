@@ -60,5 +60,7 @@
 - (IBAction)clicksearch:(id)sender;
 
 -(void)ConnectToDeviceInit;
+-(void)Loadmedia;
+
 
 @end

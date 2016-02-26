@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DeviceNet.h"
 
-@interface PLViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface PLViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,FinishCommanddelegate>
 {
     UIButton *btnmove;
     UIButton *btndel;
@@ -19,7 +20,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (weak, nonatomic) IBOutlet UIButton *btnmarkall;
 @property (weak,nonatomic) UIViewController *mainview;
-@property (assign) BOOL IsAllSelect;
+@property (nonatomic) BOOL IsAllSelect;
+@property (nonatomic) BOOL IsClose;
 
 - (IBAction)clickmarkall:(id)sender;
 - (IBAction)clickreturn:(id)sender;

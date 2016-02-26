@@ -65,6 +65,8 @@ typedef enum :int {
     EaddTask,
     EdelTask,
     EEditTask,
+    EDelMedia,
+    EConvertType,
     EdownVolume,
     EupVolume,
     
@@ -127,4 +129,10 @@ typedef enum :int {
 -(BOOL)DelTask:(NSString *)ip arg:(NSString *)arg;
 //修改一个任务
 -(BOOL)EditTask:(NSString *)ip arg:(NSString *)arg;
+
+//删除一组媒体
+-(BOOL)DelMedia:(NSString *)ip arg:(NSString *)arg;
+//转移一组媒体
+-(BOOL)ConvertType:(NSString *)ip arg:(NSString *)arg;
+
 @end

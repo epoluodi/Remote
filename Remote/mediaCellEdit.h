@@ -22,5 +22,6 @@
 
 
 -(void)changemark;
+-(void)initKVO:(BOOL)flag;
 
 @end

@@ -16,19 +16,54 @@
     self.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.1f];
     medianame.textColor=[UIColor whiteColor];
     size.textColor=[UIColor whiteColor];
-    [plv addObserver:self forKeyPath:@"IsAllSelect" options:NSKeyValueObservingOptionNew context:NULL];
+
     check = NO;
     
+}
+
+-(void)initKVO:(BOOL)flag
+{
+    if (flag)
+    {
+        [mark setImage:[UIImage imageNamed:@"check"]];
+        [plv ChangeSelectList:mediaid flag:YES];
+        check=YES;
+    }
+    else
+    {
+        [mark setImage:[UIImage imageNamed:@"uncheck"]];
+        [plv ChangeSelectList:mediaid flag:NO];
+        check=NO;
+    }
+        [plv addObserver:self forKeyPath:@"IsAllSelect" options:NSKeyValueObservingOptionNew context:NULL];
+          [plv addObserver:self forKeyPath:@"IsClose" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"IsAllSelect"]) {
+    
+        if (((NSNumber *)[change objectForKey:@"new"]).intValue==0)
+        {
+            [mark setImage:[UIImage imageNamed:@"uncheck"]];
+            [plv ChangeSelectList:mediaid flag:NO];
+            check=NO;
+        }
+        else
+        {
         [mark setImage:[UIImage imageNamed:@"check"]];
         [plv ChangeSelectList:mediaid flag:YES];
         check=YES;
+        }
+    }else if  ([keyPath isEqualToString:@"IsClose"])
+    {
+        [plv removeObserver:self forKeyPath:@"IsAllSelect"];
+        [plv removeObserver:self forKeyPath:@"IsClose"];
     }
+    else
+    {
      [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 -(void)changemark
@@ -53,9 +88,5 @@
     // Configure the view for the selected state
 }
 
-//释放
--(void)dealloc
-{
-    [plv removeObserver:self forKeyPath:@"IsAllSelect"];
-}
+
 @end
