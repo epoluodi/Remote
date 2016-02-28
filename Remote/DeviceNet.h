@@ -67,6 +67,8 @@ typedef enum :int {
     EEditTask,
     EDelMedia,
     EConvertType,
+    ELoadSysDir,
+    EScanDir,
     EdownVolume,
     EupVolume,
     
@@ -135,4 +137,9 @@ typedef enum :int {
 //转移一组媒体
 -(BOOL)ConvertType:(NSString *)ip arg:(NSString *)arg;
 
+
+//获得系统目录
+-(BOOL)getAllSysDir:(NSString *)ip arg:(NSString *)arg;
+//扫描系统目录
+-(BOOL)ScanSysDir:(NSString *)ip arg:(NSString *)arg;
 @end

@@ -189,6 +189,42 @@
     }
     return  YES;
 }
+
+-(BOOL)getAllSysDir:(NSString *)ip arg:(NSString *)arg
+{
+    _arg=arg;
+    _commandtype = ELoadSysDir;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+
+-(BOOL)ScanSysDir:(NSString *)ip arg:(NSString *)arg
+{
+    _arg=arg;
+    _commandtype = EScanDir;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
 -(BOOL)SetVolume:(NSString*)ip flag:(int)flag
 {
     if (flag==0)
@@ -298,6 +334,18 @@
             data =[command dataUsingEncoding:enc];
             [sock writeData:data withTimeout:0 tag:0];
             break;
+        case ELoadSysDir:
+            command = [NSString stringWithFormat:@"%@%@%@%@",loadSysDir,SplitStr,_arg,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
+        case EScanDir:
+            command = [NSString stringWithFormat:@"%@%@%@%@",scanfDir,SplitStr,_arg,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
         case EupVolume:
             command = [NSString stringWithFormat:@"%@%@%@",upVolume,SplitStr,CRCL];
             NSLog(@"发送数据:%@",command);
@@ -330,6 +378,8 @@
         case EEditTask:
         case EDelMedia:
         case EConvertType:
+        case ELoadSysDir:
+        case EScanDir:
             [sock readDataToData:[GCDAsyncSocket CRLFData] withTimeout:10 tag:1];
             break;
             
@@ -357,6 +407,8 @@
         case EEditTask:
         case EDelMedia:
         case EConvertType:
+        case ELoadSysDir:
+        case EScanDir:
             [Commanddelegate CommandFinish:_commandtype json:json];
             break;
    

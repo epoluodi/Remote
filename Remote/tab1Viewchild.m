@@ -41,7 +41,8 @@
     }];
     
     UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"扫描文件" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-  
+        [mainview performSegueWithIdentifier:@"showscanfile" sender:self];
+
     
         
     }];

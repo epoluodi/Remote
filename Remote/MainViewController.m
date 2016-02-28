@@ -197,6 +197,10 @@
     
 }
 
+-(NSString *)getNowt1Title
+{
+    return  t1viewchild.title.text;
+}
 -(void)Loadmedia
 {
     [t1viewchild loadmedia];
@@ -343,6 +347,14 @@
         PLViewController *pl = (PLViewController*)segue.destinationViewController;
       
         pl.mainview = self;
+        return;
+    }
+    if ([segue.identifier isEqualToString:@"showscanfile"])
+    {
+        PLViewController *pl = (PLViewController*)segue.destinationViewController;
+        
+        pl.mainview = self;
+        return;
     }
 }
 

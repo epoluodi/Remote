@@ -43,6 +43,8 @@
 		7B78028C1C7C9012009740EA /* mediaCellEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B78028B1C7C9012009740EA /* mediaCellEdit.m */; };
 		7B78028F1C7C95AE009740EA /* img_edit_send.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B78028E1C7C95AE009740EA /* img_edit_send.png */; };
 		7B7802911C7C96D1009740EA /* img_edit_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B7802901C7C96D1009740EA /* img_edit_delete.png */; };
+		7BA13DAA1C82BC6E00EB2A69 /* ScanFileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA13DA91C82BC6E00EB2A69 /* ScanFileController.m */; };
+		7BA13DAC1C83071B00EB2A69 /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA13DAB1C83071B00EB2A69 /* folder.png */; };
 		7BD31A781C4E8130002FB61E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD31A771C4E8130002FB61E /* main.m */; };
 		7BD31A7B1C4E8130002FB61E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD31A7A1C4E8130002FB61E /* AppDelegate.m */; };
 		7BD31A831C4E8131002FB61E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BD31A821C4E8131002FB61E /* Assets.xcassets */; };
@@ -142,6 +144,9 @@
 		7B78028B1C7C9012009740EA /* mediaCellEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mediaCellEdit.m; sourceTree = "<group>"; };
 		7B78028E1C7C95AE009740EA /* img_edit_send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_edit_send.png; sourceTree = "<group>"; };
 		7B7802901C7C96D1009740EA /* img_edit_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_edit_delete.png; sourceTree = "<group>"; };
+		7BA13DA81C82BC6E00EB2A69 /* ScanFileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanFileController.h; sourceTree = "<group>"; };
+		7BA13DA91C82BC6E00EB2A69 /* ScanFileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanFileController.m; sourceTree = "<group>"; };
+		7BA13DAB1C83071B00EB2A69 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
 		7BD31A731C4E8130002FB61E /* Remote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD31A771C4E8130002FB61E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7BD31A791C4E8130002FB61E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -237,6 +242,8 @@
 				7B0AF4C51C54D0310064426B /* MainViewController.m */,
 				7BF9E9041C7B5F5E0020210C /* PLViewController.h */,
 				7BF9E9051C7B5F5E0020210C /* PLViewController.m */,
+				7BA13DA81C82BC6E00EB2A69 /* ScanFileController.h */,
+				7BA13DA91C82BC6E00EB2A69 /* ScanFileController.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -255,6 +262,7 @@
 		7B0AF4981C5466630064426B /* PNG */ = {
 			isa = PBXGroup;
 			children = (
+				7BA13DAB1C83071B00EB2A69 /* folder.png */,
 				7B7802901C7C96D1009740EA /* img_edit_delete.png */,
 				7B78028E1C7C95AE009740EA /* img_edit_send.png */,
 				7BF9E9021C7B5B5F0020210C /* uncheck.png */,
@@ -536,6 +544,7 @@
 				7B0AF4BA1C548D6F0064426B /* deviceCell.xib in Resources */,
 				7B0AF4B01C5474E50064426B /* progress_8.png in Resources */,
 				7B0AF4CC1C551A8D0064426B /* img_pause_pressed.png in Resources */,
+				7BA13DAC1C83071B00EB2A69 /* folder.png in Resources */,
 				7B0AF49A1C54666C0064426B /* title_bar.png in Resources */,
 				B46FC97C1C576DA500050576 /* tab1viewchild.xib in Resources */,
 				7B78028F1C7C95AE009740EA /* img_edit_send.png in Resources */,
@@ -557,6 +566,7 @@
 				7BF59B891C5BB5F000F7C678 /* DeviceNet.m in Sources */,
 				7BF59B9A1C5C52FB00F7C678 /* AsyncSocket.m in Sources */,
 				B4A8D7141C58682E00E81CCD /* MediaData.m in Sources */,
+				7BA13DAA1C82BC6E00EB2A69 /* ScanFileController.m in Sources */,
 				7BD31A7B1C4E8130002FB61E /* AppDelegate.m in Sources */,
 				7B0AF4B31C5477370064426B /* LoadingView.m in Sources */,
 				B46FC9761C571BC900050576 /* tab3View.m in Sources */,

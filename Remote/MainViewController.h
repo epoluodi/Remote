@@ -61,6 +61,6 @@
 
 -(void)ConnectToDeviceInit;
 -(void)Loadmedia;
-
+-(NSString *)getNowt1Title;
 
 @end
