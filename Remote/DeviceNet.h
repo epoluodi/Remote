@@ -69,6 +69,7 @@ typedef enum :int {
     EConvertType,
     ELoadSysDir,
     EScanDir,
+    EReplaceDB,
     EdownVolume,
     EupVolume,
     
@@ -142,4 +143,7 @@ typedef enum :int {
 -(BOOL)getAllSysDir:(NSString *)ip arg:(NSString *)arg;
 //扫描系统目录
 -(BOOL)ScanSysDir:(NSString *)ip arg:(NSString *)arg;
+
+//扫描系统目录配置
+-(BOOL)ReplaceDB:(NSString *)ip;
 @end

@@ -44,6 +44,9 @@
                         <constraint firstAttribute="height" constant="71" id="zkf-rv-Eph"/>
                     </constraints>
                     <state key="normal" backgroundImage="replce.png"/>
+                    <connections>
+                        <action selector="clickfloder:" destination="5Qn-ts-5jl" eventType="touchUpInside" id="8Wm-q7-oSb"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uf9-0r-Xai">
                     <rect key="frame" x="8" y="28" width="84" height="72"/>

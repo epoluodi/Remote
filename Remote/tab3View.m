@@ -87,4 +87,8 @@
         
     });
 }
+
+- (IBAction)clickfloder:(id)sender {
+      [mainview performSegueWithIdentifier:@"showscanfile" sender:self];
+}
 @end

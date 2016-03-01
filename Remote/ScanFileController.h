@@ -24,7 +24,7 @@
 @property (weak,nonatomic) UIViewController *mainview;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navbar;
 @property (weak, nonatomic) IBOutlet UITableView *table;
-
+@property (assign) int flag;
 - (IBAction)clickScan:(id)sender;
 
 @end

@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import <Common/PublicCommon.h>
 #import "PLViewController.h"
+#import "ScanFileController.h"
 
 #define tabwidth [PublicCommon GetALLScreen].size.width /3
 
@@ -30,6 +31,16 @@
 @synthesize dictMediaList;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (iPhone6){
+        x1=375;
+        x2=750;
+    }
+    if (iPhone6plus){
+        x1 = 414;
+        x2= 828;
+    }
+    
     
     [self inittabview];
     
@@ -256,6 +267,11 @@
         scrollView.contentOffset.x>828)
         return;
     _lineview.frame = CGRectMake(scrollView.contentOffset.x /3, 40-3, tabwidth, 3);
+    NSLog(@"x:%f",scrollView.contentOffset.x);
+    
+   
+
+    
     if (scrollview.contentOffset.x==0)
     {
         [btnlibary setTitleColor:[UIColor whiteColor]  forState:UIControlStateNormal];
@@ -263,15 +279,17 @@
         [btnsetting setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.6] forState:UIControlStateNormal];
         return;
     }
-    if (scrollview.contentOffset.x==414)
+    
+    if (scrollview.contentOffset.x==x1)//375 750
     {
         [btntask setTitleColor:[UIColor whiteColor]  forState:UIControlStateNormal];
         [btnlibary setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.6] forState:UIControlStateNormal];
         [btnsetting setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.6] forState:UIControlStateNormal];
         return;
     }
-    if (scrollview.contentOffset.x==828)
+    if (scrollview.contentOffset.x==x2)
     {
+      
         [btnsetting setTitleColor:[UIColor whiteColor]  forState:UIControlStateNormal];
         [btnlibary setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.6] forState:UIControlStateNormal];
         [btntask setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.6] forState:UIControlStateNormal];
@@ -351,9 +369,15 @@
     }
     if ([segue.identifier isEqualToString:@"showscanfile"])
     {
-        PLViewController *pl = (PLViewController*)segue.destinationViewController;
+        ScanFileController *sf = (ScanFileController*)segue.destinationViewController;
         
-        pl.mainview = self;
+        sf.mainview = self;
+        
+        if (scrollview.contentOffset.x == x2)
+            sf.flag=YES;
+        else
+            sf.flag=NO;
+        
         return;
     }
 }

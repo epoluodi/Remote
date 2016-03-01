@@ -13,6 +13,7 @@
 #import "tab1Viewchild.h"
 #import "SearchViewController.h"
 #import "TipView.h"
+#import <Common/PublicCommon.h>
 
 
 
@@ -32,7 +33,7 @@
     tab1Viewchild *t1viewchild;
     
     BOOL IsConnected;
-    
+    CGFloat x1,x2;
     
     
     

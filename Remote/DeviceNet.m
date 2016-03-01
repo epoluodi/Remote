@@ -225,6 +225,23 @@
     }
     return  YES;
 }
+
+-(BOOL)ReplaceDB:(NSString *)ip
+{
+    _commandtype = EReplaceDB;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
 -(BOOL)SetVolume:(NSString*)ip flag:(int)flag
 {
     if (flag==0)
@@ -346,6 +363,12 @@
             data =[command dataUsingEncoding:enc];
             [sock writeData:data withTimeout:0 tag:0];
             break;
+        case EReplaceDB:
+            command = [NSString stringWithFormat:@"%@%@%@",replaceDB,SplitStr,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
         case EupVolume:
             command = [NSString stringWithFormat:@"%@%@%@",upVolume,SplitStr,CRCL];
             NSLog(@"发送数据:%@",command);
@@ -380,6 +403,7 @@
         case EConvertType:
         case ELoadSysDir:
         case EScanDir:
+        case EReplaceDB:
             [sock readDataToData:[GCDAsyncSocket CRLFData] withTimeout:10 tag:1];
             break;
             
@@ -409,6 +433,7 @@
         case EConvertType:
         case ELoadSysDir:
         case EScanDir:
+        case EReplaceDB:
             [Commanddelegate CommandFinish:_commandtype json:json];
             break;
    

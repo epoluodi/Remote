@@ -24,13 +24,17 @@
 @synthesize navbar;
 @synthesize table;
 @synthesize mainview;
+@synthesize flag;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    title = [[UINavigationItem alloc] initWithTitle:@"请选择媒体文件所在的文件夹"];
+    if (!flag)
+        title = [[UINavigationItem alloc] initWithTitle:@"请选择媒体文件所在的文件夹"];
+    else
+        title = [[UINavigationItem alloc] initWithTitle:@"请选择配置文件所在的文件夹"];
     btnreturn = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(clickreturn)];
     btnUpdir = [[UIBarButtonItem alloc] initWithTitle:@"上一层" style:UIBarButtonItemStylePlain target:self action:@selector(clickupdir)];
     
@@ -147,7 +151,7 @@
         return;
     }
     
-    if (commandtype == EScanDir )
+    if (commandtype == EScanDir || commandtype == EReplaceDB)
     {
         NSLog(@"获得数据");
         
@@ -223,8 +227,14 @@
     dnet.Commanddelegate=self;
     dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(globalQ , ^{
+        if (!flag){
         NSString *arg = [NSString stringWithFormat:@"%@%%~%%",((MainViewController *)mainview).getNowt1Title];
         [dnet ScanSysDir:((MainViewController *)mainview).DeviceIP arg:arg];
+        }
+        else
+        {
+            [dnet ReplaceDB:((MainViewController *)mainview).DeviceIP ];
+        }
     });
     
     
