@@ -10,7 +10,7 @@
 
 @implementation mediaCellEdit
 @synthesize medianame,size,mark,mediaid;
-@synthesize plv;
+@synthesize plv,tdlv;
 - (void)awakeFromNib {
     // Initialization code
     self.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.1f];
@@ -35,8 +35,16 @@
         [plv ChangeSelectList:mediaid flag:NO];
         check=NO;
     }
+    if (plv){
         [plv addObserver:self forKeyPath:@"IsAllSelect" options:NSKeyValueObservingOptionNew context:NULL];
           [plv addObserver:self forKeyPath:@"IsClose" options:NSKeyValueObservingOptionNew context:NULL];
+        return;
+    }
+    if (tdlv){
+        [tdlv addObserver:self forKeyPath:@"IsAllSelect" options:NSKeyValueObservingOptionNew context:NULL];
+        [tdlv addObserver:self forKeyPath:@"IsClose" options:NSKeyValueObservingOptionNew context:NULL];
+        return;
+    }
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
@@ -46,19 +54,35 @@
         if (((NSNumber *)[change objectForKey:@"new"]).intValue==0)
         {
             [mark setImage:[UIImage imageNamed:@"uncheck"]];
-            [plv ChangeSelectList:mediaid flag:NO];
+            if (plv)
+                [plv ChangeSelectList:mediaid flag:NO];
+            if (tdlv)
+                [tdlv ChangeSelectList:mediaid flag:NO];
             check=NO;
         }
         else
         {
+            if (check)
+                return;
         [mark setImage:[UIImage imageNamed:@"check"]];
-        [plv ChangeSelectList:mediaid flag:YES];
+        if (plv)
+                [plv ChangeSelectList:mediaid flag:YES];
+        if (tdlv)
+            [tdlv ChangeSelectList:mediaid flag:YES];
         check=YES;
         }
     }else if  ([keyPath isEqualToString:@"IsClose"])
     {
+        if (plv){
         [plv removeObserver:self forKeyPath:@"IsAllSelect"];
         [plv removeObserver:self forKeyPath:@"IsClose"];
+            return;
+        }
+        if (tdlv){
+            [tdlv removeObserver:self forKeyPath:@"IsAllSelect"];
+            [tdlv removeObserver:self forKeyPath:@"IsClose"];
+            return;
+        }
     }
     else
     {
@@ -71,13 +95,19 @@
     if (check)
     {
         check=NO;
-        [plv ChangeSelectList:mediaid flag:NO];
+        if (plv)
+            [plv ChangeSelectList:mediaid flag:NO];
+        if (tdlv)
+            [tdlv ChangeSelectList:mediaid flag:NO];
         [mark setImage:[UIImage imageNamed:@"uncheck"]];
     }
     else
     {
         check=YES;
-        [plv ChangeSelectList:mediaid flag:YES];
+        if (plv)
+            [plv ChangeSelectList:mediaid flag:YES];
+        if (tdlv)
+            [tdlv ChangeSelectList:mediaid flag:YES];
         [mark setImage:[UIImage imageNamed:@"check"]];
     }
 }

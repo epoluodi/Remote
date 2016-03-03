@@ -242,6 +242,25 @@
     }
     return  YES;
 }
+
+-(BOOL)GetTaskDetailInfo:(NSString *)ip arg:(NSString *)arg
+{
+    _arg=arg;
+    _commandtype = EGetAllItemByTask;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+
 -(BOOL)SetVolume:(NSString*)ip flag:(int)flag
 {
     if (flag==0)
@@ -369,6 +388,12 @@
             data =[command dataUsingEncoding:enc];
             [sock writeData:data withTimeout:0 tag:0];
             break;
+        case EGetAllItemByTask:
+            command = [NSString stringWithFormat:@"%@%@%@%@",getAllItemByTask,SplitStr,_arg,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
         case EupVolume:
             command = [NSString stringWithFormat:@"%@%@%@",upVolume,SplitStr,CRCL];
             NSLog(@"发送数据:%@",command);
@@ -404,6 +429,7 @@
         case ELoadSysDir:
         case EScanDir:
         case EReplaceDB:
+        case EGetAllItemByTask:
             [sock readDataToData:[GCDAsyncSocket CRLFData] withTimeout:10 tag:1];
             break;
             
@@ -434,6 +460,7 @@
         case ELoadSysDir:
         case EScanDir:
         case EReplaceDB:
+        case EGetAllItemByTask:
             [Commanddelegate CommandFinish:_commandtype json:json];
             break;
    

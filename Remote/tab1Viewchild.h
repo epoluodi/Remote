@@ -10,12 +10,8 @@
 #import "MediaData.h"
 #import "MediaInfoCell.h"
 #import "DeviceNet.h"
+#import "DelegateHead.h"
 
-@protocol clickdelegate
-
--(void)Clickback;
-
-@end
 
 
 @interface tab1Viewchild : UIView<UITableViewDataSource,UITableViewDelegate,FinishCommanddelegate>

@@ -14,7 +14,7 @@
 #import "SearchViewController.h"
 #import "TipView.h"
 #import <Common/PublicCommon.h>
-
+#import "taskdetailview.h"
 
 
 @class tab1View;
@@ -31,6 +31,7 @@
     tab3View *tab3;
     
     tab1Viewchild *t1viewchild;
+    taskdetailview *taskdetail;
     
     BOOL IsConnected;
     CGFloat x1,x2;
@@ -63,5 +64,5 @@
 -(void)ConnectToDeviceInit;
 -(void)Loadmedia;
 -(NSString *)getNowt1Title;
-
+-(void)ItemClick:(NSString *)taskid taskname:(NSString *)taskname;
 @end

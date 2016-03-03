@@ -43,6 +43,9 @@
 		7B78028C1C7C9012009740EA /* mediaCellEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B78028B1C7C9012009740EA /* mediaCellEdit.m */; };
 		7B78028F1C7C95AE009740EA /* img_edit_send.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B78028E1C7C95AE009740EA /* img_edit_send.png */; };
 		7B7802911C7C96D1009740EA /* img_edit_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B7802901C7C96D1009740EA /* img_edit_delete.png */; };
+		7B9A667F1C88683800DF5474 /* taskview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B9A667E1C88683800DF5474 /* taskview.xib */; };
+		7B9A66811C886B6F00DF5474 /* img_edit_add.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9A66801C886B6F00DF5474 /* img_edit_add.png */; };
+		7B9A66841C886D1700DF5474 /* taskdetailview.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A66831C886D1700DF5474 /* taskdetailview.m */; };
 		7BA13DAA1C82BC6E00EB2A69 /* ScanFileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA13DA91C82BC6E00EB2A69 /* ScanFileController.m */; };
 		7BA13DAC1C83071B00EB2A69 /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 7BA13DAB1C83071B00EB2A69 /* folder.png */; };
 		7BD31A781C4E8130002FB61E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD31A771C4E8130002FB61E /* main.m */; };
@@ -144,10 +147,15 @@
 		7B78028B1C7C9012009740EA /* mediaCellEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mediaCellEdit.m; sourceTree = "<group>"; };
 		7B78028E1C7C95AE009740EA /* img_edit_send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_edit_send.png; sourceTree = "<group>"; };
 		7B7802901C7C96D1009740EA /* img_edit_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_edit_delete.png; sourceTree = "<group>"; };
+		7B9A667E1C88683800DF5474 /* taskview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = taskview.xib; sourceTree = "<group>"; };
+		7B9A66801C886B6F00DF5474 /* img_edit_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_edit_add.png; sourceTree = "<group>"; };
+		7B9A66821C886D1700DF5474 /* taskdetailview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taskdetailview.h; sourceTree = "<group>"; };
+		7B9A66831C886D1700DF5474 /* taskdetailview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taskdetailview.m; sourceTree = "<group>"; };
+		7B9A66851C8872C200DF5474 /* DelegateHead.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateHead.h; sourceTree = "<group>"; };
 		7BA13DA81C82BC6E00EB2A69 /* ScanFileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanFileController.h; sourceTree = "<group>"; };
 		7BA13DA91C82BC6E00EB2A69 /* ScanFileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanFileController.m; sourceTree = "<group>"; };
 		7BA13DAB1C83071B00EB2A69 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
-		7BD31A731C4E8130002FB61E /* Remote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BD31A731C4E8130002FB61E /* IOS_Remote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOS_Remote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD31A771C4E8130002FB61E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7BD31A791C4E8130002FB61E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7BD31A7A1C4E8130002FB61E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -262,6 +270,7 @@
 		7B0AF4981C5466630064426B /* PNG */ = {
 			isa = PBXGroup;
 			children = (
+				7B9A66801C886B6F00DF5474 /* img_edit_add.png */,
 				7BA13DAB1C83071B00EB2A69 /* folder.png */,
 				7B7802901C7C96D1009740EA /* img_edit_delete.png */,
 				7B78028E1C7C95AE009740EA /* img_edit_send.png */,
@@ -331,6 +340,9 @@
 				B4BE1D6F1C60A40E00CA30B1 /* TipView.m */,
 				7B78028A1C7C9012009740EA /* mediaCellEdit.h */,
 				7B78028B1C7C9012009740EA /* mediaCellEdit.m */,
+				7B9A66821C886D1700DF5474 /* taskdetailview.h */,
+				7B9A66831C886D1700DF5474 /* taskdetailview.m */,
+				7B9A66851C8872C200DF5474 /* DelegateHead.h */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -345,6 +357,7 @@
 				B46FC97B1C576DA500050576 /* tab1viewchild.xib */,
 				B4A8D7181C5871CA00E81CCD /* mediainfoCell.xib */,
 				B4A8D7221C589B8F00E81CCD /* newTaskView.xib */,
+				7B9A667E1C88683800DF5474 /* taskview.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -360,7 +373,7 @@
 		7BD31A741C4E8130002FB61E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7BD31A731C4E8130002FB61E /* Remote.app */,
+				7BD31A731C4E8130002FB61E /* IOS_Remote.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -458,7 +471,7 @@
 			);
 			name = Remote;
 			productName = Remote;
-			productReference = 7BD31A731C4E8130002FB61E /* Remote.app */;
+			productReference = 7BD31A731C4E8130002FB61E /* IOS_Remote.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -472,6 +485,7 @@
 				TargetAttributes = {
 					7BD31A721C4E812F002FB61E = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = RK2BTW6E76;
 					};
 				};
 			};
@@ -505,6 +519,7 @@
 				7B0AF4DD1C551CA40064426B /* img_playmode_repeat_all.png in Resources */,
 				7B0AF4BC1C548DB10064426B /* computer.png in Resources */,
 				B4A8D7201C58724B00E81CCD /* img_yy.png in Resources */,
+				7B9A667F1C88683800DF5474 /* taskview.xib in Resources */,
 				B46FC9801C57727C00050576 /* edit.png in Resources */,
 				B46FC9721C5719E700050576 /* up.png in Resources */,
 				B46FC96F1C5719E700050576 /* down.png in Resources */,
@@ -518,6 +533,7 @@
 				7B0AF4AC1C5474E50064426B /* progress_4.png in Resources */,
 				B46FC9711C5719E700050576 /* replce.png in Resources */,
 				7B0AF4CD1C551A8D0064426B /* img_play_next_pressed.png in Resources */,
+				7B9A66811C886B6F00DF5474 /* img_edit_add.png in Resources */,
 				B4A8D7231C589B8F00E81CCD /* newTaskView.xib in Resources */,
 				7BF9E9031C7B5B5F0020210C /* uncheck.png in Resources */,
 				7B0AF4A91C5474E50064426B /* progress_1.png in Resources */,
@@ -580,6 +596,7 @@
 				7B0AF4971C54658A0064426B /* SearchViewController.m in Sources */,
 				7BF9E9061C7B5F5E0020210C /* PLViewController.m in Sources */,
 				B4BE1D701C60A40E00CA30B1 /* TipView.m in Sources */,
+				7B9A66841C886D1700DF5474 /* taskdetailview.m in Sources */,
 				7BF59B9B1C5C52FB00F7C678 /* AsyncUdpSocket.m in Sources */,
 				7BF59B941C5C52F100F7C678 /* GCDAsyncSocket.m in Sources */,
 				7BD31A781C4E8130002FB61E /* main.m in Sources */,
@@ -692,6 +709,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -702,7 +721,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cl.Remote;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = IOS_Remote;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -710,6 +730,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -720,7 +742,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cl.Remote;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = IOS_Remote;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

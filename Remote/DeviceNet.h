@@ -70,6 +70,7 @@ typedef enum :int {
     ELoadSysDir,
     EScanDir,
     EReplaceDB,
+    EGetAllItemByTask,
     EdownVolume,
     EupVolume,
     
@@ -146,4 +147,8 @@ typedef enum :int {
 
 //扫描系统目录配置
 -(BOOL)ReplaceDB:(NSString *)ip;
+
+//获取任务信息中详细信息
+-(BOOL)GetTaskDetailInfo:(NSString *)ip arg:(NSString *)arg;
+
 @end

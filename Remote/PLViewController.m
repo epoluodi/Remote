@@ -137,8 +137,11 @@
 {
     if (flag)
         [selectmediaID addObject:mediaid];
-    else
+    else{
         [selectmediaID removeObject:mediaid];
+        IsAllSelect=NO;
+        [btnmarkall setImage:[UIImage imageNamed:@"uncheck"] forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark 按钮操作

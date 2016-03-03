@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PLViewController.h"
+#import "taskdetailview.h"
 
+@class taskdetailview;
 @interface mediaCellEdit : UITableViewCell
 {
     BOOL check;
@@ -19,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *mark;
 @property (weak,nonatomic) NSString *mediaid;
 @property (weak,nonatomic) PLViewController *plv;
-
+@property (weak,nonatomic) taskdetailview *tdlv;
 
 -(void)changemark;
 -(void)initKVO:(BOOL)flag;

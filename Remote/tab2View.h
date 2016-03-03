@@ -13,6 +13,7 @@
 #import "DeviceNet.h"
 
 
+
 @interface tab2View : UIView<UITableViewDataSource,UITableViewDelegate,FinishCommanddelegate,NewTaskDelegate>
 {
     UITableView *table;

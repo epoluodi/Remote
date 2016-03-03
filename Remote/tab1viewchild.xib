@@ -78,6 +78,7 @@
                 <outlet property="table" destination="7uP-mm-tqJ" id="Z27-6w-IvN"/>
                 <outlet property="title" destination="l1M-lN-2Vt" id="idx-4n-EHB"/>
             </connections>
+            <point key="canvasLocation" x="244" y="342"/>
         </view>
     </objects>
     <resources>

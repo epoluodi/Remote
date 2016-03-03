@@ -208,6 +208,23 @@
     
 }
 
+-(void)ItemClick:(NSString *)taskid taskname:(NSString *)taskname
+{
+    [self HideView];
+    NSArray *nibarry = [[NSBundle mainBundle] loadNibNamed:@"taskview" owner:taskdetail options:nil];
+    taskdetail = (taskdetailview *)nibarry[0];
+    taskdetail.frame =CGRectMake(0 , 0, [PublicCommon GetALLScreen].size.width, [PublicCommon GetALLScreen].size.height-66 +20);
+    taskdetail.delegate = self;
+    taskdetail.title.text= taskname;
+    taskdetail.mainview=self;
+    taskdetail.taskid =taskid;
+    [taskdetail loadtaskdetailinfo];
+    
+    [self.view addSubview:taskdetail];
+}
+
+
+
 -(NSString *)getNowt1Title
 {
     return  t1viewchild.title.text;
@@ -222,13 +239,21 @@
 
 
 
-#pragma mark t1viewchilddelegate
+#pragma mark clickdelegate
 
 -(void)Clickback
 {
     t1viewchild.delegate=nil;
     [t1viewchild removeFromSuperview];
     t1viewchild=nil;
+    [self ShowView];
+}
+
+-(void)Clickbackfortaskdetail
+{
+    taskdetail.delegate=nil;
+    [taskdetail removeFromSuperview];
+    taskdetail=nil;
     [self ShowView];
 }
 

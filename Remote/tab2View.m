@@ -304,6 +304,12 @@
     cell.selectedBackgroundView = v;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+     NSDictionary *d = [tasklist objectAtIndex:indexPath.row];
+    [((MainViewController *)mainView) ItemClick:[d objectForKey:@"billid"] taskname:[d objectForKey:@"billname"]];
+}
+
 //
 //- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 //    return YES;
