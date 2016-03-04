@@ -233,9 +233,17 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="btnnext" destination="eE4-2B-Rn3" id="ie8-fM-p3a"/>
+                        <outlet property="btnplay" destination="RTE-Gu-wOd" id="92A-Vn-Oa6"/>
                         <outlet property="btnsearch" destination="ZP2-O7-eBR" id="3TA-d3-pZL"/>
+                        <outlet property="btnup" destination="DMk-8c-88H" id="rty-zk-BCA"/>
                         <outlet property="controlview" destination="7K0-bw-Wvu" id="VII-aa-9wb"/>
                         <outlet property="headview" destination="IGZ-Yl-q2S" id="av2-q1-MAQ"/>
+                        <outlet property="mediamode" destination="XLW-ga-ryH" id="5je-l7-KhK"/>
+                        <outlet property="medianame" destination="aS5-9K-60P" id="JbE-z4-6Jb"/>
+                        <outlet property="mediatime" destination="5s8-M0-ZI4" id="5pl-WB-Mq9"/>
+                        <outlet property="playmode" destination="JQM-BT-4IX" id="bth-rg-YTE"/>
+                        <outlet property="progressview" destination="Chp-3d-l1A" id="LuT-h2-Sl5"/>
                         <outlet property="tabview" destination="v2P-I6-U1X" id="Veo-P7-MVz"/>
                         <segue destination="lVL-yU-Rra" kind="modal" identifier="showsearch" id="rZ5-i4-WNA"/>
                         <segue destination="hIo-VZ-uJ3" kind="modal" identifier="showPL" id="OlS-4y-cK9"/>

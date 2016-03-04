@@ -8,6 +8,14 @@
 
 #import "taskdetailview.h"
 #import "MainViewController.h"
+#import "LoadingView.h"
+
+@interface taskdetailview ()
+{
+    __block LoadingView *loadview;
+}
+
+@end
 
 @implementation taskdetailview
 @synthesize title,btnadd,btncheck,btndel,btnreturn,table;
@@ -72,9 +80,37 @@
 }
 
 - (IBAction)clickadd:(id)sender {
+    
 }
 
 - (IBAction)clickdel:(id)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"确认移除 %d条文件",(int)selectmediaID.count] preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        NSString *arg  = [selectmediaID componentsJoinedByString:@","];
+        if (!loadview)
+            loadview = [[LoadingView alloc] init];
+        [mainview.view addSubview:loadview];
+        [loadview StartAnimation];
+        
+        dnet = [[DeviceNet alloc] init];
+        dnet.Commanddelegate=self;
+        dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(globalQ , ^{
+            
+            [dnet DelItemDetailInfo:((MainViewController *)mainview).DeviceIP arg:arg];
+            
+            
+        });
+        
+    }];
+    
+    [alert addAction:action1];
+    [alert addAction:action2];
+    [mainview presentViewController:alert animated:YES completion:nil];
+    
 }
 
 - (IBAction)clickselectall:(id)sender {
@@ -170,7 +206,11 @@
 #pragma mark 通信操作委托
 -(void)CommandFinish:(CommandType)commandtype json:(NSDictionary *)json
 {
-    
+    if (loadview){
+        [loadview StopAnimation];
+        [loadview removeFromSuperview];
+        loadview = nil;
+    }
     if (refresh.refreshing)
     {
         [refresh endRefreshing];
@@ -178,14 +218,34 @@
     if (commandtype == EGetAllItemByTask)
     {
         NSLog(@"获得数据");
-        detaillist = [json objectForKey:@"data"];
-        [table reloadData];
+        BOOL success = ((NSNumber *)[json objectForKey:@"success"]).boolValue;
+        if (success){
+            detaillist = [json objectForKey:@"data"];
+            [table reloadData];
+        }
+        else
+            [self CommandTimeout];
         return;
     }
+    if (commandtype==EDelTaskItem)
+    {
+        BOOL success = ((NSNumber *)[json objectForKey:@"success"]).boolValue;
+        if (success){
+            [self loadtaskdetailinfo];
+        }
+        else
+            [self CommandTimeout];
+        return;
+    }
+    
 }
 -(void)CommandTimeout
 {
-    
+    if (loadview){
+        [loadview StopAnimation];
+        [loadview removeFromSuperview];
+        loadview = nil;
+    }
     if (refresh.refreshing)
     {
         [refresh endRefreshing];

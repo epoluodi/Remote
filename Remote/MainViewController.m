@@ -29,6 +29,10 @@
 @synthesize DeviceIP,DeviceName;
 @synthesize MediaList,ContentType;
 @synthesize dictMediaList;
+@synthesize btnnext,btnplay,btnup;
+@synthesize mediamode,medianame,mediatime;
+@synthesize playmode,progressview;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -409,6 +413,9 @@
 
 
 - (IBAction)clicksearch:(id)sender {
+    [dnet stoptListenserver];
+    dnet=nil;
+    
     [self performSegueWithIdentifier:@"showsearch" sender:self];
     
 }
@@ -428,10 +435,69 @@
     [tab1 LoadContentType];
     [tab2 LoadTaskAll];
     
+    //启动监听状态
     
+    dnet = [[DeviceNet alloc] init];
+    [dnet initdelegate:self];
+    [dnet startListenserver];
     
 }
 
 #pragma mark -
+
+
+#pragma mark 处理监控信息
+
+-(void)DoDeviceState:(NSString *)msg
+{
+    NSArray<NSString *> *strlist = [msg componentsSeparatedByString:@","];
+
+    NSString *_length= strlist[0];
+    NSString *_time = strlist[1];
+    NSString *_percent = strlist[2];
+    NSString *_medianame = strlist[3];
+    NSString *_playorder = strlist[4];
+    NSString *_playstate = strlist[5];
+    NSString *_playmode = strlist[6];
+    
+    mediatime.text=_medianame;
+    progressview.progress = [_percent floatValue];
+    mediatime.text =[NSString stringWithFormat:@"%@/%@",_time,_length];
+    
+    switch ([_playmode intValue]) {
+        case TASKMODE:
+            [mediamode setTitle:@"任务模式" forState:UIControlStateNormal];
+            break;
+        case SELECTMODE:
+            [mediamode setTitle:@"自择模式" forState:UIControlStateNormal];
+            break;
+        case PUBLICMODE:
+            [mediamode setTitle:@"宣传模式" forState:UIControlStateNormal];
+            break;
+    }
+    
+    
+    
+}
+
+
+#pragma mark -
+
+
+#pragma mark UDP
+
+
+
+-(void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext
+{
+
+    NSLog(@"来自数据--%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    [self DoDeviceState:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+    
+    
+
+}
+#pragma mark -
+
 
 @end

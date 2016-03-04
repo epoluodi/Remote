@@ -71,6 +71,7 @@ typedef enum :int {
     EScanDir,
     EReplaceDB,
     EGetAllItemByTask,
+    EDelTaskItem,
     EdownVolume,
     EupVolume,
     
@@ -114,8 +115,8 @@ typedef enum :int {
 //搜索设备
 -(BOOL)SearchDevice;
 -(void)stopSearchDevice;
-
-
+-(BOOL)startListenserver;
+-(void)stoptListenserver;
 //获取媒体类别
 -(BOOL)getContentType:(NSString *)ip;
 
@@ -150,5 +151,6 @@ typedef enum :int {
 
 //获取任务信息中详细信息
 -(BOOL)GetTaskDetailInfo:(NSString *)ip arg:(NSString *)arg;
-
+//删除任务中一个条目
+-(BOOL)DelItemDetailInfo:(NSString *)ip arg:(NSString *)arg;
 @end

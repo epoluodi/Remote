@@ -37,6 +37,22 @@
     udpsocketrecve=nil;
     udpsocketsend=nil;
 }
+
+-(BOOL)startListenserver
+{
+    udpsocketrecve = [[GCDAsyncUdpSocket alloc] initWithDelegate:udpviewdelegate delegateQueue:dispatch_get_main_queue()];
+    if (![udpsocketrecve bindToPort:SEND_STATU_PORT error:nil])
+        return NO;
+    if (![udpsocketrecve beginReceiving:nil])
+        return NO;
+
+    return YES;
+}
+-(void)stoptListenserver
+{
+    [udpsocketrecve close];
+    udpsocketrecve = nil;
+}
 #pragma mark -
 
 
@@ -261,6 +277,25 @@
     return  YES;
 }
 
+
+-(BOOL)DelItemDetailInfo:(NSString *)ip arg:(NSString *)arg
+{
+    _arg=arg;
+    _commandtype = EDelTaskItem;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+
 -(BOOL)SetVolume:(NSString*)ip flag:(int)flag
 {
     if (flag==0)
@@ -394,6 +429,12 @@
             data =[command dataUsingEncoding:enc];
             [sock writeData:data withTimeout:0 tag:0];
             break;
+        case EDelTaskItem:
+            command = [NSString stringWithFormat:@"%@%@%@%@",delTaskItem,SplitStr,_arg,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
         case EupVolume:
             command = [NSString stringWithFormat:@"%@%@%@",upVolume,SplitStr,CRCL];
             NSLog(@"发送数据:%@",command);
@@ -430,6 +471,7 @@
         case EScanDir:
         case EReplaceDB:
         case EGetAllItemByTask:
+        case EDelTaskItem:
             [sock readDataToData:[GCDAsyncSocket CRLFData] withTimeout:10 tag:1];
             break;
             
@@ -461,6 +503,7 @@
         case EScanDir:
         case EReplaceDB:
         case EGetAllItemByTask:
+        case EDelTaskItem:
             [Commanddelegate CommandFinish:_commandtype json:json];
             break;
    

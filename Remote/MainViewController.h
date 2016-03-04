@@ -17,8 +17,19 @@
 #import "taskdetailview.h"
 
 
+//播放模式
+typedef enum:int{
+    TASKMODE=1,//任务模式
+    SELECTMODE,//选择模式
+    PUBLICMODE,//宣传模式
+    
+} MediaModeEnum;
+
+
+
+
 @class tab1View;
-@interface MainViewController : UIViewController<UIScrollViewDelegate,tab1itemClick,clickdelegate>
+@interface MainViewController : UIViewController<UIScrollViewDelegate,tab1itemClick,clickdelegate,GCDAsyncUdpSocketDelegate>
 {
     UIButton *btnlibary;
     UIButton *btntask;
@@ -36,7 +47,7 @@
     BOOL IsConnected;
     CGFloat x1,x2;
     
-    
+    DeviceNet *dnet;
     
    
 }
@@ -59,6 +70,26 @@
 @property (copy,nonatomic)NSArray<NSString *> *ContentType;
 @property (copy,nonatomic)NSArray<MediaData *> *MediaList;
 @property (copy,nonatomic)NSMutableDictionary *dictMediaList;
+
+
+
+//设备状态
+@property (weak, nonatomic) IBOutlet UIProgressView *progressview;
+@property (weak, nonatomic) IBOutlet UILabel *medianame;
+@property (weak, nonatomic) IBOutlet UILabel *mediatime;
+@property (weak, nonatomic) IBOutlet UIButton *mediamode;
+@property (weak, nonatomic) IBOutlet UIButton *playmode;
+@property (weak, nonatomic) IBOutlet UIButton *btnplay;
+@property (weak, nonatomic) IBOutlet UIButton *btnup;
+@property (weak, nonatomic) IBOutlet UIButton *btnnext;
+
+
+
+
+
+
+
+
 - (IBAction)clicksearch:(id)sender;
 
 -(void)ConnectToDeviceInit;
