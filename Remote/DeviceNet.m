@@ -296,6 +296,123 @@
     return  YES;
 }
 
+-(BOOL)setPlayMode:(NSString *)ip
+{
+    _commandtype = EPlayMode;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+
+-(BOOL)setPlayOrder:(NSString *)ip
+{
+    _commandtype = EPlayOrder;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+
+-(BOOL)setPlayOrStop:(NSString *)ip
+{
+    _commandtype = EPlayOrStop;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+
+-(BOOL)setPlaypro:(NSString *)ip
+{
+    _commandtype = EPlaypro;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+-(BOOL)setPlaynext:(NSString *)ip
+{
+    _commandtype = EPlaynext;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+
+-(BOOL)setPlayMedia:(NSString *)ip arg:(NSString *)arg
+{
+    _arg=arg;
+    _commandtype = EPlayMedia;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+-(BOOL)setPublicMedia:(NSString *)ip
+{
+    _commandtype = EPublicMedia;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
 -(BOOL)SetVolume:(NSString*)ip flag:(int)flag
 {
     if (flag==0)
@@ -435,6 +552,48 @@
             data =[command dataUsingEncoding:enc];
             [sock writeData:data withTimeout:0 tag:0];
             break;
+        case EPlayMode:
+            command = [NSString stringWithFormat:@"%@%@%@",playMode,SplitStr,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
+        case EPlayOrder:
+            command = [NSString stringWithFormat:@"%@%@%@",playorder,SplitStr,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
+        case EPlayOrStop:
+            command = [NSString stringWithFormat:@"%@%@%@",playOrPause,SplitStr,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
+        case EPlaypro:
+            command = [NSString stringWithFormat:@"%@%@%@",playpro,SplitStr,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
+        case EPlaynext:
+            command = [NSString stringWithFormat:@"%@%@%@",playnext,SplitStr,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
+        case EPlayMedia:
+            command = [NSString stringWithFormat:@"%@%@%@%@",playMedia,SplitStr,_arg,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
+        case EPublicMedia:
+            command = [NSString stringWithFormat:@"%@%@%@",playPublicMedia,SplitStr,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
         case EupVolume:
             command = [NSString stringWithFormat:@"%@%@%@",upVolume,SplitStr,CRCL];
             NSLog(@"发送数据:%@",command);
@@ -472,6 +631,13 @@
         case EReplaceDB:
         case EGetAllItemByTask:
         case EDelTaskItem:
+        case EPlayMode:
+        case EPlayOrder:
+        case EPlayOrStop:
+        case EPlaypro:
+        case EPlaynext:
+        case EPlayMedia:
+        case EPublicMedia:
             [sock readDataToData:[GCDAsyncSocket CRLFData] withTimeout:10 tag:1];
             break;
             
@@ -504,6 +670,13 @@
         case EReplaceDB:
         case EGetAllItemByTask:
         case EDelTaskItem:
+        case EPlayMode:
+        case EPlayOrder:
+        case EPlayOrStop:
+        case EPlaypro:
+        case EPlaynext:
+        case EPlayMedia:
+        case EPublicMedia:
             [Commanddelegate CommandFinish:_commandtype json:json];
             break;
    

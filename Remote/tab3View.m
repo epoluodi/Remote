@@ -51,6 +51,15 @@
        
         return;
     }
+    
+    if (commandtype==EPublicMedia)
+    {
+        BOOL success = ((NSNumber *)[json objectForKey:@"success"]).boolValue;
+        if (!success){
+            [self CommandTimeout];
+            
+        }
+    }
 }
 -(void)CommandTimeout
 {
@@ -90,5 +99,16 @@
 
 - (IBAction)clickfloder:(id)sender {
       [mainview performSegueWithIdentifier:@"showscanfile" sender:self];
+}
+
+- (IBAction)clickpublicmedia:(id)sender {
+    dnet = [[DeviceNet alloc] init];
+    dnet.Commanddelegate=self;
+    dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(globalQ , ^{
+        [dnet setPublicMedia:((MainViewController *)mainview).DeviceIP ];
+        
+        
+    });
 }
 @end

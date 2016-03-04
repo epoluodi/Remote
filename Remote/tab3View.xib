@@ -71,6 +71,9 @@
                         <constraint firstAttribute="height" constant="72" id="Ywy-MM-Fzw"/>
                     </constraints>
                     <state key="normal" backgroundImage="ys.png"/>
+                    <connections>
+                        <action selector="clickpublicmedia:" destination="5Qn-ts-5jl" eventType="touchUpInside" id="D8K-cb-Rp9"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

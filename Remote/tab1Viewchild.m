@@ -179,7 +179,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    MediaData *md = [((MainViewController*)mainview).MediaList objectAtIndex:indexPath.row];
+    [delegate itemclickplay:md.mediaID];
+    
 }
 #pragma marker -
 

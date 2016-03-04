@@ -26,10 +26,15 @@ typedef enum:int{
 } MediaModeEnum;
 
 
-
+typedef enum:int{
+    ORDER = 1,//顺序播放
+    LOOP = 2, //列表循环播放
+    REPEAT = 3,//单曲循环
+    RANDOM = 4, //随机播放
+} PlayModeEnum;
 
 @class tab1View;
-@interface MainViewController : UIViewController<UIScrollViewDelegate,tab1itemClick,clickdelegate,GCDAsyncUdpSocketDelegate>
+@interface MainViewController : UIViewController<UIScrollViewDelegate,tab1itemClick,clickdelegate,GCDAsyncUdpSocketDelegate,FinishCommanddelegate>
 {
     UIButton *btnlibary;
     UIButton *btntask;
@@ -48,7 +53,7 @@ typedef enum:int{
     CGFloat x1,x2;
     
     DeviceNet *dnet;
-    
+    DeviceNet *controlnet;
    
 }
 
@@ -84,6 +89,12 @@ typedef enum:int{
 @property (weak, nonatomic) IBOutlet UIButton *btnnext;
 
 
+
+- (IBAction)clickmediamode:(id)sender;
+- (IBAction)clickplaymode:(id)sender;
+- (IBAction)clickplay:(id)sender;
+- (IBAction)clickprev:(id)sender;
+- (IBAction)clicknext:(id)sender;
 
 
 

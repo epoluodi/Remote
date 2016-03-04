@@ -23,12 +23,12 @@
 @synthesize IsAllSelect,IsClose;
 @synthesize taskid;
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 -(void)awakeFromNib
 {
     [self setBackgroundColor:[UIColor clearColor]];
@@ -46,8 +46,18 @@
 //开始刷新
 -(void)changerefreshstate
 {
-    if (refresh.refreshing)
-       [self loadtaskdetailinfo];
+    if (refresh.refreshing){
+        [self willChangeValueForKey:@"IsAllSelect"];
+        
+        IsAllSelect=NO;
+        [btncheck setImage:[UIImage imageNamed:@"uncheck"] forState:UIControlStateNormal];
+        
+        [self didChangeValueForKey:@"IsAllSelect"];
+        [self willChangeValueForKey:@"IsClose"];
+        IsClose=YES;
+        [self didChangeValueForKey:@"IsClose"];
+        [self loadtaskdetailinfo];
+    }
 }
 -(void)ChangeSelectList:(NSString *)mediaid flag:(BOOL)flag
 {
@@ -84,12 +94,17 @@
 }
 
 - (IBAction)clickdel:(id)sender {
+    
+    if ([selectmediaID count]==0)
+        return;
+    
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"确认移除 %d条文件",(int)selectmediaID.count] preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         NSString *arg  = [selectmediaID componentsJoinedByString:@","];
+        
         if (!loadview)
             loadview = [[LoadingView alloc] init];
         [mainview.view addSubview:loadview];
@@ -100,7 +115,7 @@
         dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(globalQ , ^{
             
-            [dnet DelItemDetailInfo:((MainViewController *)mainview).DeviceIP arg:arg];
+            [dnet DelItemDetailInfo:((MainViewController *)mainview).DeviceIP arg:[NSString stringWithFormat:@"%@%%~%%%@",arg,taskid]];
             
             
         });
@@ -154,17 +169,17 @@
         UINib *nib = [UINib nibWithNibName:@"mediainfoCellEdit" bundle:nil];
         [table registerNib:nib forCellReuseIdentifier:[NSString stringWithFormat:@"%d_m",indexPath.row]];
         me= (mediaCellEdit *)[table dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%d_m",indexPath.row]];
-       
+        
         me.tdlv=self;
         me.medianame.text= [d objectForKey:@"medianame"];
         me.size.text= [d objectForKey:@"length"];
-        me.mediaid=[d objectForKey:@"mediaid"];
+        me.mediaid=[d objectForKey:@"numseq"];
         [me initKVO:IsAllSelect];
         return me;
     }
     me.medianame.text= [d objectForKey:@"medianame"];
     me.size.text= [d objectForKey:@"length"];
-    me.mediaid=[d objectForKey:@"mediaid"];
+    me.mediaid=[d objectForKey:@"numseq"];
     
     
     return me;
@@ -231,6 +246,16 @@
     {
         BOOL success = ((NSNumber *)[json objectForKey:@"success"]).boolValue;
         if (success){
+            [self willChangeValueForKey:@"IsAllSelect"];
+            
+            IsAllSelect=NO;
+            [btncheck setImage:[UIImage imageNamed:@"uncheck"] forState:UIControlStateNormal];
+            
+            [self didChangeValueForKey:@"IsAllSelect"];
+            [self willChangeValueForKey:@"IsClose"];
+            IsClose=YES;
+            [self didChangeValueForKey:@"IsClose"];
+            
             [self loadtaskdetailinfo];
         }
         else

@@ -13,10 +13,11 @@
 @end
 
 @implementation AppDelegate
-
+@synthesize IsRun;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    IsRun=YES;
     return YES;
 }
 
@@ -26,11 +27,19 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    NSLog(@"后台");
+    [self willChangeValueForKey:@"IsRun"];
+    IsRun=NO;
+    [self didChangeValueForKey:@"IsRun"];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+     NSLog(@"前台");
+    [self willChangeValueForKey:@"IsRun"];
+    IsRun=YES;
+    [self didChangeValueForKey:@"IsRun"];
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 

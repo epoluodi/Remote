@@ -129,6 +129,9 @@
                                         </constraints>
                                         <state key="normal" image="img_play_normal.png"/>
                                         <state key="highlighted" image="img_play_pressed.png"/>
+                                        <connections>
+                                            <action selector="clickplay:" destination="RRQ-oV-xWd" eventType="touchUpInside" id="ljY-oy-Jmx"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eE4-2B-Rn3">
                                         <rect key="frame" x="284" y="19" width="28" height="28"/>
@@ -138,6 +141,9 @@
                                         </constraints>
                                         <state key="normal" image="img_play_next_normal.png"/>
                                         <state key="highlighted" image="img_play_next_pressed.png"/>
+                                        <connections>
+                                            <action selector="clicknext:" destination="RRQ-oV-xWd" eventType="touchUpInside" id="TZ8-jM-9f1"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMk-8c-88H">
                                         <rect key="frame" x="196" y="19" width="28" height="28"/>
@@ -147,6 +153,9 @@
                                         </constraints>
                                         <state key="normal" image="img_play_prev_normal.png"/>
                                         <state key="highlighted" image="img_play_prev_pressed.png"/>
+                                        <connections>
+                                            <action selector="clickprev:" destination="RRQ-oV-xWd" eventType="touchUpInside" id="Nop-N1-mBc"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQM-BT-4IX">
                                         <rect key="frame" x="155" y="19" width="28" height="28"/>
@@ -154,7 +163,10 @@
                                             <constraint firstAttribute="width" constant="28" id="frs-2x-dcP"/>
                                             <constraint firstAttribute="height" constant="28" id="koI-bn-obM"/>
                                         </constraints>
-                                        <state key="normal" backgroundImage="img_playmode_shuffle.png"/>
+                                        <state key="normal" image="img_playmode_shuffle.png"/>
+                                        <connections>
+                                            <action selector="clickplaymode:" destination="RRQ-oV-xWd" eventType="touchUpInside" id="MdG-L0-aka"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLW-ga-ryH">
                                         <rect key="frame" x="81" y="32" width="66" height="21"/>
@@ -164,6 +176,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="任务模式"/>
+                                        <connections>
+                                            <action selector="clickmediamode:" destination="RRQ-oV-xWd" eventType="touchUpInside" id="5th-Pg-ZTI"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00/10:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5s8-M0-ZI4">
                                         <rect key="frame" x="8" y="32" width="72" height="21"/>

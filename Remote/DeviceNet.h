@@ -72,6 +72,13 @@ typedef enum :int {
     EReplaceDB,
     EGetAllItemByTask,
     EDelTaskItem,
+    EPlayMode,
+    EPlayOrder,
+    EPlayOrStop,
+    EPlaypro,
+    EPlaynext,
+    EPlayMedia,
+    EPublicMedia,
     EdownVolume,
     EupVolume,
     
@@ -153,4 +160,25 @@ typedef enum :int {
 -(BOOL)GetTaskDetailInfo:(NSString *)ip arg:(NSString *)arg;
 //删除任务中一个条目
 -(BOOL)DelItemDetailInfo:(NSString *)ip arg:(NSString *)arg;
+
+//模式
+-(BOOL)setPlayMode:(NSString *)ip;
+
+//播放模式
+-(BOOL)setPlayOrder:(NSString *)ip;
+
+//播放和停止
+-(BOOL)setPlayOrStop:(NSString *)ip;
+
+//前一首
+-(BOOL)setPlaypro:(NSString *)ip;
+
+//下一首
+-(BOOL)setPlaynext:(NSString *)ip;
+
+//播放
+-(BOOL)setPlayMedia:(NSString *)ip arg:(NSString *)arg;
+
+//开始任务
+-(BOOL)setPublicMedia:(NSString *)ip;
 @end

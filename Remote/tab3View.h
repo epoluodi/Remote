@@ -22,6 +22,8 @@
 - (IBAction)clickupvolume:(id)sender;
 - (IBAction)clickdownvolume:(id)sender;
 - (IBAction)clickfloder:(id)sender;
+- (IBAction)clickpublicmedia:(id)sender;
+
 
 
 

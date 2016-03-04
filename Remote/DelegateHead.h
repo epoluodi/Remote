@@ -10,5 +10,6 @@
 @optional
 -(void)Clickback;
 -(void)Clickbackfortaskdetail;
+-(void)itemclickplay:(NSString *)mediaId;
 
 @end

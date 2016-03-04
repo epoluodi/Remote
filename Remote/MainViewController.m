@@ -10,6 +10,7 @@
 #import <Common/PublicCommon.h>
 #import "PLViewController.h"
 #import "ScanFileController.h"
+#import "AppDelegate.h"
 
 #define tabwidth [PublicCommon GetALLScreen].size.width /3
 
@@ -19,6 +20,7 @@
 @interface MainViewController ()
 {
     BOOL iscroll;
+    AppDelegate *app;
 }
 @end
 
@@ -33,6 +35,9 @@
 @synthesize mediamode,medianame,mediatime;
 @synthesize playmode,progressview;
 
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -45,7 +50,9 @@
         x2= 828;
     }
     
+    app= (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
+    [app addObserver:self forKeyPath:@"IsRun" options:NSKeyValueObservingOptionNew context:NULL];
     [self inittabview];
     
     // Do any additional setup after loading the view.
@@ -261,6 +268,19 @@
     [self ShowView];
 }
 
+-(void)itemclickplay:(NSString *)mediaId
+{
+    controlnet = [[DeviceNet alloc] init];
+    controlnet.Commanddelegate=self;
+    dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(globalQ , ^{
+        
+        [dnet setPlayMedia:self.DeviceIP arg:mediaId];
+        
+        
+    });
+}
+
 #pragma mark -
 
 
@@ -412,6 +432,67 @@
 }
 
 
+- (IBAction)clickmediamode:(id)sender {
+    controlnet = [[DeviceNet alloc] init];
+    controlnet.Commanddelegate=self;
+    dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(globalQ , ^{
+        
+        [dnet setPlayMode:self.DeviceIP];
+        
+        
+    });
+}
+
+- (IBAction)clickplaymode:(id)sender {
+    controlnet = [[DeviceNet alloc] init];
+    controlnet.Commanddelegate=self;
+    dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(globalQ , ^{
+        
+        [dnet setPlayOrder:self.DeviceIP];
+        
+        
+    });
+}
+
+- (IBAction)clickplay:(id)sender {
+    controlnet = [[DeviceNet alloc] init];
+    controlnet.Commanddelegate=self;
+    dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(globalQ , ^{
+        
+        [dnet setPlayOrStop:self.DeviceIP];
+        
+        
+    });
+    
+}
+
+- (IBAction)clickprev:(id)sender {
+    controlnet = [[DeviceNet alloc] init];
+    controlnet.Commanddelegate=self;
+    dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(globalQ , ^{
+        
+        [dnet setPlaypro:self.DeviceIP];
+        
+        
+    });
+}
+
+- (IBAction)clicknext:(id)sender {
+    controlnet = [[DeviceNet alloc] init];
+    controlnet.Commanddelegate=self;
+    dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(globalQ , ^{
+        
+        [dnet setPlaynext:self.DeviceIP];
+        
+        
+    });
+}
+
 - (IBAction)clicksearch:(id)sender {
     [dnet stoptListenserver];
     dnet=nil;
@@ -419,6 +500,49 @@
     [self performSegueWithIdentifier:@"showsearch" sender:self];
     
 }
+
+
+#pragma mark 通信操作委托
+-(void)CommandFinish:(CommandType)commandtype json:(NSDictionary *)json
+{
+    
+    
+    
+    if (commandtype == EPlayMode ||
+        commandtype == EPlayOrder ||
+        commandtype ==EPlayMedia ||
+        commandtype ==EPlayOrStop ||
+        commandtype ==EPlaypro ||
+        commandtype ==EPlaynext 
+        )
+    {
+        NSLog(@"获得数据");
+        
+        BOOL success = ((NSNumber *)[json objectForKey:@"success"]).boolValue;
+        if (!success){
+            [self CommandTimeout];
+            
+        }
+
+        return;
+    }
+    
+    
+    
+    
+}
+-(void)CommandTimeout
+{
+    
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络错误，请重新尝试!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    [alert show];
+}
+
+
+#pragma mark -
+
+
 
 
 #pragma mark 连接设备获取信息
@@ -446,6 +570,7 @@
 #pragma mark -
 
 
+
 #pragma mark 处理监控信息
 
 -(void)DoDeviceState:(NSString *)msg
@@ -461,9 +586,9 @@
     NSString *_playmode = strlist[6];
     
     mediatime.text=_medianame;
-    progressview.progress = [_percent floatValue];
+    progressview.progress = [_percent floatValue] / 100;
     mediatime.text =[NSString stringWithFormat:@"%@/%@",_time,_length];
-    
+    medianame.text=_medianame;
     switch ([_playmode intValue]) {
         case TASKMODE:
             [mediamode setTitle:@"任务模式" forState:UIControlStateNormal];
@@ -477,6 +602,31 @@
     }
     
     
+    switch ([_playorder intValue]) {
+        case ORDER:
+            [playmode setImage:[UIImage imageNamed:@"img_playmode_normal"] forState:UIControlStateNormal];
+            break;
+        case LOOP:
+            [playmode setImage:[UIImage imageNamed:@"img_playmode_repeat_all"] forState:UIControlStateNormal];
+            break;
+        case REPEAT:
+            [playmode setImage:[UIImage imageNamed:@"img_playmode_repeat_current"] forState:UIControlStateNormal];
+            break;
+        case RANDOM:
+            [playmode setImage:[UIImage imageNamed:@"img_playmode_shuffle"] forState:UIControlStateNormal];
+            break;
+    }
+    
+    
+    if ([_playstate isEqualToString:@"true"]){
+        [btnplay setImage:[UIImage imageNamed:@"img_pause_normal"] forState:UIControlStateNormal];
+        [btnplay setImage:[UIImage imageNamed:@"img_pause_pressed"] forState:UIControlStateHighlighted];
+    }
+    else{
+        [btnplay setImage:[UIImage imageNamed:@"img_play_normal"] forState:UIControlStateNormal];
+        [btnplay setImage:[UIImage imageNamed:@"img_play_pressed"] forState:UIControlStateHighlighted];
+    }
+
     
 }
 
@@ -491,13 +641,41 @@
 -(void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext
 {
 
-    NSLog(@"来自数据--%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+//    NSLog(@"来自数据--%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     [self DoDeviceState:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
     
     
 
 }
+
+
+
 #pragma mark -
 
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"IsRun"])
+    {
+        if (((NSNumber *)[change objectForKey:@"new"]).intValue==0)
+        {
+            [dnet stoptListenserver];
+            dnet = nil;
+            return;
+        }
+        if (((NSNumber *)[change objectForKey:@"new"]).intValue==1)
+        {
+            dnet = [[DeviceNet alloc] init];
+            [dnet initdelegate:self];
+            [dnet startListenserver];
+            return;
+        }
+    }
+}
+-(void)dealloc
+{
+    [app removeObserver:self forKeyPath:@"IsRun"];
+    [dnet stoptListenserver];
+    dnet = nil;
+}
 @end
