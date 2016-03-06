@@ -19,7 +19,7 @@
     
     UIRefreshControl *refresh;
     DeviceNet *dnet;
-
+    
     
 }
 

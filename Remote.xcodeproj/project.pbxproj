@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B085E0E1C8BB3E1001DD07E /* TaskAddVIewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B085E0D1C8BB3E1001DD07E /* TaskAddVIewController.m */; };
 		7B0AF4971C54658A0064426B /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0AF4961C54658A0064426B /* SearchViewController.m */; };
 		7B0AF49A1C54666C0064426B /* title_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B0AF4991C54666C0064426B /* title_bar.png */; };
 		7B0AF49C1C546C340064426B /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0AF49B1C546C340064426B /* Common.framework */; };
@@ -108,6 +109,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7B085E0C1C8BB3E1001DD07E /* TaskAddVIewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskAddVIewController.h; sourceTree = "<group>"; };
+		7B085E0D1C8BB3E1001DD07E /* TaskAddVIewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskAddVIewController.m; sourceTree = "<group>"; };
 		7B0AF4951C54658A0064426B /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		7B0AF4961C54658A0064426B /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		7B0AF4991C54666C0064426B /* title_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title_bar.png; sourceTree = "<group>"; };
@@ -252,6 +255,8 @@
 				7BF9E9051C7B5F5E0020210C /* PLViewController.m */,
 				7BA13DA81C82BC6E00EB2A69 /* ScanFileController.h */,
 				7BA13DA91C82BC6E00EB2A69 /* ScanFileController.m */,
+				7B085E0C1C8BB3E1001DD07E /* TaskAddVIewController.h */,
+				7B085E0D1C8BB3E1001DD07E /* TaskAddVIewController.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -584,6 +589,7 @@
 				B4A8D7141C58682E00E81CCD /* MediaData.m in Sources */,
 				7BA13DAA1C82BC6E00EB2A69 /* ScanFileController.m in Sources */,
 				7BD31A7B1C4E8130002FB61E /* AppDelegate.m in Sources */,
+				7B085E0E1C8BB3E1001DD07E /* TaskAddVIewController.m in Sources */,
 				7B0AF4B31C5477370064426B /* LoadingView.m in Sources */,
 				B46FC9761C571BC900050576 /* tab3View.m in Sources */,
 				7B0AF4BF1C548F8D0064426B /* DeviceCell.m in Sources */,

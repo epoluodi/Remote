@@ -90,7 +90,7 @@
 }
 
 - (IBAction)clickadd:(id)sender {
-    
+    [mainview performSegueWithIdentifier:@"showtaskadd" sender:mainview];
 }
 
 - (IBAction)clickdel:(id)sender {

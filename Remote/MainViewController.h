@@ -33,7 +33,7 @@ typedef enum:int{
     RANDOM = 4, //随机播放
 } PlayModeEnum;
 
-@class tab1View;
+@class tab1View,taskdetailview;
 @interface MainViewController : UIViewController<UIScrollViewDelegate,tab1itemClick,clickdelegate,GCDAsyncUdpSocketDelegate,FinishCommanddelegate>
 {
     UIButton *btnlibary;
@@ -74,7 +74,7 @@ typedef enum:int{
 //设备数据暂存
 @property (copy,nonatomic)NSArray<NSString *> *ContentType;
 @property (copy,nonatomic)NSArray<MediaData *> *MediaList;
-@property (copy,nonatomic)NSMutableDictionary *dictMediaList;
+
 
 
 
@@ -107,4 +107,5 @@ typedef enum:int{
 -(void)Loadmedia;
 -(NSString *)getNowt1Title;
 -(void)ItemClick:(NSString *)taskid taskname:(NSString *)taskname;
+-(void)reloadTaskdetail;
 @end

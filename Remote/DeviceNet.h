@@ -79,6 +79,7 @@ typedef enum :int {
     EPlaynext,
     EPlayMedia,
     EPublicMedia,
+    EAddtoTask,
     EdownVolume,
     EupVolume,
     
@@ -161,6 +162,9 @@ typedef enum :int {
 //删除任务中一个条目
 -(BOOL)DelItemDetailInfo:(NSString *)ip arg:(NSString *)arg;
 
+//添加任务
+-(BOOL)AddTaskwithMedia:(NSString *)ip arg:(NSString *)arg;
+
 //模式
 -(BOOL)setPlayMode:(NSString *)ip;
 
@@ -181,4 +185,6 @@ typedef enum :int {
 
 //开始任务
 -(BOOL)setPublicMedia:(NSString *)ip;
+
+
 @end

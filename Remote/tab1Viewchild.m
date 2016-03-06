@@ -100,7 +100,7 @@
         }
         
         ((MainViewController *)mainview).MediaList = [contentstr copy];
-        [((MainViewController *)mainview).dictMediaList setObject:contentstr forKey:title.text];
+ 
         [table reloadData];
         return;
     }

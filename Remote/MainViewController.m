@@ -11,6 +11,7 @@
 #import "PLViewController.h"
 #import "ScanFileController.h"
 #import "AppDelegate.h"
+#import "TaskAddVIewController.h"
 
 #define tabwidth [PublicCommon GetALLScreen].size.width /3
 
@@ -30,7 +31,6 @@
 @synthesize headview;
 @synthesize DeviceIP,DeviceName;
 @synthesize MediaList,ContentType;
-@synthesize dictMediaList;
 @synthesize btnnext,btnplay,btnup;
 @synthesize mediamode,medianame,mediatime;
 @synthesize playmode,progressview;
@@ -58,7 +58,7 @@
     // Do any additional setup after loading the view.
     
     [btnlibary setTitleColor:[UIColor whiteColor]  forState:UIControlStateNormal];
-    dictMediaList = [[NSMutableDictionary alloc] init];
+  
     
     scrollview = [[UIScrollView alloc] init];
     scrollview.frame = CGRectMake(0, scrollY, [PublicCommon GetALLScreen].size.width, scrollheight+20);
@@ -243,6 +243,11 @@
 -(void)Loadmedia
 {
     [t1viewchild loadmedia];
+}
+
+-(void)reloadTaskdetail
+{
+    [taskdetail loadtaskdetailinfo];
 }
 #pragma mark -
 
@@ -429,6 +434,18 @@
         
         return;
     }
+    if ([segue.identifier isEqualToString:@"showtaskadd"])
+    {
+        TaskAddVIewController *tdvc = (TaskAddVIewController*)segue.destinationViewController;
+        
+        tdvc.mainview = self;
+        tdvc.taskid = taskdetail.taskid;
+
+        
+        return;
+    }
+    
+    
 }
 
 
