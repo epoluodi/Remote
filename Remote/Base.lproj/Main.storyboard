@@ -116,13 +116,13 @@
                                 <rect key="frame" x="0.0" y="502" width="320" height="66"/>
                                 <subviews>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Chp-3d-l1A">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="4"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="10"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="4" id="kMJ-Br-5kU"/>
+                                            <constraint firstAttribute="height" constant="10" id="kMJ-Br-5kU"/>
                                         </constraints>
                                     </progressView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTE-Gu-wOd">
-                                        <rect key="frame" x="241" y="19" width="28" height="28"/>
+                                        <rect key="frame" x="241" y="25" width="28" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="28" id="StJ-6u-3of"/>
                                             <constraint firstAttribute="height" constant="28" id="uk8-eL-kRt"/>
@@ -134,7 +134,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eE4-2B-Rn3">
-                                        <rect key="frame" x="284" y="19" width="28" height="28"/>
+                                        <rect key="frame" x="284" y="25" width="28" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="28" id="7Zd-2u-xRT"/>
                                             <constraint firstAttribute="height" constant="28" id="Ch4-oQ-JRS"/>
@@ -146,7 +146,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMk-8c-88H">
-                                        <rect key="frame" x="196" y="19" width="28" height="28"/>
+                                        <rect key="frame" x="196" y="25" width="28" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="IH4-dr-yhG"/>
                                             <constraint firstAttribute="width" constant="28" id="qFQ-pH-vV7"/>
@@ -158,7 +158,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQM-BT-4IX">
-                                        <rect key="frame" x="155" y="19" width="28" height="28"/>
+                                        <rect key="frame" x="155" y="25" width="28" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="28" id="frs-2x-dcP"/>
                                             <constraint firstAttribute="height" constant="28" id="koI-bn-obM"/>
@@ -169,7 +169,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLW-ga-ryH">
-                                        <rect key="frame" x="81" y="32" width="66" height="21"/>
+                                        <rect key="frame" x="81" y="38" width="66" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="hUq-cC-dBO"/>
                                         </constraints>
@@ -181,7 +181,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00/10:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5s8-M0-ZI4">
-                                        <rect key="frame" x="8" y="32" width="72" height="21"/>
+                                        <rect key="frame" x="8" y="38" width="72" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="72" id="Zmp-Zf-uki"/>
                                             <constraint firstAttribute="height" constant="21" id="hKa-Po-6FK"/>
@@ -191,7 +191,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="贝多芬交响曲贝多芬交响曲" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aS5-9K-60P">
-                                        <rect key="frame" x="8" y="12" width="139" height="21"/>
+                                        <rect key="frame" x="8" y="18" width="139" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="cTs-mp-56T"/>
                                         </constraints>
@@ -391,7 +391,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="VND-WO-Raz" firstAttribute="centerX" secondItem="0pc-mz-XDN" secondAttribute="centerX" id="C4E-yF-MOK"/>
                                     <constraint firstAttribute="height" constant="50" id="Y4v-Xf-IAX"/>

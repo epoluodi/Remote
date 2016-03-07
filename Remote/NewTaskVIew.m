@@ -87,7 +87,7 @@
 //点击确定
 -(void)btnclickOK
 {
-    NSString *temptaskname;
+    
     if ([taskname.text isEqualToString:@""])
         temptaskname = taskname.placeholder;
     else
@@ -103,7 +103,7 @@
         return;
     }
 //    addTask!~!3%~%2016-02-20%~%2016-02-23%~%16:14%~%18:14
-    NSString *arg = [NSString stringWithFormat:@"%@%%~%%%@%%~%%%@%%~%%%@%%~%%%@%%~%%%@",taskid,taskname.text,labstartdt.text,enddt.text,starttime.text,endtime.text];
+    NSString *arg = [NSString stringWithFormat:@"%@%%~%%%@%%~%%%@%%~%%%@%%~%%%@",temptaskname,labstartdt.text,enddt.text,starttime.text,endtime.text];
     
     if (!loadview)
         loadview = [[LoadingView alloc] init];
@@ -141,7 +141,7 @@
         BOOL success = ((NSNumber *)[json objectForKey:@"success"]).boolValue;
         if (success){
             
-            [delegate AddFinsih];
+            [delegate AddFinsih:[json objectForKey:@"msg"] taskname: temptaskname];
         }
         else
             [self CommandTimeout];
@@ -294,14 +294,6 @@
         
     }];
     [alert addAction:action2];
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     [mainView presentViewController:alert animated:YES completion:nil];

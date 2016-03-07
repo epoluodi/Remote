@@ -49,6 +49,7 @@ typedef enum:int{
     tab1Viewchild *t1viewchild;
     taskdetailview *taskdetail;
     
+    BOOL IsPlay;
     BOOL IsConnected;
     CGFloat x1,x2;
     

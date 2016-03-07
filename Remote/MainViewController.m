@@ -76,6 +76,13 @@
          [self clicksearch:nil];
     });
     
+    IsPlay = NO;
+    UIPanGestureRecognizer *pangesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(progressPanGesture:)];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(progresstap:)];
+    [progressview addGestureRecognizer:pangesture];
+    [progressview addGestureRecognizer:tap];
+    progressview.userInteractionEnabled=YES;
     //增加监听 音量按键
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self
@@ -83,6 +90,43 @@
 //                    name:@"AVSystemController_AudioVolumeNotificationParameter"
 //                                               object:nil];
     
+}
+
+-(void)progresstap:(UITapGestureRecognizer *)sender
+{
+    if (!IsPlay)
+        return;
+    CGPoint pt = [sender  locationInView:progressview];
+    float p = (pt.x / x1) * 100;
+    
+    if (sender.state ==UIGestureRecognizerStateEnded)
+    {
+        [self setPlaySkip:(int)p];
+    }
+   
+}
+- (void)progressPanGesture:(UIPanGestureRecognizer *)sender
+{
+    
+    if (!IsPlay)
+        return;
+    CGPoint pt = [sender locationInView:progressview];
+    float p = (pt.x / x1) * 100;
+     NSLog(@"%f",p);
+    if (sender.state == UIGestureRecognizerStateChanged)
+    {
+        progressview.progress = p /100;
+    }
+
+    if (sender.state ==UIGestureRecognizerStateEnded)
+    {
+        [self setPlaySkip:(int)p];
+    }
+   
+    
+
+    
+
 }
 
 //-(void)dealloc
@@ -510,6 +554,19 @@
     });
 }
 
+-(void)setPlaySkip:(int)time
+{
+        controlnet = [[DeviceNet alloc] init];
+        controlnet.Commanddelegate=self;
+        dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(globalQ , ^{
+    
+            [dnet setSkipTime:self.DeviceIP arg:[NSString stringWithFormat:@"%d",time]];
+    
+    
+        });
+}
+
 - (IBAction)clicksearch:(id)sender {
     [dnet stoptListenserver];
     dnet=nil;
@@ -530,7 +587,8 @@
         commandtype ==EPlayMedia ||
         commandtype ==EPlayOrStop ||
         commandtype ==EPlaypro ||
-        commandtype ==EPlaynext 
+        commandtype ==EPlaynext ||
+        commandtype == ESkipTime
         )
     {
         NSLog(@"获得数据");
@@ -636,10 +694,12 @@
     
     
     if ([_playstate isEqualToString:@"true"]){
+        IsPlay=YES;
         [btnplay setImage:[UIImage imageNamed:@"img_pause_normal"] forState:UIControlStateNormal];
         [btnplay setImage:[UIImage imageNamed:@"img_pause_pressed"] forState:UIControlStateHighlighted];
     }
     else{
+        IsPlay=NO;
         [btnplay setImage:[UIImage imageNamed:@"img_play_normal"] forState:UIControlStateNormal];
         [btnplay setImage:[UIImage imageNamed:@"img_play_pressed"] forState:UIControlStateHighlighted];
     }

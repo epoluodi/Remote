@@ -12,7 +12,7 @@
 
 @protocol NewTaskDelegate
 
--(void)AddFinsih;
+-(void)AddFinsih:(NSString *)taskid taskname:(NSString *)taskname;
 
 @end
 
@@ -25,6 +25,7 @@
     BOOL IsAdd;
     NSDate *sdt,*edt,*st,*et;
     NSString *taskid;
+    NSString *temptaskname;
 }
 
 

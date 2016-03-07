@@ -241,9 +241,11 @@
     [mainView.view addSubview:newtaskview];
 }
 
--(void)AddFinsih
+-(void)AddFinsih:(NSString *)taskid taskname:(NSString *)taskname
 {
     [self LoadTaskAll];
+    [((MainViewController *)mainView) ItemClick:taskid taskname:taskname];
+    
 }
 
 //开始刷新

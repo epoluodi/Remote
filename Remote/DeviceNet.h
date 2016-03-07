@@ -78,6 +78,7 @@ typedef enum :int {
     EPlaypro,
     EPlaynext,
     EPlayMedia,
+    ESkipTime,
     EPublicMedia,
     EAddtoTask,
     EdownVolume,
@@ -182,6 +183,10 @@ typedef enum :int {
 
 //播放
 -(BOOL)setPlayMedia:(NSString *)ip arg:(NSString *)arg;
+
+//拖动
+-(BOOL)setSkipTime:(NSString *)ip arg:(NSString *)arg;
+
 
 //开始任务
 -(BOOL)setPublicMedia:(NSString *)ip;

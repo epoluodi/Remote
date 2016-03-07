@@ -415,6 +415,26 @@
     }
     return  YES;
 }
+
+-(BOOL)setSkipTime:(NSString *)ip arg:(NSString *)arg
+{
+    _arg=arg;
+    _commandtype = ESkipTime;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+
+
 -(BOOL)setPublicMedia:(NSString *)ip
 {
     _commandtype = EPublicMedia;
@@ -612,6 +632,12 @@
             data =[command dataUsingEncoding:enc];
             [sock writeData:data withTimeout:0 tag:0];
             break;
+        case ESkipTime:
+            command = [NSString stringWithFormat:@"%@%@%@%@",skiptime,SplitStr,_arg,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
         case EPublicMedia:
             command = [NSString stringWithFormat:@"%@%@%@",playPublicMedia,SplitStr,CRCL];
             NSLog(@"发送数据:%@",command);
@@ -663,6 +689,7 @@
         case EPlayMedia:
         case EPublicMedia:
         case EAddtoTask:
+        case ESkipTime:
             [sock readDataToData:[GCDAsyncSocket CRLFData] withTimeout:10 tag:1];
             break;
             
@@ -703,6 +730,7 @@
         case EPlayMedia:
         case EPublicMedia:
         case EAddtoTask:
+        case ESkipTime:
             [Commanddelegate CommandFinish:_commandtype json:json];
             break;
    
@@ -719,7 +747,8 @@
 {
     if (err.code == GCDAsyncSocketConnectTimeoutError ||
         err.code == GCDAsyncSocketReadTimeoutError ||
-        err.code == GCDAsyncSocketWriteTimeoutError)
+        err.code == GCDAsyncSocketWriteTimeoutError ||
+        err.code == 61)
     {
          [Commanddelegate CommandTimeout];
         return;
