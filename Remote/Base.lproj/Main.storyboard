@@ -264,11 +264,59 @@
                         <segue destination="hIo-VZ-uJ3" kind="modal" identifier="showPL" id="OlS-4y-cK9"/>
                         <segue destination="YBY-ad-kr0" kind="modal" identifier="showscanfile" id="Lhm-HW-I7e"/>
                         <segue destination="6aW-zA-MqS" kind="modal" identifier="showtaskadd" id="WM5-if-MbC"/>
+                        <segue destination="ZA8-hW-ahn" kind="modal" identifier="showabout" id="kr2-E1-AMp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2a9-c5-wmz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-184" y="769"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="G78-bM-lg9">
+            <objects>
+                <viewController id="ZA8-hW-ahn" customClass="aboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oFW-WD-EyR"/>
+                        <viewControllerLayoutGuide type="bottom" id="Cme-Xw-rXE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="joy-YN-k5e">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="APP_Splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="yYj-da-sX5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="V 1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1i-57-KzS">
+                                <rect key="frame" x="20" y="428" width="280" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="piz-Oa-0c0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yYj-da-sX5" firstAttribute="leading" secondItem="joy-YN-k5e" secondAttribute="leading" id="DSk-hr-0Fr"/>
+                            <constraint firstItem="Cme-Xw-rXE" firstAttribute="top" secondItem="G1i-57-KzS" secondAttribute="bottom" constant="31" id="RYV-Vq-04o"/>
+                            <constraint firstItem="yYj-da-sX5" firstAttribute="top" secondItem="joy-YN-k5e" secondAttribute="top" id="Yo6-kb-N7R"/>
+                            <constraint firstAttribute="trailing" secondItem="yYj-da-sX5" secondAttribute="trailing" id="b28-kg-6hg"/>
+                            <constraint firstAttribute="trailing" secondItem="G1i-57-KzS" secondAttribute="trailing" constant="20" id="eDB-em-QxJ"/>
+                            <constraint firstItem="G1i-57-KzS" firstAttribute="leading" secondItem="joy-YN-k5e" secondAttribute="leading" constant="20" id="lBh-IQ-Fqq"/>
+                            <constraint firstItem="Cme-Xw-rXE" firstAttribute="top" secondItem="yYj-da-sX5" secondAttribute="bottom" id="lHk-db-yyC"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="img" destination="yYj-da-sX5" id="Lap-Rw-z5l"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Jt-1J-p37" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-590" y="1471"/>
         </scene>
         <!--Task AddV Iew Controller-->
         <scene sceneID="3a9-PE-fZV">
@@ -506,6 +554,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="APP_Splash.png" width="750" height="1334"/>
         <image name="back.png" width="54" height="54"/>
         <image name="bg1.png" width="1080" height="1920"/>
         <image name="img_play_next_normal.png" width="52" height="52"/>

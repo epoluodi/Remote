@@ -470,6 +470,43 @@
     return  YES;
 }
 
+
+-(BOOL)setOnOffTime:(NSString *)ip arg:(NSString *)arg
+{
+    _arg=arg;
+    _commandtype = EOnOffTime;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
+
+
+-(BOOL)getShutTimeinfo:(NSString *)ip
+{
+    
+    _commandtype = EGetShutTime;
+    
+    tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([tcpsocket connectToHost:ip onPort:CommandPort withTimeout:5 error:nil])
+    {
+        return YES;
+    }
+    else{
+        [tcpsocket disconnect];
+        
+        return NO;
+    }
+    return  YES;
+}
 #pragma mark -
 
 
@@ -656,6 +693,18 @@
             data =[command dataUsingEncoding:enc];
             [sock writeData:data withTimeout:0 tag:0];
             break;
+        case EOnOffTime:
+            command = [NSString stringWithFormat:@"%@%@%@%@",OnOffTime,SplitStr,_arg,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
+        case EGetShutTime:
+            command = [NSString stringWithFormat:@"%@%@%@",getshutdown,SplitStr,CRCL];
+            NSLog(@"发送数据:%@",command);
+            data =[command dataUsingEncoding:enc];
+            [sock writeData:data withTimeout:0 tag:0];
+            break;
     }
     
 }
@@ -690,6 +739,8 @@
         case EPublicMedia:
         case EAddtoTask:
         case ESkipTime:
+        case EOnOffTime:
+        case EGetShutTime:
             [sock readDataToData:[GCDAsyncSocket CRLFData] withTimeout:10 tag:1];
             break;
             
@@ -731,6 +782,8 @@
         case EPublicMedia:
         case EAddtoTask:
         case ESkipTime:
+        case EOnOffTime:
+        case EGetShutTime:
             [Commanddelegate CommandFinish:_commandtype json:json];
             break;
    

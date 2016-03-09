@@ -47,7 +47,7 @@
 #define playPublicMedia @"playPublicMedia" //
 #define dowmVolume @"dowmVolume" //降低音量
 #define upVolume @"upVolume" //提高音量
-
+#define OnOffTime @"setOnOffTime"
 
 
 #define SplitStr @"!~!" // 命令分隔符
@@ -83,6 +83,8 @@ typedef enum :int {
     EAddtoTask,
     EdownVolume,
     EupVolume,
+    EOnOffTime,
+    EGetShutTime,
     
 } CommandType;
 
@@ -186,6 +188,12 @@ typedef enum :int {
 
 //拖动
 -(BOOL)setSkipTime:(NSString *)ip arg:(NSString *)arg;
+
+//设置关机时间
+-(BOOL)setOnOffTime:(NSString *)ip arg:(NSString *)arg;
+
+//得到开机时间信息
+-(BOOL)getShutTimeinfo:(NSString *)ip;
 
 
 //开始任务

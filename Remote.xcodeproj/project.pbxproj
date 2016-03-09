@@ -40,6 +40,10 @@
 		7B0AF4DD1C551CA40064426B /* img_playmode_repeat_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B0AF4D91C551CA40064426B /* img_playmode_repeat_all.png */; };
 		7B0AF4DE1C551CA40064426B /* img_playmode_repeat_current.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B0AF4DA1C551CA40064426B /* img_playmode_repeat_current.png */; };
 		7B0AF4DF1C551CA40064426B /* img_playmode_shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B0AF4DB1C551CA40064426B /* img_playmode_shuffle.png */; };
+		7B47E94C1C90439100CCB3A8 /* APP_Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B47E94B1C90439100CCB3A8 /* APP_Splash.png */; };
+		7B47E94F1C90458100CCB3A8 /* aboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B47E94E1C90458100CCB3A8 /* aboutViewController.m */; };
+		7B47E9511C9049E900CCB3A8 /* closedeviceview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B47E9501C9049E900CCB3A8 /* closedeviceview.xib */; };
+		7B47E9541C90500600CCB3A8 /* CloseDeviceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B47E9531C90500600CCB3A8 /* CloseDeviceView.m */; };
 		7B7802891C7C899E009740EA /* mediainfoCellEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7802881C7C899E009740EA /* mediainfoCellEdit.xib */; };
 		7B78028C1C7C9012009740EA /* mediaCellEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B78028B1C7C9012009740EA /* mediaCellEdit.m */; };
 		7B78028F1C7C95AE009740EA /* img_edit_send.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B78028E1C7C95AE009740EA /* img_edit_send.png */; };
@@ -145,6 +149,12 @@
 		7B0AF4D91C551CA40064426B /* img_playmode_repeat_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_playmode_repeat_all.png; sourceTree = "<group>"; };
 		7B0AF4DA1C551CA40064426B /* img_playmode_repeat_current.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_playmode_repeat_current.png; sourceTree = "<group>"; };
 		7B0AF4DB1C551CA40064426B /* img_playmode_shuffle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_playmode_shuffle.png; sourceTree = "<group>"; };
+		7B47E94B1C90439100CCB3A8 /* APP_Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = APP_Splash.png; sourceTree = "<group>"; };
+		7B47E94D1C90458100CCB3A8 /* aboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aboutViewController.h; sourceTree = "<group>"; };
+		7B47E94E1C90458100CCB3A8 /* aboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = aboutViewController.m; sourceTree = "<group>"; };
+		7B47E9501C9049E900CCB3A8 /* closedeviceview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = closedeviceview.xib; sourceTree = "<group>"; };
+		7B47E9521C90500600CCB3A8 /* CloseDeviceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloseDeviceView.h; sourceTree = "<group>"; };
+		7B47E9531C90500600CCB3A8 /* CloseDeviceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloseDeviceView.m; sourceTree = "<group>"; };
 		7B7802881C7C899E009740EA /* mediainfoCellEdit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mediainfoCellEdit.xib; sourceTree = "<group>"; };
 		7B78028A1C7C9012009740EA /* mediaCellEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mediaCellEdit.h; sourceTree = "<group>"; };
 		7B78028B1C7C9012009740EA /* mediaCellEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mediaCellEdit.m; sourceTree = "<group>"; };
@@ -257,6 +267,8 @@
 				7BA13DA91C82BC6E00EB2A69 /* ScanFileController.m */,
 				7B085E0C1C8BB3E1001DD07E /* TaskAddVIewController.h */,
 				7B085E0D1C8BB3E1001DD07E /* TaskAddVIewController.m */,
+				7B47E94D1C90458100CCB3A8 /* aboutViewController.h */,
+				7B47E94E1C90458100CCB3A8 /* aboutViewController.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -275,6 +287,7 @@
 		7B0AF4981C5466630064426B /* PNG */ = {
 			isa = PBXGroup;
 			children = (
+				7B47E94B1C90439100CCB3A8 /* APP_Splash.png */,
 				7B9A66801C886B6F00DF5474 /* img_edit_add.png */,
 				7BA13DAB1C83071B00EB2A69 /* folder.png */,
 				7B7802901C7C96D1009740EA /* img_edit_delete.png */,
@@ -348,6 +361,8 @@
 				7B9A66821C886D1700DF5474 /* taskdetailview.h */,
 				7B9A66831C886D1700DF5474 /* taskdetailview.m */,
 				7B9A66851C8872C200DF5474 /* DelegateHead.h */,
+				7B47E9521C90500600CCB3A8 /* CloseDeviceView.h */,
+				7B47E9531C90500600CCB3A8 /* CloseDeviceView.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -363,6 +378,7 @@
 				B4A8D7181C5871CA00E81CCD /* mediainfoCell.xib */,
 				B4A8D7221C589B8F00E81CCD /* newTaskView.xib */,
 				7B9A667E1C88683800DF5474 /* taskview.xib */,
+				7B47E9501C9049E900CCB3A8 /* closedeviceview.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -524,6 +540,7 @@
 				7B0AF4DD1C551CA40064426B /* img_playmode_repeat_all.png in Resources */,
 				7B0AF4BC1C548DB10064426B /* computer.png in Resources */,
 				B4A8D7201C58724B00E81CCD /* img_yy.png in Resources */,
+				7B47E94C1C90439100CCB3A8 /* APP_Splash.png in Resources */,
 				7B9A667F1C88683800DF5474 /* taskview.xib in Resources */,
 				B46FC9801C57727C00050576 /* edit.png in Resources */,
 				B46FC9721C5719E700050576 /* up.png in Resources */,
@@ -547,6 +564,7 @@
 				7B0AF4AF1C5474E50064426B /* progress_7.png in Resources */,
 				7B0AF4AD1C5474E50064426B /* progress_5.png in Resources */,
 				7B0AF4C31C54CF850064426B /* more.png in Resources */,
+				7B47E9511C9049E900CCB3A8 /* closedeviceview.xib in Resources */,
 				7B0AF4CF1C551A8D0064426B /* img_play_prev_pressed.png in Resources */,
 				7B7802911C7C96D1009740EA /* img_edit_delete.png in Resources */,
 				7BD31A831C4E8131002FB61E /* Assets.xcassets in Resources */,
@@ -581,6 +599,7 @@
 			files = (
 				B4A8D7261C589F6700E81CCD /* NewTaskVIew.m in Sources */,
 				B488D1161C56274B009BC7E2 /* tab1View.m in Sources */,
+				7B47E94F1C90458100CCB3A8 /* aboutViewController.m in Sources */,
 				B46FC9831C57757700050576 /* tab1Viewchild.m in Sources */,
 				B46FC9601C57089400050576 /* tab2View.m in Sources */,
 				B46FC9651C57133100050576 /* TaskCell.m in Sources */,
@@ -590,6 +609,7 @@
 				7BA13DAA1C82BC6E00EB2A69 /* ScanFileController.m in Sources */,
 				7BD31A7B1C4E8130002FB61E /* AppDelegate.m in Sources */,
 				7B085E0E1C8BB3E1001DD07E /* TaskAddVIewController.m in Sources */,
+				7B47E9541C90500600CCB3A8 /* CloseDeviceView.m in Sources */,
 				7B0AF4B31C5477370064426B /* LoadingView.m in Sources */,
 				B46FC9761C571BC900050576 /* tab3View.m in Sources */,
 				7B0AF4BF1C548F8D0064426B /* DeviceCell.m in Sources */,

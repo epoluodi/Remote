@@ -8,6 +8,7 @@
 
 #import "tab3View.h"
 #import "MainViewController.h"
+
 @implementation tab3View
 @synthesize mainview;
 /*
@@ -110,5 +111,20 @@
         
         
     });
+}
+
+- (IBAction)clickabout:(id)sender {
+    [mainview performSegueWithIdentifier:@"showabout" sender:self];
+}
+
+- (IBAction)clickclosedevice:(id)sender {
+    
+    NSArray *nibarry = [[NSBundle mainBundle] loadNibNamed:@"closedeviceview" owner:closedeviceview options:nil];
+    closedeviceview = (CloseDeviceView *)nibarry[0];
+    closedeviceview.frame = mainview.view.frame;
+    closedeviceview.mainView= mainview;
+    
+    [mainview.view addSubview:closedeviceview];
+    [closedeviceview getShutTimeinfo];
 }
 @end
