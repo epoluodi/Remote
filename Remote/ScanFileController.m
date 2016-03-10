@@ -10,7 +10,7 @@
 #import "MainViewController.h"
 #import "LoadingView.h"
 #import "TipView.h"
-
+#import "FolderCell.h"
 
 @interface ScanFileController ()
 {
@@ -25,12 +25,13 @@
 @synthesize table;
 @synthesize mainview;
 @synthesize flag;
-
+@synthesize btnscan;
+@synthesize IsClose;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    IsClose=NO;
     if (!flag)
         title = [[UINavigationItem alloc] initWithTitle:@"请选择媒体文件所在的文件夹"];
     else
@@ -38,6 +39,16 @@
     btnreturn = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(clickreturn)];
     btnUpdir = [[UIBarButtonItem alloc] initWithTitle:@"上一层" style:UIBarButtonItemStylePlain target:self action:@selector(clickupdir)];
     
+    UIImage *image1 = [PublicCommon createImageWithColor:[UIColor colorWithRed:0.231 green:0.718 blue:0.898 alpha:1.00]
+                                                    Rect:CGRectMake(0, 0, btnscan.frame.size.width, btnscan.frame.size.height) ];
+    
+    UIImage *image2 = [PublicCommon createImageWithColor:[UIColor colorWithRed:0.231 green:0.718 blue:0.898 alpha:.5f]
+                                                    Rect:CGRectMake(0, 0, btnscan.frame.size.width, btnscan.frame.size.height)];
+    
+    [btnscan setBackgroundImage:image1 forState:UIControlStateNormal];
+    [btnscan setBackgroundImage:image2 forState:UIControlStateHighlighted];
+    btnscan.layer.cornerRadius = 8;
+    btnscan.layer.masksToBounds=YES;
     
     [navbar pushNavigationItem:title animated:YES];
     
@@ -47,6 +58,7 @@
     dirlist = [[NSArray alloc] init];
     returndir = [[NSMutableArray alloc] init];
 
+    selectmediaID = [[NSMutableArray alloc] init];
     table.delegate=self;
     table.dataSource=self;
     nowdir = @"";
@@ -85,12 +97,28 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
-    cell.imageView.image=[UIImage imageNamed:@"folder"];
+    
+    FolderCell *cell;
     NSDictionary *d = [dirlist objectAtIndex:indexPath.row];
-    cell.textLabel.text = [d objectForKey:@"name"];
+
+    cell= (mediaCellEdit *)[table dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%d_m",indexPath.row]];
     
-    
+    if (!cell){
+        
+        UINib *nib = [UINib nibWithNibName:@"folderCell" bundle:nil];
+        [table registerNib:nib forCellReuseIdentifier:[NSString stringWithFormat:@"%d_m",indexPath.row]];
+        cell= (FolderCell *)[table dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"%d_m",indexPath.row]];
+        cell.scanview=self;
+        cell.foldername.text = [d objectForKey:@"name"];
+        cell.folderallname = [d objectForKey:@"path"];
+ 
+        
+       
+        return cell;
+    }
+    cell.foldername.text = [d objectForKey:@"name"];
+    cell.folderallname = [d objectForKey:@"path"];
+    NSLog(@"%@",cell.folderallname);
     return cell;
 }
 
@@ -144,6 +172,16 @@
         BOOL success = ((NSNumber *)[json objectForKey:@"success"]).boolValue;
         if (success){
             dirlist = [json objectForKey:@"data"];
+            if (IsClose){
+            for (int i = 0 ; i< [dirlist count]; i++) {
+                FolderCell *cell = [table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+                [cell resetchkstate];
+            }
+            
+        }
+        else
+            IsClose=YES;
+            [selectmediaID removeAllObjects];
             [table reloadData];
         }
         else
@@ -159,7 +197,8 @@
         if (success){
             
             tip=[[TipView alloc] init:@"扫描完成"];
-            [tip showTip:self];
+            [tip showTip:mainview];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
 
         else{
@@ -187,6 +226,19 @@
 
 
 #pragma mark -
+
+
+-(void)ChangeSelectList:(NSString *)mediaid flag:(BOOL)_flag
+{
+    if (_flag)
+        [selectmediaID addObject:mediaid];
+    else{
+        [selectmediaID removeObject:mediaid];
+     
+  
+    }
+}
+
 
 -(void)clickupdir
 {
@@ -228,12 +280,13 @@
     dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(globalQ , ^{
         if (!flag){
-        NSString *arg = [NSString stringWithFormat:@"%@%%~%%",((MainViewController *)mainview).getNowt1Title];
+        NSString *arg = [NSString stringWithFormat:@"%@%%~%%%@",((MainViewController *)mainview).getNowt1Title,[selectmediaID componentsJoinedByString:@","]];
         [dnet ScanSysDir:((MainViewController *)mainview).DeviceIP arg:arg];
         }
         else
         {
-            [dnet ReplaceDB:((MainViewController *)mainview).DeviceIP ];
+            NSString *arg = [NSString stringWithFormat:@"%@",[selectmediaID componentsJoinedByString:@","]];
+            [dnet ReplaceDB:((MainViewController *)mainview).DeviceIP arg:arg];
         }
     });
     

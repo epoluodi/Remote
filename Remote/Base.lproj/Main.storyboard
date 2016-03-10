@@ -427,11 +427,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0pc-mz-XDN">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VND-WO-Raz">
-                                        <rect key="frame" x="81" y="11" width="159" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VND-WO-Raz">
+                                        <rect key="frame" x="55" y="10" width="210" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="4X9-zx-kIL"/>
-                                            <constraint firstAttribute="width" constant="159" id="LsN-bk-iG6"/>
+                                            <constraint firstAttribute="width" constant="210" id="LsN-bk-iG6"/>
                                         </constraints>
                                         <state key="normal" title="开始扫描"/>
                                         <connections>
@@ -443,8 +443,8 @@
                                 <constraints>
                                     <constraint firstItem="VND-WO-Raz" firstAttribute="centerX" secondItem="0pc-mz-XDN" secondAttribute="centerX" id="C4E-yF-MOK"/>
                                     <constraint firstAttribute="height" constant="50" id="Y4v-Xf-IAX"/>
-                                    <constraint firstItem="VND-WO-Raz" firstAttribute="top" secondItem="0pc-mz-XDN" secondAttribute="top" constant="11" id="aTp-fn-hQ8"/>
-                                    <constraint firstAttribute="bottom" secondItem="VND-WO-Raz" secondAttribute="bottom" constant="9" id="xm3-ra-Dl1"/>
+                                    <constraint firstItem="VND-WO-Raz" firstAttribute="top" secondItem="0pc-mz-XDN" secondAttribute="top" constant="10" id="aTp-fn-hQ8"/>
+                                    <constraint firstAttribute="bottom" secondItem="VND-WO-Raz" secondAttribute="bottom" constant="10" id="xm3-ra-Dl1"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -465,6 +465,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="btnscan" destination="VND-WO-Raz" id="pZK-Tj-Yfa"/>
                         <outlet property="navbar" destination="xpl-Zv-B8v" id="ZKY-l9-9Ue"/>
                         <outlet property="table" destination="bde-Yb-cbV" id="SC5-Hi-NWa"/>
                     </connections>

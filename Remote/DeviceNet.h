@@ -158,7 +158,7 @@ typedef enum :int {
 -(BOOL)ScanSysDir:(NSString *)ip arg:(NSString *)arg;
 
 //扫描系统目录配置
--(BOOL)ReplaceDB:(NSString *)ip;
+-(BOOL)ReplaceDB:(NSString *)ip arg:(NSString *)arg;
 
 //获取任务信息中详细信息
 -(BOOL)GetTaskDetailInfo:(NSString *)ip arg:(NSString *)arg;

@@ -48,6 +48,8 @@
 		7B78028C1C7C9012009740EA /* mediaCellEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B78028B1C7C9012009740EA /* mediaCellEdit.m */; };
 		7B78028F1C7C95AE009740EA /* img_edit_send.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B78028E1C7C95AE009740EA /* img_edit_send.png */; };
 		7B7802911C7C96D1009740EA /* img_edit_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B7802901C7C96D1009740EA /* img_edit_delete.png */; };
+		7B8570811C9196AE00D99A77 /* folderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B8570801C9196AE00D99A77 /* folderCell.xib */; };
+		7B8570841C91994200D99A77 /* FolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8570831C91994200D99A77 /* FolderCell.m */; };
 		7B9A667F1C88683800DF5474 /* taskview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B9A667E1C88683800DF5474 /* taskview.xib */; };
 		7B9A66811C886B6F00DF5474 /* img_edit_add.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9A66801C886B6F00DF5474 /* img_edit_add.png */; };
 		7B9A66841C886D1700DF5474 /* taskdetailview.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A66831C886D1700DF5474 /* taskdetailview.m */; };
@@ -160,6 +162,9 @@
 		7B78028B1C7C9012009740EA /* mediaCellEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mediaCellEdit.m; sourceTree = "<group>"; };
 		7B78028E1C7C95AE009740EA /* img_edit_send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_edit_send.png; sourceTree = "<group>"; };
 		7B7802901C7C96D1009740EA /* img_edit_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_edit_delete.png; sourceTree = "<group>"; };
+		7B8570801C9196AE00D99A77 /* folderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = folderCell.xib; sourceTree = "<group>"; };
+		7B8570821C91994200D99A77 /* FolderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderCell.h; sourceTree = "<group>"; };
+		7B8570831C91994200D99A77 /* FolderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderCell.m; sourceTree = "<group>"; };
 		7B9A667E1C88683800DF5474 /* taskview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = taskview.xib; sourceTree = "<group>"; };
 		7B9A66801C886B6F00DF5474 /* img_edit_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_edit_add.png; sourceTree = "<group>"; };
 		7B9A66821C886D1700DF5474 /* taskdetailview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taskdetailview.h; sourceTree = "<group>"; };
@@ -363,6 +368,8 @@
 				7B9A66851C8872C200DF5474 /* DelegateHead.h */,
 				7B47E9521C90500600CCB3A8 /* CloseDeviceView.h */,
 				7B47E9531C90500600CCB3A8 /* CloseDeviceView.m */,
+				7B8570821C91994200D99A77 /* FolderCell.h */,
+				7B8570831C91994200D99A77 /* FolderCell.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -379,6 +386,7 @@
 				B4A8D7221C589B8F00E81CCD /* newTaskView.xib */,
 				7B9A667E1C88683800DF5474 /* taskview.xib */,
 				7B47E9501C9049E900CCB3A8 /* closedeviceview.xib */,
+				7B8570801C9196AE00D99A77 /* folderCell.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -573,6 +581,7 @@
 				7B0AF4D71C551AD40064426B /* img_play_prev_normal.png in Resources */,
 				B46FC9731C5719E700050576 /* ys.png in Resources */,
 				B46FC96E1C5719E700050576 /* about.png in Resources */,
+				7B8570811C9196AE00D99A77 /* folderCell.xib in Resources */,
 				7B0AF4C11C54CF2A0064426B /* bg1.png in Resources */,
 				B4A8D71F1C58724B00E81CCD /* img_sp.png in Resources */,
 				B46FC97F1C57727C00050576 /* back.png in Resources */,
@@ -608,6 +617,7 @@
 				B4A8D7141C58682E00E81CCD /* MediaData.m in Sources */,
 				7BA13DAA1C82BC6E00EB2A69 /* ScanFileController.m in Sources */,
 				7BD31A7B1C4E8130002FB61E /* AppDelegate.m in Sources */,
+				7B8570841C91994200D99A77 /* FolderCell.m in Sources */,
 				7B085E0E1C8BB3E1001DD07E /* TaskAddVIewController.m in Sources */,
 				7B47E9541C90500600CCB3A8 /* CloseDeviceView.m in Sources */,
 				7B0AF4B31C5477370064426B /* LoadingView.m in Sources */,

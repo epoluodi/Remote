@@ -260,8 +260,9 @@
     return  YES;
 }
 
--(BOOL)ReplaceDB:(NSString *)ip
+-(BOOL)ReplaceDB:(NSString *)ip arg:(NSString *)arg
 {
+    _arg=arg;
     _commandtype = EReplaceDB;
     
     tcpsocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
@@ -610,7 +611,7 @@
             [sock writeData:data withTimeout:0 tag:0];
             break;
         case EReplaceDB:
-            command = [NSString stringWithFormat:@"%@%@%@",replaceDB,SplitStr,CRCL];
+            command = [NSString stringWithFormat:@"%@%@%@%@",replaceDB,SplitStr,_arg, CRCL];
             NSLog(@"发送数据:%@",command);
             data =[command dataUsingEncoding:enc];
             [sock writeData:data withTimeout:0 tag:0];
