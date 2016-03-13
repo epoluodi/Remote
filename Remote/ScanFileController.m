@@ -198,6 +198,7 @@
             
             tip=[[TipView alloc] init:@"扫描完成"];
             [tip showTip:mainview];
+            [((MainViewController*)mainview) Loadmedia];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
 
