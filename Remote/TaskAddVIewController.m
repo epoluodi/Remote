@@ -34,7 +34,8 @@
     for (int i=0; i<[((MainViewController *)mainview).ContentType count]; i++) {
         HeadVIew *v = [[HeadVIew alloc] init];
         v.mainview=mainview;
-        
+        v.tavc=self;
+        v.intable=table;
         [v initUI:[PublicCommon GetALLScreen].size.width section:i];
         [headlist  addObject:v];
     }
@@ -48,7 +49,15 @@
 }
 
 
-
+-(void)all:(int)section
+{
+        NSArray *a = [dictMediaList objectForKey:[mainview.ContentType objectAtIndex:section ]];
+    HeadVIew *h=[headlist objectAtIndex:section];
+    for (MediaData*m in a) {
+        [h ChangeSelectList:m.mediaID flag:YES];
+    }
+    
+}
 -(void)LoadMediaAll
 {
 
@@ -80,6 +89,8 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSArray *a = [dictMediaList objectForKey:[mainview.ContentType objectAtIndex:section ]];
+    
+    ((HeadVIew *)[headlist objectAtIndex:section]).incount = [a count];
     
     return [a count];
 }
@@ -281,6 +292,7 @@
     NSMutableString *mstr = [[NSMutableString alloc] init];
     for (HeadVIew *v in headlist) {
         [mstr appendString:[v getListForStr]];
+        [mstr appendString:@","];
         
     }
     NSString * arg = [NSString stringWithFormat:@"%@%%~%%%@",mstr,taskid];
@@ -306,11 +318,12 @@
 @implementation HeadVIew
 @synthesize IsAllSelect,IsClose;
 @synthesize mainview;
+@synthesize intable,incount;
 
 -(void)initUI:(float)width section:(int)section
 {
     itemindex = section;
-    
+
     self.frame = CGRectMake(0, 0, width, 50);
     UILabel *lab = [[UILabel alloc] init];
     lab.textColor=[[UIColor whiteColor] colorWithAlphaComponent:0.5];
@@ -335,7 +348,7 @@
 
 
 - (IBAction)clickmarkall:(id)sender {
-    
+
     [self willChangeValueForKey:@"IsAllSelect"];
     if (IsAllSelect)
     {
@@ -344,6 +357,11 @@
     }
     else
     {
+        if (incount ==0)
+            return;
+        [intable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:incount -1 inSection:itemindex] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        [_tavc all:itemindex];
+        
         IsAllSelect=YES;
         [btnchk setImage:[UIImage imageNamed:@"check"] forState:UIControlStateNormal];
     }
@@ -352,8 +370,10 @@
 
 -(void)ChangeSelectList:(NSString *)mediaid flag:(BOOL)flag
 {
-    if (flag)
-        [selectmediaID addObject:mediaid];
+    if (flag){
+        if (![selectmediaID containsObject:mediaid])
+            [selectmediaID addObject:mediaid];
+}
     else{
         [selectmediaID removeObject:mediaid];
         IsAllSelect=NO;

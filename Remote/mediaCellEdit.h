@@ -17,6 +17,7 @@
 @interface mediaCellEdit : UITableViewCell
 {
     BOOL check;
+
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *medianame;
@@ -26,6 +27,7 @@
 @property (weak,nonatomic) PLViewController *plv;
 @property (weak,nonatomic) taskdetailview *tdlv;
 @property (weak,nonatomic) HeadVIew *hv;
+@property (assign)BOOL KVO;
 
 -(void)changemark;
 -(void)initKVO:(BOOL)flag;

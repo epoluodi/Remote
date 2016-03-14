@@ -45,9 +45,12 @@
         x1=375;
         x2=750;
     }
-    if (iPhone6plus){
+    else if (iPhone6plus){
         x1 = 414;
         x2= 828;
+    }else{
+        x1 =320;
+        x2 = 640;
     }
     
     app= (AppDelegate *)[[UIApplication sharedApplication] delegate];

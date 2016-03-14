@@ -25,7 +25,7 @@
 - (IBAction)clickreturn:(id)sender;
 - (IBAction)clickaddok:(id)sender;
 
-
+-(void)all:(int)section;
 
 @end
 
@@ -38,9 +38,12 @@
     UIButton *btnchk;
     NSMutableArray<NSString *> *selectmediaID;
 }
+@property (assign)int incount;
+@property (weak,nonatomic) UITableView *intable;
 @property (nonatomic) BOOL IsAllSelect;
 @property (nonatomic) BOOL IsClose;
 @property (weak,nonatomic)MainViewController * mainview;
+@property (weak,nonatomic)TaskAddVIewController *tavc;
 -(void)initUI:(float)width section:(int)section;
 -(void)ChangeSelectList:(NSString *)mediaid flag:(BOOL)flag;
 -(void)closeview;

@@ -10,13 +10,13 @@
 
 @implementation mediaCellEdit
 @synthesize medianame,size,mark,mediaid;
-@synthesize plv,tdlv,hv;
+@synthesize plv,tdlv,hv,KVO;
 - (void)awakeFromNib {
     // Initialization code
     self.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.1f];
     medianame.textColor=[UIColor whiteColor];
     size.textColor=[UIColor whiteColor];
-
+    KVO=NO;
     check = NO;
     
 }
@@ -35,7 +35,9 @@
         [plv ChangeSelectList:mediaid flag:NO];
         check=NO;
     }
+    KVO=YES;
     if (plv){
+        
         [plv addObserver:self forKeyPath:@"IsAllSelect" options:NSKeyValueObservingOptionNew context:NULL];
           [plv addObserver:self forKeyPath:@"IsClose" options:NSKeyValueObservingOptionNew context:NULL];
         return;
@@ -69,8 +71,8 @@
         }
         else
         {
-            if (check)
-                return;
+//            if (check)
+//                return;
         [mark setImage:[UIImage imageNamed:@"check"]];
         if (plv)
                 [plv ChangeSelectList:mediaid flag:YES];
@@ -82,6 +84,7 @@
         }
     }else if  ([keyPath isEqualToString:@"IsClose"])
     {
+        KVO=NO;
         if (plv){
         [plv removeObserver:self forKeyPath:@"IsAllSelect"];
         [plv removeObserver:self forKeyPath:@"IsClose"];

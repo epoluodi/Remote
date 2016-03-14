@@ -136,7 +136,10 @@
 -(void)ChangeSelectList:(NSString *)mediaid flag:(BOOL)flag
 {
     if (flag)
-        [selectmediaID addObject:mediaid];
+    {
+        if (![selectmediaID containsObject:mediaid])
+            [selectmediaID addObject:mediaid];
+    }
     else{
         [selectmediaID removeObject:mediaid];
         IsAllSelect=NO;
@@ -292,7 +295,9 @@
 */
 
 - (IBAction)clickmarkall:(id)sender {
+  
     
+ 
     [self willChangeValueForKey:@"IsAllSelect"];
     if (IsAllSelect)
     {
@@ -301,6 +306,14 @@
     }
     else
     {
+        if ([((MainViewController*)mainview).MediaList count] ==0)
+            return;
+        [table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[((MainViewController*)mainview).MediaList count] -1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        for (MediaData *m in ((MainViewController*)mainview).MediaList) {
+            [self ChangeSelectList:m.mediaID flag:YES];
+        }
+        
+        
         IsAllSelect=YES;
         [btnmarkall setImage:[UIImage imageNamed:@"check"] forState:UIControlStateNormal];
     }

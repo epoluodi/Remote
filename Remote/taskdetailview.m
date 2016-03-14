@@ -41,6 +41,9 @@
     table.delegate=self;
     table.dataSource=self;
     detaillist = nil;
+    
+
+
 }
 
 //开始刷新
@@ -61,8 +64,10 @@
 }
 -(void)ChangeSelectList:(NSString *)mediaid flag:(BOOL)flag
 {
-    if (flag)
-        [selectmediaID addObject:mediaid];
+    if (flag){
+        if (![selectmediaID containsObject:mediaid])
+            [selectmediaID addObject:mediaid];
+    }
     else{
         [selectmediaID removeObject:mediaid];
         IsAllSelect=NO;
@@ -129,6 +134,7 @@
 }
 
 - (IBAction)clickselectall:(id)sender {
+
     [self willChangeValueForKey:@"IsAllSelect"];
     if (IsAllSelect)
     {
@@ -137,10 +143,19 @@
     }
     else
     {
+        if ([detaillist count] ==0)
+            return;
+        [table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[detaillist count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+        for (NSDictionary *d in detaillist) {
+            [self ChangeSelectList:[d objectForKey:@"numseq"] flag:YES];
+        }
+        
         IsAllSelect=YES;
         [btncheck setImage:[UIImage imageNamed:@"check"] forState:UIControlStateNormal];
     }
+    
     [self didChangeValueForKey:@"IsAllSelect"];
+
 }
 
 
@@ -177,6 +192,8 @@
         [me initKVO:IsAllSelect];
         return me;
     }
+    if (!me.KVO)
+        [me initKVO:IsAllSelect];
     me.medianame.text= [d objectForKey:@"medianame"];
     me.size.text= [d objectForKey:@"length"];
     me.mediaid=[d objectForKey:@"numseq"];
