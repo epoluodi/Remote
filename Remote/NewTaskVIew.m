@@ -103,7 +103,7 @@
         return;
     }
 //    addTask!~!3%~%2016-02-20%~%2016-02-23%~%16:14%~%18:14
-    NSString *arg = [NSString stringWithFormat:@"%@%%~%%%@%%~%%%@%%~%%%@%%~%%%@",temptaskname,labstartdt.text,enddt.text,starttime.text,endtime.text];
+    NSString *arg = [NSString stringWithFormat:@"%@%%~%%%@%%~%%%@%%~%%%@%%~%%%@%%~%%%@",taskid, temptaskname,labstartdt.text,enddt.text,starttime.text,endtime.text];
     
     if (!loadview)
         loadview = [[LoadingView alloc] init];
@@ -123,7 +123,6 @@
     [self removeFromSuperview];
 }
 
-
 #pragma mark 通信操作委托
 -(void)CommandFinish:(CommandType)commandtype json:(NSDictionary *)json
 {
@@ -140,7 +139,12 @@
     
         BOOL success = ((NSNumber *)[json objectForKey:@"success"]).boolValue;
         if (success){
-            
+            if (commandtype ==EEditTask){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"修改成功!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+                [delegate refresh];
+                return;
+            }
             [delegate AddFinsih:[json objectForKey:@"msg"] taskname: temptaskname];
         }
         else

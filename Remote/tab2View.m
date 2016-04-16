@@ -248,6 +248,10 @@
     
 }
 
+-(void)refresh
+{
+    [self LoadTaskAll];
+}
 //开始刷新
 -(void)changerefreshstate
 {

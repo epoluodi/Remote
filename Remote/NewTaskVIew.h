@@ -13,7 +13,7 @@
 @protocol NewTaskDelegate
 
 -(void)AddFinsih:(NSString *)taskid taskname:(NSString *)taskname;
-
+-(void)refresh;
 @end
 
 @interface NewTaskVIew : UIView<FinishCommanddelegate>
